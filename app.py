@@ -21,7 +21,7 @@ creds = Credentials.from_service_account_file(
 client = gspread.authorize(creds)
 
 # buka Google Sheet
-sheet = client.open("PBD_FORM").sheet1
+sheet = client.open("Penjaminan Kualiti PBD").sheet1
 
 
 @app.route("/")
