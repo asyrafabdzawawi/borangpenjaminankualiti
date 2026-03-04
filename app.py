@@ -15,10 +15,8 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-credentials_info = json.loads(os.environ["GOOGLE_CREDENTIALS"])
-
-creds = Credentials.from_service_account_info(
-    credentials_info,
+creds = Credentials.from_service_account_file(
+    "credentials.json",
     scopes=[
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive"
@@ -27,6 +25,7 @@ creds = Credentials.from_service_account_info(
 
 client = gspread.authorize(creds)
 
+sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet1
 # buka Google Sheet
 sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet1
 
