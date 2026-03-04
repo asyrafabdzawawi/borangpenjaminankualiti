@@ -2,9 +2,6 @@ from flask import Flask, request, redirect, render_template
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
-import json
-import os
-from google.oauth2.service_account import Credentials
 import os
 
 app = Flask(__name__)
@@ -15,18 +12,16 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
+# Load credentials
 creds = Credentials.from_service_account_file(
     "credentials.json",
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-        "https://www.googleapis.com/auth/drive"
-    ]
+    scopes=scope
 )
 
+# Connect Google Sheets
 client = gspread.authorize(creds)
 
-sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet1
-# buka Google Sheet
+# Open sheet by ID
 sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet1
 
 
