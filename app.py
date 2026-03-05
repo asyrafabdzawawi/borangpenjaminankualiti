@@ -28,7 +28,7 @@ sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("lampiran3.html")
 
 
 @app.route("/submit", methods=["POST"])
