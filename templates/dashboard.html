@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Analisis PBD</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f4f6f9;
+padding:40px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.list{
+margin-top:20px;
+}
+
+.teacher{
+padding:10px;
+border-bottom:1px solid #eee;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Dashboard Analisis PBD</h1>
+
+<h3>Senarai Guru Yang Telah Mengisi Borang</h3>
+
+<div id="teacherList" class="list"></div>
+
+</div>
+
+<script>
+
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pubhtml";
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+
+const rows = data.split("\n").slice(1);
+const teacherList = document.getElementById("teacherList");
+
+rows.forEach(row => {
+
+const cols = row.split(",");
+
+const nama = cols[1];
+
+if(nama){
+
+const div = document.createElement("div");
+div.className = "teacher";
+div.innerText = nama;
+
+teacherList.appendChild(div);
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
