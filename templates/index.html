@@ -20,6 +20,11 @@ height:100vh;
 margin:0;
 }
 
+.menu-button:hover{
+transform:translateY(-2px);
+box-shadow:0 5px 12px rgba(0,0,0,0.15);
+}
+  
 .container{
 background:white;
 padding:50px;
@@ -86,11 +91,10 @@ color:#95a5a6;
 
 <p>SK Labu Besar</p>
 
-<a href="/lampiran3">
-<button class="menu-button form-btn">
+<button class="menu-button form-btn"
+onclick="window.location.href='/lampiran3'">
 Lampiran C - Senarai Semak Penjaminan PBD Bagi Guru Mata Pelajaran
 </button>
-</a>
 
 <button class="menu-button dashboard-btn"
 onclick="window.location.href='/dashboard'">
