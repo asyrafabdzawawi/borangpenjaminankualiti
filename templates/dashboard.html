@@ -110,6 +110,13 @@ border-bottom:1px solid #eee;
 <div class="chart-box">
 <canvas id="chart11"></canvas>
 </div>
+
+<h3>2. Pementoran</h3>
+<p>2.1 Menerima bimbingan daripada GKMP/KP</p>
+
+<div class="chart-box">
+<canvas id="chart21"></canvas>
+</div>
 </div>
 
 </div>
@@ -141,39 +148,45 @@ fetch(sheetURL)
 
 const rows = data.split("\n").slice(1);
 
-
 const jumlahC = document.getElementById("jumlahC");
+
 let count = 0;
 let ya = 0;
 let tidak = 0;
+
+let s1 = 0;
+let s2 = 0;
+let s3 = 0;
+let s4 = 0;
+let s5 = 0;
 
 rows.forEach(row => {
 
 const cols = row.split(",");
 
 const nama = cols[1];
-const q11 = cols[5]; // column 1.1
+const q11 = cols[5];
+const q21 = cols[6];
 
 if(nama && nama.trim() !== ""){
 count++;
-
-
-
-
-
 }
 
-if(q11 == "Ya"){
-ya++;
-}
+if(q11 === "Ya") ya++;
+if(q11 === "Tidak") tidak++;
 
-if(q11 == "Tidak"){
-tidak++;
-}
+if(q21 === "1") s1++;
+if(q21 === "2") s2++;
+if(q21 === "3") s3++;
+if(q21 === "4") s4++;
+if(q21 === "5") s5++;
 
 });
 
 jumlahC.innerHTML = "<b>Jumlah respon: " + count + " guru</b>";
+
+/* PIE CHART 1.1 */
+
 const ctx = document.getElementById('chart11');
 
 new Chart(ctx, {
@@ -182,16 +195,39 @@ data: {
 labels: ['Ya', 'Tidak'],
 datasets: [{
 data: [ya, tidak],
-backgroundColor: [
-'#2ecc71',
-'#e74c3c'
-]
+backgroundColor: ['#2ecc71','#e74c3c']
 }]
 },
 options: {
 plugins: {
 legend: {
 position: 'bottom'
+}
+}
+}
+});
+
+/* BAR CHART 2.1 */
+
+const ctx21 = document.getElementById('chart21');
+
+new Chart(ctx21, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [s1, s2, s3, s4, s5],
+backgroundColor: '#3498db'
+}]
+},
+options: {
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{
+beginAtZero:true
 }
 }
 }
