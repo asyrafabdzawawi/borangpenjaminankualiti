@@ -12,6 +12,18 @@ background:#f4f6f9;
 padding:40px;
 }
 
+
+hr{
+margin:35px 0;
+border:none;
+border-top:2px solid #eee;
+}
+
+.section-title{
+margin-top:20px;
+color:#2c3e50;
+}
+
 .container{
 max-width:800px;
 margin:auto;
@@ -42,7 +54,20 @@ border-bottom:1px solid #eee;
 
 <div class="container">
 
-<h1>Dashboard Analisis PBD</h1>
+<h1>Dashboard Analisis</h1>
+
+<h2>Lampiran A</h2>
+<div id="listA" class="list"></div>
+
+<hr>
+
+<h2>Lampiran B</h2>
+<div id="listB" class="list"></div>
+
+<hr>
+
+<h2>Lampiran C</h2>
+<div id="listC" class="list"></div>
 
 <h3>Senarai Guru Yang Telah Mengisi Borang</h3>
 
@@ -54,12 +79,14 @@ border-bottom:1px solid #eee;
 
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?output=csv";
 
+
 fetch(sheetURL)
 .then(res => res.text())
 .then(data => {
 
 const rows = data.split("\n").slice(1);
-const teacherList = document.getElementById("teacherList");
+
+const listC = document.getElementById("listC");
 
 rows.forEach(row => {
 
@@ -73,7 +100,7 @@ const div = document.createElement("div");
 div.className = "teacher";
 div.innerText = nama;
 
-teacherList.appendChild(div);
+listC.appendChild(div);
 
 }
 
