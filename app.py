@@ -34,6 +34,10 @@ def home():
 def lampiran3():
     return render_template("lampiran3.html")
 
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
 @app.route("/submit", methods=["POST"])
 def submit():
 
