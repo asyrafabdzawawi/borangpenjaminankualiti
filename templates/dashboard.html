@@ -141,7 +141,7 @@ fetch(sheetURL)
 
 const rows = data.split("\n").slice(1);
 
-const listC = document.getElementById("listC");
+
 const jumlahC = document.getElementById("jumlahC");
 let count = 0;
 let ya = 0;
@@ -156,11 +156,10 @@ const q11 = cols[5]; // column 1.1
 
 if(nama && nama.trim() !== ""){
 count++;
-const div = document.createElement("div");
-div.className = "teacher";
-div.innerText = nama;
 
-listC.appendChild(div);
+
+
+
 
 }
 
