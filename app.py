@@ -30,6 +30,9 @@ sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet
 def home():
     return render_template("index.html")
 
+@app.route("/lampiran3")
+def lampiran3():
+    return render_template("lampiran3.html")
 
 @app.route("/submit", methods=["POST"])
 def submit():
