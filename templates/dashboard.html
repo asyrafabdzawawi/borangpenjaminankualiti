@@ -13,6 +13,12 @@ background:#f4f6f9;
 padding:40px;
 }
 
+.bar-chart-box{
+width:500px;
+height:300px;
+margin:20px auto;
+}
+
 .chart-box{
 width:300px;
 margin:auto;
@@ -107,7 +113,7 @@ border-bottom:1px solid #eee;
 <h3>1. Pengurusan Penjaminan Kualiti</h3>
 <p>1.1 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah</p>
 
-<div class="chart-box">
+<div class="bar-chart-box">
 <canvas id="chart11"></canvas>
 </div>
 
@@ -222,13 +228,13 @@ backgroundColor: '#3498db'
 }]
 },
 options: {
+responsive:true,
+maintainAspectRatio:false,
 plugins:{
 legend:{display:false}
 },
 scales:{
-y:{
-beginAtZero:true
-}
+y:{beginAtZero:true}
 }
 }
 });
