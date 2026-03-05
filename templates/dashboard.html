@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ms">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Dashboard Analisis PBD</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
@@ -98,6 +98,11 @@ border-bottom:1px solid #eee;
 <h3>Lampiran C</h3>
 <p id="jumlahC"><b>Jumlah respon: 0 guru</b></p>
 <div id="listC" class="list"></div>
+
+<h3>1. Pengurusan Penjaminan Kualiti</h3>
+<p>1.1 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah</p>
+
+<canvas id="chart11" width="300" height="300"></canvas>
 </div>
 
 </div>
@@ -140,9 +145,9 @@ rows.forEach(row => {
 const cols = row.split(",");
 
 const nama = cols[1];
-const 1_1 = cols[5]; // column 1.1
+const q11 = cols[5]; // column 1.1
 
-if(nama){
+if(nama && nama.trim() !== ""){
 count++;
 const div = document.createElement("div");
 div.className = "teacher";
@@ -152,22 +157,17 @@ listC.appendChild(div);
 
 }
 
-if(1_1 == "Ya"){
+if(q11 == "Ya"){
 ya++;
 }
 
-if(1_1 == "Tidak"){
+if(q11 == "Tidak"){
 tidak++;
 }
 
 });
 
 jumlahC.innerHTML = "<b>Jumlah respon: " + count + " guru</b>";
-
-<h3>1. Pengurusan Penjaminan Kualiti</h3>
-<p>1.1 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah</p>
-
-<canvas id="chart11" width="300" height="300"></canvas>
 const ctx = document.getElementById('chart11');
 
 new Chart(ctx, {
