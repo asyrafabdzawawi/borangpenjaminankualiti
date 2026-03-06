@@ -169,6 +169,56 @@ border-bottom:1px solid #eee;
 <div class="bar-chart-box">
 <canvas id="chart41"></canvas>
 </div>
+
+<p>4.2 Membuat analisis TP murid bagi tujuan tindakan susulan</p>
+
+<div class="bar-chart-box">
+<canvas id="chart42"></canvas>
+</div>
+
+<p>4.3 Menyediakan pelaporan TP murid sekurang-kurangnya dua kali setahun</p>
+
+<div class="bar-chart-box">
+<canvas id="chart43"></canvas>
+</div>
+
+<h3>5. Pengesanan</h3>
+
+<p>5.1 Memastikan instrumen sesuai diguna pakai untuk tujuan pentaksiran</p>
+
+<div class="bar-chart-box">
+<canvas id="chart51"></canvas>
+</div>
+
+<p>5.2 Memastikan kaedah pentaksiran menepati Standard Kandungan, Standard Pembelajaran dan Standard Prestasi</p>
+
+<div class="bar-chart-box">
+<canvas id="chart52"></canvas>
+</div>
+
+<p>5.3 Memastikan instrumen pentaksiran menepati Standard Kandungan, Standard Pembelajaran dan Standard Prestasi</p>
+
+<div class="bar-chart-box">
+<canvas id="chart53"></canvas>
+</div>
+
+<p>5.4 Memastikan kaedah pentaksiran menepati tahap penguasaan murid dalam DSKP</p>
+
+<div class="bar-chart-box">
+<canvas id="chart54"></canvas>
+</div>
+
+<p>5.5 Memastikan instrumen pentaksiran menepati tahap penguasaan murid dalam DSKP</p>
+
+<div class="bar-chart-box">
+<canvas id="chart55"></canvas>
+</div>
+
+<p>5.6 Menghantar sampel instrumen pentaksiran kepada GKMP/KP</p>
+
+<div class="bar-chart-box">
+<canvas id="chart56"></canvas>
+</div>
   
 </div>
 
@@ -255,6 +305,54 @@ let z3 = 0;
 let z4 = 0;
 let z5 = 0;
 
+let a1 = 0;
+let a2 = 0;
+let a3 = 0;
+let a4 = 0;
+let a5 = 0;
+
+let b1 = 0;
+let b2 = 0;
+let b3 = 0;
+let b4 = 0;
+let b5 = 0;
+
+let c1 = 0;
+let c2 = 0;
+let c3 = 0;
+let c4 = 0;
+let c5 = 0;
+
+let d1 = 0;
+let d2 = 0;
+let d3 = 0;
+let d4 = 0;
+let d5 = 0;
+
+let e1 = 0;
+let e2 = 0;
+let e3 = 0;
+let e4 = 0;
+let e5 = 0;
+
+let f1 = 0;
+let f2 = 0;
+let f3 = 0;
+let f4 = 0;
+let f5 = 0;
+
+let g1 = 0;
+let g2 = 0;
+let g3 = 0;
+let g4 = 0;
+let g5 = 0;
+
+let h1 = 0;
+let h2 = 0;
+let h3 = 0;
+let h4 = 0;
+let h5 = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -269,6 +367,14 @@ const q33 = cols[10];
 const q34 = cols[11];
 const q35 = cols[12];
 const q41 = cols[13];
+const q42 = cols[14];
+const q43 = cols[15];
+const q51 = cols[16];
+const q52 = cols[17];
+const q53 = cols[18];
+const q54 = cols[19];
+const q55 = cols[20];
+const q56 = cols[21];
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -324,6 +430,54 @@ if(q41 === "2") z2++;
 if(q41 === "3") z3++;
 if(q41 === "4") z4++;
 if(q41 === "5") z5++;
+
+if(q42 === "1") a1++;
+if(q42 === "2") a2++;
+if(q42 === "3") a3++;
+if(q42 === "4") a4++;
+if(q42 === "5") a5++;
+
+if(q43 === "1") b1++;
+if(q43 === "2") b2++;
+if(q43 === "3") b3++;
+if(q43 === "4") b4++;
+if(q43 === "5") b5++;
+
+if(q51 === "1") c1++;
+if(q51 === "2") c2++;
+if(q51 === "3") c3++;
+if(q51 === "4") c4++;
+if(q51 === "5") c5++;
+
+if(q52 === "1") d1++;
+if(q52 === "2") d2++;
+if(q52 === "3") d3++;
+if(q52 === "4") d4++;
+if(q52 === "5") d5++;
+
+if(q53 === "1") e1++;
+if(q53 === "2") e2++;
+if(q53 === "3") e3++;
+if(q53 === "4") e4++;
+if(q53 === "5") e5++;
+
+if(q54 === "1") f1++;
+if(q54 === "2") f2++;
+if(q54 === "3") f3++;
+if(q54 === "4") f4++;
+if(q54 === "5") f5++;
+
+if(q55 === "1") g1++;
+if(q55 === "2") g2++;
+if(q55 === "3") g3++;
+if(q55 === "4") g4++;
+if(q55 === "5") g5++;
+
+if(q56 === "1") h1++;
+if(q56 === "2") h2++;
+if(q56 === "3") h3++;
+if(q56 === "4") h4++;
+if(q56 === "5") h5++;
 
 });
 
@@ -545,6 +699,214 @@ datasets: [{
 label: 'Bilangan Guru',
 data: [z1, z2, z3, z4, z5],
 backgroundColor: '#2c3e50'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 4.2 */
+
+const ctx42 = document.getElementById('chart42');
+
+new Chart(ctx42, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [a1, a2, a3, a4, a5],
+backgroundColor: '#27ae60'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 4.3 */
+
+const ctx43 = document.getElementById('chart43');
+
+new Chart(ctx43, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [b1, b2, b3, b4, b5],
+backgroundColor: '#d35400'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 5.1 */
+
+const ctx51 = document.getElementById('chart51');
+
+new Chart(ctx51, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [c1, c2, c3, c4, c5],
+backgroundColor: '#1abc9c'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 5.2 */
+
+const ctx52 = document.getElementById('chart52');
+
+new Chart(ctx52, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [d1, d2, d3, d4, d5],
+backgroundColor: '#16a085'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 5.3 */
+
+const ctx53 = document.getElementById('chart53');
+
+new Chart(ctx53, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [e1, e2, e3, e4, e5],
+backgroundColor: '#9b59b6'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 5.4 */
+
+const ctx54 = document.getElementById('chart54');
+
+new Chart(ctx54, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [f1, f2, f3, f4, f5],
+backgroundColor: '#e67e22'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 5.5 */
+
+const ctx55 = document.getElementById('chart55');
+
+new Chart(ctx55, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [g1, g2, g3, g4, g5],
+backgroundColor: '#c0392b'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 5.6 */
+
+const ctx56 = document.getElementById('chart56');
+
+new Chart(ctx56, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [h1, h2, h3, h4, h5],
+backgroundColor: '#34495e'
 }]
 },
 options: {
