@@ -138,6 +138,12 @@ border-bottom:1px solid #eee;
 <canvas id="chart31"></canvas>
 </div>
 
+<p>3.2 Perbincangan penentuan tahap penguasaan bersama ahli panitia</p>
+
+<div class="bar-chart-box">
+<canvas id="chart32"></canvas>
+</div>
+
 </div>
 
 </div>
@@ -193,6 +199,12 @@ let u3 = 0;
 let u4 = 0;
 let u5 = 0;
 
+let v1 = 0;
+let v2 = 0;
+let v3 = 0;
+let v4 = 0;
+let v5 = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -202,6 +214,7 @@ const q11 = cols[5];
 const q21 = cols[6];
 const q22 = cols[7];
 const q31 = cols[8];
+const q32 = cols[9];
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -227,6 +240,12 @@ if(q31 === "2") u2++;
 if(q31 === "3") u3++;
 if(q31 === "4") u4++;
 if(q31 === "5") u5++;
+
+if(q32 === "1") v1++;
+if(q32 === "2") v2++;
+if(q32 === "3") v3++;
+if(q32 === "4") v4++;
+if(q32 === "5") v5++;
 
 });
 
@@ -318,6 +337,32 @@ datasets: [{
 label: 'Bilangan Guru',
 data: [u1, u2, u3, u4, u5],
 backgroundColor: '#e67e22'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 3.2 */
+
+const ctx32 = document.getElementById('chart32');
+
+new Chart(ctx32, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [v1, v2, v3, v4, v5],
+backgroundColor: '#f39c12'
 }]
 },
 options: {
