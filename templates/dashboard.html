@@ -156,6 +156,12 @@ border-bottom:1px solid #eee;
 <canvas id="chart34"></canvas>
 </div>
 
+<p>3.5 Mengemukakan hasil kerja murid kepada GKMP/KP</p>
+
+<div class="bar-chart-box">
+<canvas id="chart35"></canvas>
+</div>
+  
 </div>
 
 </div>
@@ -229,6 +235,12 @@ let x3 = 0;
 let x4 = 0;
 let x5 = 0;
 
+let y1 = 0;
+let y2 = 0;
+let y3 = 0;
+let y4 = 0;
+let y5 = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -241,6 +253,7 @@ const q31 = cols[8];
 const q32 = cols[9];
 const q33 = cols[10];
 const q34 = cols[11];
+const q35 = cols[12];
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -284,6 +297,12 @@ if(q34 === "2") x2++;
 if(q34 === "3") x3++;
 if(q34 === "4") x4++;
 if(q34 === "5") x5++;
+
+if(q35 === "1") y1++;
+if(q35 === "2") y2++;
+if(q35 === "3") y3++;
+if(q35 === "4") y4++;
+if(q35 === "5") y5++;
 
 });
 
@@ -453,6 +472,32 @@ datasets: [{
 label: 'Bilangan Guru',
 data: [x1, x2, x3, x4, x5],
 backgroundColor: '#8e44ad'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 3.5 */
+
+const ctx35 = document.getElementById('chart35');
+
+new Chart(ctx35, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [y1, y2, y3, y4, y5],
+backgroundColor: '#c0392b'
 }]
 },
 options: {
