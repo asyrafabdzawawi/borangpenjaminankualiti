@@ -130,6 +130,14 @@ border-bottom:1px solid #eee;
 <canvas id="chart22"></canvas>
 </div>
 
+<h3>3. Penyelarasan</h3>
+
+<p>3.1 Perbincangan penentuan tahap penguasaan bersama GKMP/KP</p>
+
+<div class="bar-chart-box">
+<canvas id="chart31"></canvas>
+</div>
+
 </div>
 
 </div>
@@ -179,6 +187,12 @@ let t3 = 0;
 let t4 = 0;
 let t5 = 0;
 
+let u1 = 0;
+let u2 = 0;
+let u3 = 0;
+let u4 = 0;
+let u5 = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -187,6 +201,7 @@ const nama = cols[1];
 const q11 = cols[5];
 const q21 = cols[6];
 const q22 = cols[7];
+const q31 = cols[8];
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -206,6 +221,12 @@ if(q22 === "2") t2++;
 if(q22 === "3") t3++;
 if(q22 === "4") t4++;
 if(q22 === "5") t5++;
+
+if(q31 === "1") u1++;
+if(q31 === "2") u2++;
+if(q31 === "3") u3++;
+if(q31 === "4") u4++;
+if(q31 === "5") u5++;
 
 });
 
@@ -271,6 +292,32 @@ datasets: [{
 label: 'Bilangan Guru',
 data: [t1, t2, t3, t4, t5],
 backgroundColor: '#9b59b6'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 3.1 */
+
+const ctx31 = document.getElementById('chart31');
+
+new Chart(ctx31, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [u1, u2, u3, u4, u5],
+backgroundColor: '#e67e22'
 }]
 },
 options: {
