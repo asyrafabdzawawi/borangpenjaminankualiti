@@ -123,6 +123,13 @@ border-bottom:1px solid #eee;
 <div class="bar-chart-box">
 <canvas id="chart21"></canvas>
 </div>
+
+<p>2.2 Menyertai aktiviti pembangunan profesionalisme berterusan</p>
+
+<div class="bar-chart-box">
+<canvas id="chart22"></canvas>
+</div>
+
 </div>
 
 </div>
@@ -166,6 +173,12 @@ let s3 = 0;
 let s4 = 0;
 let s5 = 0;
 
+let t1 = 0;
+let t2 = 0;
+let t3 = 0;
+let t4 = 0;
+let t5 = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -173,6 +186,7 @@ const cols = row.split(",");
 const nama = cols[1];
 const q11 = cols[5];
 const q21 = cols[6];
+const q22 = cols[7];
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -186,6 +200,12 @@ if(q21 === "2") s2++;
 if(q21 === "3") s3++;
 if(q21 === "4") s4++;
 if(q21 === "5") s5++;
+
+if(q22 === "1") t1++;
+if(q22 === "2") t2++;
+if(q22 === "3") t3++;
+if(q22 === "4") t4++;
+if(q22 === "5") t5++;
 
 });
 
@@ -225,6 +245,32 @@ datasets: [{
 label: 'Bilangan Guru',
 data: [s1, s2, s3, s4, s5],
 backgroundColor: '#3498db'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 2.2 */
+
+const ctx22 = document.getElementById('chart22');
+
+new Chart(ctx22, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [t1, t2, t3, t4, t5],
+backgroundColor: '#9b59b6'
 }]
 },
 options: {
