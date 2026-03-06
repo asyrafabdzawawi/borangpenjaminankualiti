@@ -144,6 +144,12 @@ border-bottom:1px solid #eee;
 <canvas id="chart32"></canvas>
 </div>
 
+<p>3.3 Meningkatkan kefahaman dan pengetahuan terhadap Standard Prestasi</p>
+
+<div class="bar-chart-box">
+<canvas id="chart33"></canvas>
+</div>
+
 </div>
 
 </div>
@@ -205,6 +211,12 @@ let v3 = 0;
 let v4 = 0;
 let v5 = 0;
 
+let w1 = 0;
+let w2 = 0;
+let w3 = 0;
+let w4 = 0;
+let w5 = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -215,6 +227,7 @@ const q21 = cols[6];
 const q22 = cols[7];
 const q31 = cols[8];
 const q32 = cols[9];
+const q33 = cols[10];
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -246,6 +259,12 @@ if(q32 === "2") v2++;
 if(q32 === "3") v3++;
 if(q32 === "4") v4++;
 if(q32 === "5") v5++;
+
+if(q33 === "1") w1++;
+if(q33 === "2") w2++;
+if(q33 === "3") w3++;
+if(q33 === "4") w4++;
+if(q33 === "5") w5++;
 
 });
 
@@ -363,6 +382,32 @@ datasets: [{
 label: 'Bilangan Guru',
 data: [v1, v2, v3, v4, v5],
 backgroundColor: '#f39c12'
+}]
+},
+options: {
+responsive:true,
+maintainAspectRatio:false,
+plugins:{
+legend:{display:false}
+},
+scales:{
+y:{beginAtZero:true}
+}
+}
+});
+
+/* BAR CHART 3.3 */
+
+const ctx33 = document.getElementById('chart33');
+
+new Chart(ctx33, {
+type: 'bar',
+data: {
+labels: ['1','2','3','4','5'],
+datasets: [{
+label: 'Bilangan Guru',
+data: [w1, w2, w3, w4, w5],
+backgroundColor: '#16a085'
 }]
 },
 options: {
