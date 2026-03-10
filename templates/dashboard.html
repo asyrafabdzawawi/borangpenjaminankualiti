@@ -14,6 +14,27 @@ background:#f4f6f9;
 padding:40px;
 }
 
+.session-tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.session-btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:6px;
+background:#ecf0f1;
+cursor:pointer;
+font-weight:600;
+}
+
+.session-btn.active{
+background:#2c3e50;
+color:white;
+}
+
 .section-tabs{
 display:flex;
 gap:10px;
@@ -119,9 +140,8 @@ border-bottom:1px solid #eee;
 
 <h1>Dashboard Analisis</h1>
 
-<div class="tabs">
-
-<button class="tab-btn active" onclick="loadData('pertengahan',this)">
+<div class="session-tabs">
+<button class="session-btn active" onclick="loadData('pertengahan',this)">
 Pertengahan Tahun
 </button>
 
@@ -392,7 +412,7 @@ const sheetAkhir = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVK
 
 function loadData(sesi,btn){
 
-document.querySelectorAll(".tabs .tab-btn")
+document.querySelectorAll(".session-btn")
 .forEach(b => b.classList.remove("active"));
 
 btn.classList.add("active");
@@ -1563,7 +1583,7 @@ plugins:[ChartDataLabels]
 });
 
 window.onload = function(){
-loadData('pertengahan', document.querySelector(".tabs .tab-btn"));
+loadData('pertengahan', document.querySelectorAll(".tabs")[0].querySelector(".tab-btn"));
 };
 
 </script>
