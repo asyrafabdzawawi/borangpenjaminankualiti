@@ -271,6 +271,30 @@ border-bottom:1px solid #eee;
 <canvas id="chartB11"></canvas>
 </div>
 
+<p>1.2 Menguasai pentaksiran PBD</p>
+
+<div class="chart-box">
+<canvas id="chartB12"></canvas>
+</div>
+
+<p>1.3 Menguasai kepentingan PBD</p>
+
+<div class="chart-box">
+<canvas id="chartB13"></canvas>
+</div>
+
+<p>1.4 Melaksanakan PBD seperti yang dirancang</p>
+
+<div class="chart-box">
+<canvas id="chartB14"></canvas>
+</div>
+
+<p>1.5 Melaksanakan PBD dengan merujuk kepada Standard Prestasi dalam DSKP</p>
+
+<div class="chart-box">
+<canvas id="chartB15"></canvas>
+</div>
+
 </div>
 </div>
 
@@ -421,6 +445,18 @@ let h5 = 0;
 let b11ya = 0;
 let b11tidak = 0;
 
+let b12ya = 0;
+let b12tidak = 0;
+
+let b13ya = 0;
+let b13tidak = 0;
+
+let b14ya = 0;
+let b14tidak = 0;
+
+let b15ya = 0;
+let b15tidak = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -444,6 +480,10 @@ const q54 = cols[19];
 const q55 = cols[20];
 const q56 = cols[21];
 const q11b = cols[22];
+const q12b = cols[23];
+const q13b = cols[24];
+const q14b = cols[25];
+const q15b = cols[26];
 
 
 
@@ -552,6 +592,18 @@ if(q56 === "5") h5++;
 
 if(q11b === "Ya") b11ya++;
 if(q11b === "Tidak") b11tidak++;
+
+if(q12b === "Ya") b12ya++;
+if(q12b === "Tidak") b12tidak++;
+
+if(q13b === "Ya") b13ya++;
+if(q13b === "Tidak") b13tidak++;
+
+if(q14b === "Ya") b14ya++;
+if(q14b === "Tidak") b14tidak++;
+
+if(q15b === "Ya") b15ya++;
+if(q15b === "Tidak") b15tidak++;
 
 });
 
@@ -1005,6 +1057,94 @@ data: {
 labels: ['Ya','Tidak'],
 datasets: [{
 data: [b11ya, b11tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.2 */
+
+const ctxB12 = document.getElementById('chartB12');
+
+new Chart(ctxB12, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b12ya, b12tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.3 */
+
+const ctxB13 = document.getElementById('chartB13');
+
+new Chart(ctxB13, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b13ya, b13tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.4 */
+
+const ctxB14 = document.getElementById('chartB14');
+
+new Chart(ctxB14, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b14ya, b14tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.5 */
+
+const ctxB15 = document.getElementById('chartB15');
+
+new Chart(ctxB15, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b15ya, b15tidak],
 backgroundColor: ['#2ecc71','#e74c3c']
 }]
 },
