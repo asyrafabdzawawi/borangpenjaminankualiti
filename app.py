@@ -23,7 +23,9 @@ creds = Credentials.from_service_account_info(
 
 client = gspread.authorize(creds)
 
-sheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0").sheet1
+spreadsheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0")
+
+
 
 
 @app.route("/")
@@ -42,6 +44,13 @@ def dashboard():
 def submit():
 
     form = request.form
+
+    sesi = form.get("sesi")
+
+    if sesi == "Sheet2":
+        sheet = spreadsheet.worksheet("Sheet2")
+    else:
+        sheet = spreadsheet.worksheet("Sheet1")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
