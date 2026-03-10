@@ -14,27 +14,6 @@ background:#f4f6f9;
 padding:40px;
 }
 
-.session-tabs{
-display:flex;
-gap:10px;
-margin-bottom:20px;
-}
-
-.session-btn{
-flex:1;
-padding:12px;
-border:none;
-border-radius:6px;
-background:#ecf0f1;
-cursor:pointer;
-font-weight:600;
-}
-
-.session-btn.active{
-background:#2c3e50;
-color:white;
-}
-
 .section-tabs{
 display:flex;
 gap:10px;
@@ -131,6 +110,27 @@ padding:10px;
 border-bottom:1px solid #eee;
 }
 
+.session-tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.session-btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:6px;
+background:#ecf0f1;
+cursor:pointer;
+font-weight:600;
+}
+
+.session-btn.active{
+background:#2c3e50;
+color:white;
+}
+
 </style>
 </head>
 
@@ -141,14 +141,13 @@ border-bottom:1px solid #eee;
 <h1>Dashboard Analisis</h1>
 
 <div class="session-tabs">
-<button class="session-btn active" onclick="loadData('pertengahan',this)">
+<button class="session-btn active" onclick="switchSession('pertengahan',this)">
 Pertengahan Tahun
 </button>
 
-<button class="session-btn" onclick="loadData('akhir',this)">
+<button class="session-btn" onclick="switchSession('akhir',this)">
 Akhir Tahun
 </button>
-
 </div>
 
 <div class="tabs">
@@ -377,6 +376,39 @@ Akhir Tahun
 
 <script>
 
+
+
+let currentSession = "pertengahan";
+
+/* GOOGLE SHEET */
+
+const sheetPertengahan =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=0&single=true&output=csv";
+
+const sheetAkhir =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=197431078&single=true&output=csv";
+
+
+/* SESSION SWITCH */
+
+function switchSession(session,btn){
+
+currentSession = session;
+
+document.querySelectorAll(".session-btn")
+.forEach(b => b.classList.remove("active"));
+
+btn.classList.add("active");
+
+/* reload jika lampiran C sedang buka */
+
+if(document.getElementById("tabC").classList.contains("active")){
+loadLampiranC();
+}
+
+}
+
+
 /* TAB SWITCH */
 
 function openTab(tab,btn){
@@ -384,13 +416,20 @@ function openTab(tab,btn){
 document.querySelectorAll(".tab-content")
 .forEach(t => t.classList.remove("active"));
 
-document.querySelectorAll(".tabs .tab-btn")
+document.querySelectorAll(".tab-btn")
 .forEach(b => b.classList.remove("active"));
 
 document.getElementById("tab"+tab).classList.add("active");
 btn.classList.add("active");
 
+if(tab === "C"){
+loadLampiranC();
 }
+
+}
+
+
+/* SECTION SWITCH */
 
 function openSection(section,btn){
 
@@ -405,24 +444,16 @@ btn.classList.add("active");
 
 }
 
-/* GOOGLE SHEET */
 
-const sheetPertengahan = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=0&single=true&output=csv";
-const sheetAkhir = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=197431078&single=true&output=csv";
+/* LOAD DATA LAMPIRAN C */
 
-function loadData(sesi,btn){
-
-document.querySelectorAll(".session-btn")
-.forEach(b => b.classList.remove("active"));
-
-btn.classList.add("active");
+function loadLampiranC(){
 
 let sheetURL;
 
-if(sesi === "pertengahan"){
+if(currentSession === "pertengahan"){
 sheetURL = sheetPertengahan;
-}
-else{
+}else{
 sheetURL = sheetAkhir;
 }
 
@@ -430,9 +461,18 @@ fetch(sheetURL)
 .then(res => res.text())
 .then(data => {
 
+/* ================================ */
+/* BERMULA DI SINI KOD ANALISIS     */
+/* CIKGU KEKALKAN SEPERTI ASAL      */
+/* ================================ */
+
 const rows = data.split("\n").slice(1);
 
 const jumlahC = document.getElementById("jumlahC");
+
+/* selepas ini semua kod cikgu kekal */
+
+
 
 let count = 0;
 let ya = 0;
@@ -752,6 +792,7 @@ jumlahC.innerHTML = "<b>Jumlah respon: " + count + " guru</b>";
 
 /* PIE CHART 1.1 */
 
+Chart.getChart("chart11")?.destroy();
 const ctx = document.getElementById('chart11');
 
 new Chart(ctx, {
@@ -790,6 +831,7 @@ plugins: [ChartDataLabels]
 
 /* BAR CHART 2.1 */
 
+Chart.getChart("chart21")?.destroy();
 const ctx21 = document.getElementById('chart21');
 
 new Chart(ctx21, {
@@ -816,6 +858,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 2.2 */
 
+Chart.getChart("chart22")?.destroy();
 const ctx22 = document.getElementById('chart22');
 
 new Chart(ctx22, {
@@ -842,6 +885,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 3.1 */
 
+Chart.getChart("chart31")?.destroy();
 const ctx31 = document.getElementById('chart31');
 
 new Chart(ctx31, {
@@ -868,6 +912,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 3.2 */
 
+Chart.getChart("chart32")?.destroy();
 const ctx32 = document.getElementById('chart32');
 
 new Chart(ctx32, {
@@ -894,6 +939,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 3.3 */
 
+Chart.getChart("chart33")?.destroy();
 const ctx33 = document.getElementById('chart33');
 
 new Chart(ctx33, {
@@ -920,6 +966,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 3.4 */
 
+Chart.getChart("chart34")?.destroy();
 const ctx34 = document.getElementById('chart34');
 
 new Chart(ctx34, {
@@ -946,6 +993,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 3.5 */
 
+Chart.getChart("chart35")?.destroy();
 const ctx35 = document.getElementById('chart35');
 
 new Chart(ctx35, {
@@ -972,6 +1020,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 4.1 */
 
+Chart.getChart("chart41")?.destroy();
 const ctx41 = document.getElementById('chart41');
 
 new Chart(ctx41, {
@@ -998,6 +1047,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 4.2 */
 
+Chart.getChart("chart42")?.destroy();
 const ctx42 = document.getElementById('chart42');
 
 new Chart(ctx42, {
@@ -1024,6 +1074,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 4.3 */
 
+Chart.getChart("chart43")?.destroy();
 const ctx43 = document.getElementById('chart43');
 
 new Chart(ctx43, {
@@ -1050,6 +1101,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 5.1 */
 
+Chart.getChart("chart51")?.destroy();
 const ctx51 = document.getElementById('chart51');
 
 new Chart(ctx51, {
@@ -1076,6 +1128,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 5.2 */
 
+Chart.getChart("chart52")?.destroy();
 const ctx52 = document.getElementById('chart52');
 
 new Chart(ctx52, {
@@ -1102,6 +1155,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 5.3 */
 
+Chart.getChart("chart53")?.destroy();
 const ctx53 = document.getElementById('chart53');
 
 new Chart(ctx53, {
@@ -1128,6 +1182,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 5.4 */
 
+Chart.getChart("chart54")?.destroy();
 const ctx54 = document.getElementById('chart54');
 
 new Chart(ctx54, {
@@ -1154,6 +1209,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 5.5 */
 
+Chart.getChart("chart55")?.destroy();
 const ctx55 = document.getElementById('chart55');
 
 new Chart(ctx55, {
@@ -1180,6 +1236,7 @@ y:{beginAtZero:true}
 
 /* BAR CHART 5.6 */
 
+Chart.getChart("chart56")?.destroy();
 const ctx56 = document.getElementById('chart56');
 
 new Chart(ctx56, {
@@ -1206,6 +1263,7 @@ y:{beginAtZero:true}
 
 /* PIE CHART B1.1 */
 
+Chart.getChart("chartB11")?.destroy();
 const ctxB11 = document.getElementById('chartB11');
 
 new Chart(ctxB11, {
@@ -1244,6 +1302,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.2 */
 
+Chart.getChart("chartB12")?.destroy();
 const ctxB12 = document.getElementById('chartB12');
 
 new Chart(ctxB12, {
@@ -1284,6 +1343,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.3 */
 
+Chart.getChart("chartB13")?.destroy();
 const ctxB13 = document.getElementById('chartB13');
 
 new Chart(ctxB13, {
@@ -1302,13 +1362,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1319,6 +1374,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.4 */
 
+Chart.getChart("chartB14")?.destroy();
 const ctxB14 = document.getElementById('chartB14');
 
 new Chart(ctxB14, {
@@ -1337,13 +1393,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1354,6 +1405,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.5 */
 
+Chart.getChart("chartB15")?.destroy();
 const ctxB15 = document.getElementById('chartB15');
 
 new Chart(ctxB15, {
@@ -1372,13 +1424,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1389,6 +1436,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.6 */
 
+Chart.getChart("chartB16")?.destroy();
 const ctxB16 = document.getElementById('chartB16');
 
 new Chart(ctxB16, {
@@ -1407,13 +1455,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1424,6 +1467,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.7 */
 
+Chart.getChart("chartB17")?.destroy();
 const ctxB17 = document.getElementById('chartB17');
 
 new Chart(ctxB17, {
@@ -1442,13 +1486,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1459,6 +1498,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.8 */
 
+Chart.getChart("chartB18")?.destroy();
 const ctxB18 = document.getElementById('chartB18');
 
 new Chart(ctxB18, {
@@ -1477,13 +1517,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1494,6 +1529,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.9 */
 
+Chart.getChart("chartB19")?.destroy();
 const ctxB19 = document.getElementById('chartB19');
 
 new Chart(ctxB19, {
@@ -1512,13 +1548,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1529,6 +1560,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.10 */
 
+Chart.getChart("chartB110")?.destroy();
 const ctxB110 = document.getElementById('chartB110');
 
 new Chart(ctxB110, {
@@ -1547,13 +1579,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1564,6 +1591,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.11 */
 
+Chart.getChart("chartB111")?.destroy();
 const ctxB111 = document.getElementById('chartB111');
 
 new Chart(ctxB111, {
@@ -1582,13 +1610,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1598,6 +1621,7 @@ plugins:[ChartDataLabels]
 
 /* PIE CHART B1.12 */
 
+Chart.getChart("chartB112")?.destroy();
 const ctxB112 = document.getElementById('chartB112');
 
 new Chart(ctxB112, {
@@ -1616,13 +1640,8 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let data = context.chart.data.datasets[0].data;
-let total = data.reduce((a,b)=>a+b,0);
-
-if(total === 0) return "0%";
-
-return (value/total*100).toFixed(1)+"%";
-}
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
 }
 }
 }
@@ -1632,9 +1651,9 @@ plugins:[ChartDataLabels]
 
 });
 
-window.onload = function(){
-loadData('pertengahan', document.querySelector(".session-btn"));
-};
+document.addEventListener("DOMContentLoaded", function(){
+loadLampiranC();
+});
 
 </script>
 
