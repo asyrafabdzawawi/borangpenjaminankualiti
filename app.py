@@ -105,7 +105,7 @@ def submit():
         form.get("catatan_1.9_b"),
         form.get("1.10_b"),
         form.get("catatan_1.10_b"),
-        form.get("1.11_b")
+        form.get("1.11_b"),
         form.get("catatan_1.11_b"),
     ]
 
