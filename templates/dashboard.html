@@ -295,6 +295,30 @@ border-bottom:1px solid #eee;
 <canvas id="chartB15"></canvas>
 </div>
 
+<p>1.6 Memaklumkan kepada murid aspek yang hendak ditaksir</p>
+
+<div class="chart-box">
+<canvas id="chartB16"></canvas>
+</div>
+
+<p>1.7 Memaklumkan kepada murid TP yang diperoleh</p>
+
+<div class="chart-box">
+<canvas id="chartB17"></canvas>
+</div>
+
+<p>1.8 Memberi peluang kepada murid yang ingin ditaksir semula</p>
+
+<div class="chart-box">
+<canvas id="chartB18"></canvas>
+</div>
+
+<p>1.9 Membuat penilaian kendiri bagi menambah baik kualiti PdP serta pentaksiran</p>
+
+<div class="chart-box">
+<canvas id="chartB19"></canvas>
+</div>
+
 </div>
 </div>
 
@@ -457,6 +481,18 @@ let b14tidak = 0;
 let b15ya = 0;
 let b15tidak = 0;
 
+let b16ya = 0;
+let b16tidak = 0;
+
+let b17ya = 0;
+let b17tidak = 0;
+
+let b18ya = 0;
+let b18tidak = 0;
+
+let b19ya = 0;
+let b19tidak = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -484,6 +520,10 @@ const q12b = cols[23];
 const q13b = cols[24];
 const q14b = cols[25];
 const q15b = cols[26];
+const q16b = cols[27];
+const q17b = cols[28];
+const q18b = cols[29];
+const q19b = cols[30];
 
 
 
@@ -604,6 +644,18 @@ if(q14b === "Tidak") b14tidak++;
 
 if(q15b === "Ya") b15ya++;
 if(q15b === "Tidak") b15tidak++;
+
+if(q16b === "Ya") b16ya++;
+if(q16b === "Tidak") b16tidak++;
+
+if(q17b === "Ya") b17ya++;
+if(q17b === "Tidak") b17tidak++;
+
+if(q18b === "Ya") b18ya++;
+if(q18b === "Tidak") b18tidak++;
+
+if(q19b === "Ya") b19ya++;
+if(q19b === "Tidak") b19tidak++;
 
 });
 
@@ -1145,6 +1197,94 @@ data: {
 labels: ['Ya','Tidak'],
 datasets: [{
 data: [b15ya, b15tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.6 */
+
+const ctxB16 = document.getElementById('chartB16');
+
+new Chart(ctxB16, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b16ya, b16tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.7 */
+
+const ctxB17 = document.getElementById('chartB17');
+
+new Chart(ctxB17, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b17ya, b17tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.8 */
+
+const ctxB18 = document.getElementById('chartB18');
+
+new Chart(ctxB18, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b18ya, b18tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.9 */
+
+const ctxB19 = document.getElementById('chartB19');
+
+new Chart(ctxB19, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b19ya, b19tidak],
 backgroundColor: ['#2ecc71','#e74c3c']
 }]
 },
