@@ -261,9 +261,15 @@ border-bottom:1px solid #eee;
 
 <div id="sectionB" class="section-content">
 
-<h3>BAHAGIAN B: PERANAN GURU MATA PELAJARAN</h3>
+<h2>BAHAGIAN B: PERANAN GURU MATA PELAJARAN</h2>
 
-<p>Analisis Bahagian B akan dipaparkan di sini.</p>
+<h3>1. Peranan</h3>
+
+<p>1.1 Menguasai konsep PBD</p>
+
+<div class="chart-box">
+<canvas id="chartB11"></canvas>
+</div>
 
 </div>
 </div>
@@ -412,6 +418,9 @@ let h3 = 0;
 let h4 = 0;
 let h5 = 0;
 
+let b11ya = 0;
+let b11tidak = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -434,6 +443,9 @@ const q53 = cols[18];
 const q54 = cols[19];
 const q55 = cols[20];
 const q56 = cols[21];
+const q11b = cols[22];
+
+
 
 if(nama && nama.trim() !== ""){
 count++;
@@ -537,6 +549,9 @@ if(q56 === "2") h2++;
 if(q56 === "3") h3++;
 if(q56 === "4") h4++;
 if(q56 === "5") h5++;
+
+if(q11b === "Ya") b11ya++;
+if(q11b === "Tidak") b11tidak++;
 
 });
 
@@ -976,6 +991,28 @@ legend:{display:false}
 },
 scales:{
 y:{beginAtZero:true}
+}
+}
+});
+
+/* PIE CHART B1.1 */
+
+const ctxB11 = document.getElementById('chartB11');
+
+new Chart(ctxB11, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b11ya, b11tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
 }
 }
 });
