@@ -120,6 +120,18 @@ border-bottom:1px solid #eee;
 <h1>Dashboard Analisis</h1>
 
 <div class="tabs">
+
+<button class="tab-btn active" onclick="loadData('pertengahan',this)">
+Pertengahan Tahun
+</button>
+
+<button class="tab-btn" onclick="loadData('akhir',this)">
+Akhir Tahun
+</button>
+
+</div>
+
+<div class="tabs">
 <button class="tab-btn active" onclick="openTab('A',this)">Lampiran A</button>
 <button class="tab-btn" onclick="openTab('B',this)">Lampiran B</button>
 <button class="tab-btn" onclick="openTab('C',this)">Lampiran C</button>
@@ -375,7 +387,24 @@ btn.classList.add("active");
 
 /* GOOGLE SHEET */
 
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?output=csv";
+const sheetPertengahan = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pubhtml";
+const sheetAkhir = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pubhtml";
+
+function loadData(sesi,btn){
+
+document.querySelectorAll(".tabs .tab-btn")
+.forEach(b => b.classList.remove("active"));
+
+btn.classList.add("active");
+
+let sheetURL;
+
+if(sesi === "pertengahan"){
+sheetURL = sheetPertengahan;
+}
+else{
+sheetURL = sheetAkhir;
+}
 
 fetch(sheetURL)
 .then(res => res.text())
@@ -1532,6 +1561,10 @@ plugins:[ChartDataLabels]
 });
 
 });
+
+window.onload = function(){
+loadData('pertengahan', document.querySelector(".tabs .tab-btn"));
+};
 
 </script>
 
