@@ -319,6 +319,18 @@ border-bottom:1px solid #eee;
 <canvas id="chartB19"></canvas>
 </div>
 
+<p>1.10 Membuat tindakan susulan bagi menambah baik kualiti PdP serta pentaksiran</p>
+
+<div class="chart-box">
+<canvas id="chartB110"></canvas>
+</div>
+
+<p>1.11 Merekod dan membuat catatan TP murid secara sistematik</p>
+
+<div class="chart-box">
+<canvas id="chartB111"></canvas>
+</div>
+
 </div>
 </div>
 
@@ -493,6 +505,12 @@ let b18tidak = 0;
 let b19ya = 0;
 let b19tidak = 0;
 
+let b110ya = 0;
+let b110tidak = 0;
+
+let b111ya = 0;
+let b111tidak = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
@@ -524,6 +542,8 @@ const q16b = cols[27];
 const q17b = cols[28];
 const q18b = cols[29];
 const q19b = cols[30];
+const q110b = cols[31];
+const q111b = cols[32];
 
 
 
@@ -656,6 +676,12 @@ if(q18b === "Tidak") b18tidak++;
 
 if(q19b === "Ya") b19ya++;
 if(q19b === "Tidak") b19tidak++;
+
+if(q110b === "Ya") b110ya++;
+if(q110b === "Tidak") b110tidak++;
+
+if(q111b === "Ya") b111ya++;
+if(q111b === "Tidak") b111tidak++;
 
 });
 
@@ -1285,6 +1311,50 @@ data: {
 labels: ['Ya','Tidak'],
 datasets: [{
 data: [b19ya, b19tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.10 */
+
+const ctxB110 = document.getElementById('chartB110');
+
+new Chart(ctxB110, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b110ya, b110tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{
+position:'bottom'
+}
+}
+}
+});
+
+/* PIE CHART B1.11 */
+
+const ctxB111 = document.getElementById('chartB111');
+
+new Chart(ctxB111, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b111ya, b111tidak],
 backgroundColor: ['#2ecc71','#e74c3c']
 }]
 },
