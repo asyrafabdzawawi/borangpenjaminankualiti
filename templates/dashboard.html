@@ -332,6 +332,12 @@ border-bottom:1px solid #eee;
 <canvas id="chartB111"></canvas>
 </div>
 
+<p>1.12 Mengisi TP dalam templat pelaporan sekurang-kurangnya dua kali setahun</p>
+
+<div class="chart-box">
+<canvas id="chartB112"></canvas>
+</div>
+
 </div>
 </div>
 
@@ -512,39 +518,43 @@ let b110tidak = 0;
 let b111ya = 0;
 let b111tidak = 0;
 
+let b112ya = 0;
+let b112tidak = 0;
+
 rows.forEach(row => {
 
 const cols = row.split(",");
 
 const nama = cols[1];
 const q11 = cols[5];
-const q21 = cols[6];
-const q22 = cols[7];
-const q31 = cols[8];
-const q32 = cols[9];
-const q33 = cols[10];
-const q34 = cols[11];
-const q35 = cols[12];
-const q41 = cols[13];
-const q42 = cols[14];
-const q43 = cols[15];
-const q51 = cols[16];
-const q52 = cols[17];
-const q53 = cols[18];
-const q54 = cols[19];
-const q55 = cols[20];
-const q56 = cols[21];
-const q11b = cols[22];
-const q12b = cols[23];
-const q13b = cols[24];
-const q14b = cols[25];
-const q15b = cols[26];
-const q16b = cols[27];
-const q17b = cols[28];
-const q18b = cols[29];
-const q19b = cols[30];
-const q110b = cols[31];
-const q111b = cols[32];
+const q21 = cols[7];
+const q22 = cols[8];
+const q31 = cols[9];
+const q32 = cols[10];
+const q33 = cols[11];
+const q34 = cols[12];
+const q35 = cols[13];
+const q41 = cols[14];
+const q42 = cols[15];
+const q43 = cols[16];
+const q51 = cols[17];
+const q52 = cols[18];
+const q53 = cols[19];
+const q54 = cols[20];
+const q55 = cols[21];
+const q56 = cols[22];
+const q11b = cols[23];
+const q12b = cols[24];
+const q13b = cols[25];
+const q14b = cols[26];
+const q15b = cols[27];
+const q16b = cols[28];
+const q17b = cols[29];
+const q18b = cols[30];
+const q19b = cols[31];
+const q110b = cols[32];
+const q111b = cols[33];
+const q112b = cols[34];
 
 
 
@@ -683,6 +693,9 @@ if(q110b === "Tidak") b110tidak++;
 
 if(q111b === "Ya") b111ya++;
 if(q111b === "Tidak") b111tidak++;
+
+if(q112b === "Ya") b112ya++;
+if(q112b === "Tidak") b112tidak++;
 
 });
 
@@ -1470,6 +1483,35 @@ data: {
 labels: ['Ya','Tidak'],
 datasets: [{
 data: [b111ya, b111tidak],
+backgroundColor: ['#2ecc71','#e74c3c']
+}]
+},
+options:{
+plugins:{
+legend:{position:'bottom'},
+datalabels:{
+color:'#fff',
+font:{weight:'bold',size:14},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+'%';
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
+
+/* PIE CHART B1.12 */
+
+const ctxB112 = document.getElementById('chartB112');
+
+new Chart(ctxB112, {
+type: 'pie',
+data: {
+labels: ['Ya','Tidak'],
+datasets: [{
+data: [b112ya, b112tidak],
 backgroundColor: ['#2ecc71','#e74c3c']
 }]
 },
