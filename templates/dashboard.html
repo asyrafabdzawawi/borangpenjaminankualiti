@@ -145,7 +145,7 @@ border-bottom:1px solid #eee;
 Pertengahan Tahun
 </button>
 
-<button class="tab-btn" onclick="loadData('akhir',this)">
+<button class="session-btn" onclick="loadData('akhir',this)">
 Akhir Tahun
 </button>
 
@@ -407,8 +407,8 @@ btn.classList.add("active");
 
 /* GOOGLE SHEET */
 
-const sheetPertengahan = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?output=csv";
-const sheetAkhir = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?output=csv";
+const sheetPertengahan = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=0&single=true&output=csv";
+const sheetAkhir = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=197431078&single=true&output=csv";
 
 function loadData(sesi,btn){
 
@@ -1583,7 +1583,7 @@ plugins:[ChartDataLabels]
 });
 
 window.onload = function(){
-loadData('pertengahan', document.querySelectorAll(".tabs")[0].querySelector(".tab-btn"));
+loadData('pertengahan', document.querySelector(".session-btn"));
 };
 
 </script>
