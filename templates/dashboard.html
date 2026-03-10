@@ -1302,8 +1302,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1332,8 +1337,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1362,8 +1372,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1392,8 +1407,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1422,8 +1442,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1452,8 +1477,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1482,8 +1512,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1512,8 +1547,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1542,8 +1582,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
@@ -1571,8 +1616,13 @@ datalabels:{
 color:'#fff',
 font:{weight:'bold',size:14},
 formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
+let data = context.chart.data.datasets[0].data;
+let total = data.reduce((a,b)=>a+b,0);
+
+if(total === 0) return "0%";
+
+return (value/total*100).toFixed(1)+"%";
+}
 }
 }
 }
