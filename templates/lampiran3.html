@@ -807,7 +807,9 @@ const progressText = document.getElementById("progressText");
 
 function updateProgress(){
 
-const textInputs = document.querySelectorAll("input[type=text]");
+const textInputs = document.querySelectorAll(
+'input[name="nama"], input[name="jawatan"], input[name="mp"], input[name="tahun"]'
+);
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
 
 let total = textInputs.length + radioGroups.length;
@@ -864,6 +866,7 @@ input.addEventListener("keyup", updateProgress);
 
 </body>
 </html>
+
 
 
 
