@@ -234,6 +234,16 @@ width:98%;
 margin-top:8px;
 font-size:13px;
 background:#f8f9fa;
+  
+}
+
+select{
+width:100%;
+padding:10px 12px;
+border:1px solid #dcdde1;
+border-radius:6px;
+font-size:14px;
+background:white;
 }
 
 
@@ -264,7 +274,54 @@ Lampiran C – Guru Mata Pelajaran
 
 <div class="form-group">
 <label>Nama</label>
-<input type="text" name="nama" required>
+<select name="nama" required>
+
+<option value="">-- Sila Pilih Nama Guru --</option>
+
+<option>MOHD FAIZAL BIN AHMAD</option>
+<option>SHAHAIRI BIN SURATMAN</option>
+<option>MOHD KHAIRUL NIZAM BIN HAZARI</option>
+<option>SUEMANIE A/P EE @ QUAH CHIN EE</option>
+<option>ABDUL GHANI BIN ABDUL KARIM</option>
+<option>ABU BAKAR BIN SAHARI</option>
+<option>AZIZUL RAHIM BIN ISMAIL</option>
+<option>AZLINAWATI BINTI YAAKOB</option>
+<option>AZURA BINTI MOHAMAD</option>
+<option>BASIRAH BINTI BACHARUDIN</option>
+<option>CHITHRRA A/P DAMODHARAN</option>
+<option>ENDHUMATHY A/P VEERAIAH</option>
+<option>FADZILAH BINTI JAHAYA</option>
+<option>FARIDAH BINTI MUDA</option>
+<option>MASITA BINTI ISMAIL</option>
+<option>MAZURA BINTI ABDUL AZIZ</option>
+<option>MOHD ASRI BIN ISMA'AIL</option>
+<option>MOHD HUZAINI BIN HUSIN</option>
+<option>MOHD NOOR SAFWAN BIN MD NOOR</option>
+<option>MUHAMMAD ASYRAF BIN ABDULLAH ZAWAWI</option>
+<option>MUHAMMAD YUSUF BIN ZAINOL ABIDIN</option>
+<option>NOOR AIZAH BINTI ILIAS</option>
+<option>NOOR AZLIN BINTI TEH</option>
+<option>NOOR AZLINDA BINTI ABDULLAH</option>
+<option>NOOR JAREENA BINTI MOHAMUD KASSIM</option>
+<option>NORMASITA BT ELIAS</option>
+<option>NORUL FAZLIN BINTI ZAINAL KARIB</option>
+<option>NUR IMANINA BINTI SHAARI</option>
+<option>NURUL ASYIQIN BINTI OSMAN</option>
+<option>NURULZAHILAH BINTI IBRAHIM</option>
+<option>PUONESWARI A/P SUNDARAJOO</option>
+<option>ROSLAN BIN MOHD YUSOFF</option>
+<option>RUSMALIZA BINTI ABDUL RAHMAN</option>
+<option>SITI MUNIRAH BINTI MUNADZIR</option>
+<option>SITI ROHAYU BINTI ZAKARIA</option>
+<option>SURIA BINTI ISMAIL</option>
+<option>UMAMAGESWARI A/P MUNIANDY</option>
+<option>UZMA FARZANA BINTI RIDZUAN</option>
+<option>WAN NUR AQIELAH BINTI WAN SHAHAR</option>
+<option>ZA'AIMAH BINTI SHAKIR</option>
+<option>ZARINA BINTI MOHAMAD</option>
+<option>ZURAINI BINTI HASSAN</option>
+
+</select>
 </div>
 
 <div class="form-group">
@@ -837,7 +894,7 @@ const progressText = document.getElementById("progressText");
 function updateProgress(){
 
 const textInputs = document.querySelectorAll(
-'input[name="nama"], input[name="jawatan"], input[name="mp"], input[name="tahun"]'
+'select[name="nama"], input[name="jawatan"], input[name="mp"], input[name="tahun"]'
 );
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
 
@@ -895,6 +952,7 @@ input.addEventListener("keyup", updateProgress);
 
 </body>
 </html>
+
 
 
 
