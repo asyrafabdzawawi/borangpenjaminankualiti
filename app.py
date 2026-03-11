@@ -32,6 +32,10 @@ spreadsheet = client.open_by_key("1EPAxJ0XYGn4Mnu2WMTi_0oOPNtBGj-fwwxP4AEw8HF0")
 def home():
     return render_template("index.html")
 
+@app.route("/lampirana")
+def lampirana():
+    return render_template("lampirana.html")
+
 @app.route("/lampiranb")
 def lampiranb():
     return render_template("lampiranb.html")
