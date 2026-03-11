@@ -57,12 +57,8 @@ def submit():
 
     if sesi == "Sheet2":
         sheet = spreadsheet.worksheet("Sheet2")
-    else if sesi == "Sheet1":
-        sheet = spreadsheet.worksheet("Sheet1")
-    else if sesi == "Lampiran_B_Pertengahan_Tahun":
-        sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
     else:
-        sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tn")
+        sheet = spreadsheet.worksheet("Sheet1")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
