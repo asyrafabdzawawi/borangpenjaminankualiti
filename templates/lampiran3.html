@@ -331,7 +331,26 @@ Lampiran C – Guru Mata Pelajaran
 
 <div class="form-group">
 <label>Mata Pelajaran</label>
-<input type="text" name="mp" required>
+
+<select name="mp" required>
+
+<option value="">-- Sila Pilih Mata Pelajaran --</option>
+
+<option>Bahasa Melayu</option>
+<option>Bahasa Inggeris</option>
+<option>Bahasa Arab</option>
+<option>Matematik</option>
+<option>Sains</option>
+<option>Sejarah</option>
+<option>Reka Bentuk dan Teknologi</option>
+<option>Pendidikan Jasmani Dan Kesihatan</option>
+<option>Pendidikan Seni Visual</option>
+<option>Pendidikan Islam</option>
+<option>Pendidikan Moral</option>
+<option>Pendidikan Muzik</option>
+
+</select>
+
 </div>
 
 <div class="form-group">
@@ -922,7 +941,7 @@ const progressText = document.getElementById("progressText");
 function updateProgress(){
 
 const textInputs = document.querySelectorAll(
-'select[name="nama"], select[name="tahun"], input[name="jawatan"], input[name="mp"]'
+'select[name="nama"], select[name="tahun"], select[name="mp"], input[name="jawatan"]'
 );
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
 
@@ -980,6 +999,7 @@ input.addEventListener("keyup", updateProgress);
 
 </body>
 </html>
+
 
 
 
