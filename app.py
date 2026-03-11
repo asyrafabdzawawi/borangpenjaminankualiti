@@ -33,7 +33,7 @@ def home():
     return render_template("index.html")
 
 @app.route("/lampiranb")
-def lampiran3():
+def lampiranb():
     return render_template("lampiranb.html")
 
 @app.route("/lampiran3")
