@@ -61,7 +61,7 @@ def submit():
         sheet = spreadsheet.worksheet("Sheet1")
     else if sesi == "Lampiran_B_Pertengahan_Tahun":
         sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
-    else
+    else:
         sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tn")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
