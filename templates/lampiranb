@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senarai Semak Penjaminan Kualiti PBD</title>
+
+<style>
+
+/* progress bar */
+
+.scale label:active{
+transform:scale(0.95);
+}
+
+button:active{
+transform:scale(0.97);
+}
+
+.progress-container{
+width:100%;
+background:#ecf0f1;
+border-radius:30px;
+height:20px;
+margin-bottom:25px;
+position:relative;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#e74c3c;
+border-radius:30px;
+transition:width 0.5s ease, background 0.5s ease;
+}
+
+.progress-text{
+position:absolute;
+width:100%;
+text-align:center;
+font-size:12px;
+font-weight:bold;
+line-height:20px;
+color:#2c3e50;
+}
+
+
+
+
+
+/* scale button style */
+
+.scale input{
+display:none;
+}
+
+.scale label{
+background:#ecf0f1;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+transition:all 0.2s ease;
+border:2px solid transparent;
+}
+
+/* hover effect */
+
+.scale label:hover{
+background:#d6eaf8;
+border-color:#3498db;
+}
+
+/* selected effect */
+
+.scale input:checked + label{
+background:#3498db;
+color:white;
+border-color:#3498db;
+transform:scale(1.05);
+}
+
+/* radio yes no */
+
+.radio-group input{
+display:none;
+}
+
+.radio-group label{
+background:#ecf0f1;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+margin-right:10px;
+transition:0.2s;
+border:2px solid transparent;
+}
+
+.radio-group label:hover{
+background:#fdebd0;
+border-color:#f39c12;
+}
+
+.radio-group input:checked + label{
+background:#f39c12;
+color:white;
+border-color:#f39c12;
+}
+
+/* input field focus */
+
+input[type=text]:focus{
+outline:none;
+border-color:#3498db;
+box-shadow:0 0 5px rgba(52,152,219,0.3);
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family: "Segoe UI", Arial, sans-serif;
+background:#f4f6f9;
+line-height:1.6;
+padding:40px 20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.title{
+text-align:center;
+margin-bottom:10px;
+color:#2c3e50;
+}
+
+.subtitle{
+text-align:center;
+margin-bottom:30px;
+color:#7f8c8d;
+font-weight:500;
+}
+
+.section-title{
+margin-top:35px;
+margin-bottom:10px;
+color:#2c3e50;
+border-bottom:2px solid #eee;
+padding-bottom:6px;
+}
+
+.form-group{
+margin-bottom:22px;
+}
+
+.form-group label{
+font-weight:600;
+display:block;
+margin-bottom:6px;
+color:#34495e;
+}
+
+input[type=text]{
+width:100%;
+padding:10px 12px;
+border:1px solid #dcdde1;
+border-radius:6px;
+font-size:14px;
+}
+
+.radio-group{
+margin-top:8px;
+}
+
+.radio-group label{
+margin-right:20px;
+font-weight:500;
+cursor:pointer;
+}
+
+.scale{
+display:flex;
+gap:10px;
+margin-top:10px;
+flex-wrap:wrap;
+}
+
+.scale label{
+background:#ecf0f1;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+font-weight:500;
+transition:0.2s;
+}
+
+.scale label:hover{
+background:#dfe6e9;
+}
+
+button{
+background:#2ecc71;
+color:white;
+border:none;
+padding:12px 28px;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+margin-top:30px;
+transition:0.2s;
+}
+
+button:hover{
+background:#27ae60;
+}
+
+.submit-area{
+text-align:center;
+margin-top:20px;
+}
+
+input[name^="catatan"]{
+width:98%;
+margin-top:8px;
+font-size:13px;
+background:#f8f9fa;
+  
+}
+
+select{
+width:100%;
+padding:10px 12px;
+border:1px solid #dcdde1;
+border-radius:6px;
+font-size:14px;
+background:white;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="title">
+Senarai Semak Penjaminan Kualiti Pentaksiran Bilik Darjah
+</h1>
+
+<div class="subtitle">
+Lampiran B – Guru Kanan Mata Pelajaran/Ketua Panitia
+</div>
+
+<form action="/submit" method="POST">
+
+<div class="progress-container">
+<div class="progress-bar" id="progressBar"></div>
+<div class="progress-text" id="progressText">0%</div>
+</div>
+
+<h2 class="section-title">Maklumat Guru</h2>
+
+<div class="form-group">
+<label>Nama</label>
+<select name="nama" required>
+
+<option value="">-- Sila Pilih Nama Guru --</option>
+
+<option>MOHD FAIZAL BIN AHMAD</option>
+<option>SHAHAIRI BIN SURATMAN</option>
+<option>MOHD KHAIRUL NIZAM BIN HAZARI</option>
+<option>SUEMANIE A/P EE @ QUAH CHIN EE</option>
+<option>ABDUL GHANI BIN ABDUL KARIM</option>
+<option>ABU BAKAR BIN SAHARI</option>
+<option>AZIZUL RAHIM BIN ISMAIL</option>
+<option>AZLINAWATI BINTI YAAKOB</option>
+<option>AZURA BINTI MOHAMAD</option>
+<option>BASIRAH BINTI BACHARUDIN</option>
+<option>CHITHRRA A/P DAMODHARAN</option>
+<option>ENDHUMATHY A/P VEERAIAH</option>
+<option>FADZILAH BINTI JAHAYA</option>
+<option>FARIDAH BINTI MUDA</option>
+<option>MASITA BINTI ISMAIL</option>
+<option>MAZURA BINTI ABDUL AZIZ</option>
+<option>MOHD ASRI BIN ISMA'AIL</option>
+<option>MOHD HUZAINI BIN HUSIN</option>
+<option>MOHD NOOR SAFWAN BIN MD NOOR</option>
+<option>MUHAMMAD ASYRAF BIN ABDULLAH ZAWAWI</option>
+<option>MUHAMMAD YUSUF BIN ZAINOL ABIDIN</option>
+<option>NOOR AIZAH BINTI ILIAS</option>
+<option>NOOR AZLIN BINTI TEH</option>
+<option>NOOR AZLINDA BINTI ABDULLAH</option>
+<option>NOOR JAREENA BINTI MOHAMUD KASSIM</option>
+<option>NORMASITA BT ELIAS</option>
+<option>NORUL FAZLIN BINTI ZAINAL KARIB</option>
+<option>NUR IMANINA BINTI SHAARI</option>
+<option>NURUL ASYIQIN BINTI OSMAN</option>
+<option>NURULZAHILAH BINTI IBRAHIM</option>
+<option>PUONESWARI A/P SUNDARAJOO</option>
+<option>ROSLAN BIN MOHD YUSOFF</option>
+<option>RUSMALIZA BINTI ABDUL RAHMAN</option>
+<option>SITI MUNIRAH BINTI MUNADZIR</option>
+<option>SITI ROHAYU BINTI ZAKARIA</option>
+<option>SURIA BINTI ISMAIL</option>
+<option>UMAMAGESWARI A/P MUNIANDY</option>
+<option>UZMA FARZANA BINTI RIDZUAN</option>
+<option>WAN NUR AQIELAH BINTI WAN SHAHAR</option>
+<option>ZA'AIMAH BINTI SHAKIR</option>
+<option>ZARINA BINTI MOHAMAD</option>
+<option>ZURAINI BINTI HASSAN</option>
+
+</select>
+</div>
+
+<div class="form-group">
+<label>Jawatan</label>
+<input type="text" name="jawatan" required>
+</div>
+
+<div class="form-group">
+<label>Mata Pelajaran</label>
+
+<select name="mp" required>
+
+<option value="">-- Sila Pilih Mata Pelajaran --</option>
+
+<option>Bahasa Melayu</option>
+<option>Bahasa Inggeris</option>
+<option>Bahasa Arab</option>
+<option>Matematik</option>
+<option>Sains</option>
+<option>Sejarah</option>
+<option>Reka Bentuk dan Teknologi</option>
+<option>Pendidikan Jasmani Dan Kesihatan</option>
+<option>Pendidikan Seni Visual</option>
+<option>Pendidikan Islam</option>
+<option>Pendidikan Moral</option>
+<option>Pendidikan Muzik</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Tahun / Tingkatan</label>
+<select name="tahun" required>
+
+<option value="">-- Sila Pilih Kelas --</option>
+
+<option>1 Amber</option>
+<option>1 Amethyst</option>
+<option>1 Aquamarine</option>
+
+<option>2 Amber</option>
+<option>2 Amethyst</option>
+<option>2 Aquamarine</option>
+
+<option>3 Amber</option>
+<option>3 Amethyst</option>
+<option>3 Aquamarine</option>
+
+<option>4 Amber</option>
+<option>4 Amethyst</option>
+<option>4 Aquamarine</option>
+
+<option>5 Amber</option>
+<option>5 Amethyst</option>
+<option>5 Aquamarine</option>
+
+<option>6 Amber</option>
+<option>6 Amethyst</option>
+<option>6 Aquamarine</option>
+
+</select>
+</div>
+
+<div class="form-group">
+<label>Sesi Pengisian</label>
+
+<div class="radio-group">
+
+<input type="radio" name="sesi" id="pertengahan" value="Lampiran_B_Pertengahan_Tahun" required>
+<label for="pertengahan">Pertengahan Tahun</label>
+
+<input type="radio" name="sesi" id="akhir" value="Lampiran_B_Akhir_Tahun">
+<label for="akhir">Akhir Tahun</label>
+
+</div>
+</div>
+
+
+<div style="background:#f8f9fa;border-left:4px solid #3498db;padding:15px;border-radius:6px;margin-top:10px;margin-bottom:25px;font-size:14px;color:#2c3e50;line-height:1.7;">
+<strong>Arahan:</strong><br>
+i. Tandakan pada ruangan <strong>Ya</strong> atau <strong>Tidak</strong>.<br>
+ii. Tandakan skala penilaian berdasarkan penyataan:<br>
+&nbsp;&nbsp;&nbsp;1 - Tidak pernah<br>
+&nbsp;&nbsp;&nbsp;2 - Jarang-jarang<br>
+&nbsp;&nbsp;&nbsp;3 - Kadang-kadang<br>
+&nbsp;&nbsp;&nbsp;4 - Kerap<br>
+&nbsp;&nbsp;&nbsp;5 - Sangat kerap
+</div>
+
+<h2>BAHAGIAN A: PENGURUSAN DAN PELAKSANAAN PENJAMINAN KUALITI PBD </h2>
+
+<h2 class="section-title">1. Pengurusan Penjaminan Kualiti</h2>
+
+<div class="form-group">
+<label>1.1 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah Edisi Ke-2 (2019).</label>
+
+<div class="radio-group">
+<input type="radio" name="1.1" id="1.1_ya" value="Ya">
+<label for="1.1_ya">Ya</label>
+<input type="radio" name="1.1" id="1.1_tidak" value="Tidak">
+<label for="1.1_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.1" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.2 Melaksanakan penjaminan kualiti dalam:<br>
+i. Pementoran<br>
+ii. Penyelarasan<br>
+iii. Pemantauan<br>
+iv. Pengesanan<br></label>
+
+<div class="radio-group">
+<input type="radio" name="1.2" id="1.2_ya" value="Ya">
+<label for="1.2_ya">Ya</label>
+<input type="radio" name="1.2" id="1.2_tidak" value="Tidak">
+<label for="1.2_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.2" placeholder="Catatan (jika ada)">
+</div>
+
+
+<h2 class="section-title">2. Pementoran</h2>
+
+<div class="form-group">
+<label>
+2.1 Membimbing dan membantu guru meningkatkan kefahaman dan kualiti pelaksanaan PBD dari semasa ke semasa.
+</label>
+
+<div class="scale">
+<input type="radio" name="2.1" id="2.1_1" value="1">
+<label for="2.1_1">1</label>
+<input type="radio" name="2.1" id="2.1_2" value="2">
+<label for="2.1_2">2</label>
+<input type="radio" name="2.1" id="2.1_3" value="3">
+<label for="2.1_3">3</label>
+<input type="radio" name="2.1" id="2.1_4" value="4">
+<label for="2.1_4">4</label>
+<input type="radio" name="2.1" id="2.1_5" value="5">
+<label for="2.1_5">5</label>
+</div>
+<input type="text" name="catatan_2.1" placeholder="Catatan (jika ada)">
+</div>
+
+
+<div class="form-group">
+<label>
+2.2 Mengadakan pembangunan profesionalisme berterusan (contoh: latihan/kursus, Profesional Learning Community (PLC),mentor mentee bagi meningkatkan 
+kefahaman dan kemahiran dalam melaksanakan PBD.
+</label>
+
+<div class="scale">
+<input type="radio" name="2.2" id="2.2_1" value="1">
+<label for="2.2_1">1</label>
+<input type="radio" name="2.2" id="2.2_2" value="2">
+<label for="2.2_2">2</label>
+<input type="radio" name="2.2" id="2.2_3" value="3">
+<label for="2.2_3">3</label>
+<input type="radio" name="2.2" id="2.2_4" value="4">
+<label for="2.2_4">4</label>
+<input type="radio" name="2.2" id="2.2_5" value="5">
+<label for="2.2_5">5</label>
+</div>
+<input type="text" name="catatan_2.2" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>
+2.3 Menyediakan laporan pembangunan profesionalisme berterusan secara sistematik.
+<br>
+i. Individu<br>
+ii. Kumpulan
+</label>
+
+<div class="scale">
+<input type="radio" name="2.3" id="2.3_1" value="1">
+<label for="2.3_1">1</label>
+<input type="radio" name="2.3" id="2.3_2" value="2">
+<label for="2.3_2">2</label>
+<input type="radio" name="2.3" id="2.3_3" value="3">
+<label for="2.3_3">3</label>
+<input type="radio" name="2.2" id="2.3_4" value="4">
+<label for="2.3_4">4</label>
+<input type="radio" name="2.2" id="2.3_5" value="5">
+<label for="2.3_5">5</label>
+</div>
+<input type="text" name="catatan_2.3" placeholder="Catatan (jika ada)">
+</div>
+
+
+<h2 class="section-title">3. Penyelarasan</h2>
+
+<div class="form-group">
+<label>
+3.1 Menyelaras kefahaman dan pengetahuan guru bagi menentukan tahap penguasaan murid dengan merujuk kepada Standard Prestasi yang ditetapkan dalam
+Dokumen Standard Kurikulum dan Pentaksiran (DSKP).
+</label>
+
+<div class="scale">
+<input type="radio" name="3.1" id="3.1_1" value="1">
+<label for="3.1_1">1</label>
+<input type="radio" name="3.1" id="3.1_2" value="2">
+<label for="3.1_2">2</label>
+<input type="radio" name="3.1" id="3.1_3" value="3">
+<label for="3.1_3">3</label>
+<input type="radio" name="3.1" id="3.1_4" value="4">
+<label for="3.1_4">4</label>
+<input type="radio" name="3.1" id="3.1_5" value="5">
+<label for="3.1_5">5</label>
+</div>
+<input type="text" name="catatan_3.1" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+
+<label>3.2 Penentuan tahap penguasaan murid secara adil (kesahan dan kebolehpercayaan) mengikut keupayaan sebenar murid berdasarkan Standard Prestasi
+yang dinyatakan dalam DSKP.</label>
+
+<div class="scale">
+
+<input type="radio" name="3.2" id="3.2_1" value="1">
+<label for="3.2_1">1</label>
+<input type="radio" name="3.2" id="3.2_2" value="2">
+<label for="3.2_2">2</label>
+<input type="radio" name="3.2" id="3.2_3" value="3">
+<label for="3.2_3">3</label>
+<input type="radio" name="3.2" id="3.2_4" value="4">
+<label for="3.2_4">4</label>
+<input type="radio" name="3.2" id="3.2_5" value="5">
+<label for="3.2_5">5</label>
+
+</div>
+<input type="text" name="catatan_3.2" placeholder="Catatan (jika ada)">
+</div>
+
+
+<div class="form-group">
+
+<label>3.3 Menyelaras cara guru menilai pencapaian hasil kerja murid dalam menentukan tahap penguasaan.</label>
+
+<div class="scale">
+
+<input type="radio" name="3.3" id="3.3_1" value="1">
+<label for="3.3_1">1</label>
+<input type="radio" name="3.3" id="3.3_2" value="2">
+<label for="3.3_2">2</label>
+<input type="radio" name="3.3" id="3.3_3" value="3">
+<label for="3.3_3">3</label>
+<input type="radio" name="3.3" id="3.3_4" value="4">
+<label for="3.3_4">4</label>
+<input type="radio" name="3.3" id="3.3_5" value="5">
+<label for="3.3_5">5</label>
+
+</div>
+<input type="text" name="catatan_3.3" placeholder="Catatan (jika ada)">
+</div>
+
+
+
+
+<h2 class="section-title">4. Pemantauan</h2>
+
+<div class="form-group">
+
+<label>4.1 TP murid direkodkan secara sistematik dari semasa ke semasa.</label>
+
+<div class="scale">
+
+<input type="radio" name="4.1" id="4.1_1" value="1">
+<label for="4.1_1">1</label>
+<input type="radio" name="4.1" id="4.1_2" value="2">
+<label for="4.1_2">2</label>
+<input type="radio" name="4.1" id="4.1_3" value="3">
+<label for="4.1_3">3</label>
+<input type="radio" name="4.1" id="4.1_4" value="4">
+<label for="4.1_4">4</label>
+<input type="radio" name="4.1" id="4.1_5" value="5">
+<label for="4.1_5">5</label>
+
+</div>
+<input type="text" name="catatan_4.1" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+
+<label>4.2 Maklumat dan TP murid dianalisis  bagi tujuan tindakan susulan dan pementoran.</label>
+
+<div class="scale">
+
+<input type="radio" name="4.2" id="4.2_1" value="1">
+<label for="4.2_1">1</label>
+<input type="radio" name="4.2" id="4.2_2" value="2">
+<label for="4.2_2">2</label>
+<input type="radio" name="4.2" id="4.2_3" value="3">
+<label for="4.2_3">3</label>
+<input type="radio" name="4.2" id="4.2_4" value="4">
+<label for="4.2_4">4</label>
+<input type="radio" name="4.2" id="4.2_5" value="5">
+<label for="4.2_5">5</label>
+
+</div>
+<input type="text" name="catatan_4.2" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+
+<label>4.3 Pelaporan murid perlu dilaksanakan sekurang-kurangnya dua (2) kali setahun kepada pihak yang berkepentingan seperti murid, 
+ibu bapa/penjaga dan guru.</label>
+
+<div class="scale">
+
+<input type="radio" name="4.3" id="4.3_1" value="1">
+<label for="4.3_1">1</label>
+<input type="radio" name="4.3" id="4.3_2" value="2">
+<label for="4.3_2">2</label>
+<input type="radio" name="4.3" id="4.3_3" value="3">
+<label for="4.3_3">3</label>
+<input type="radio" name="4.3" id="4.3_4" value="4">
+<label for="4.3_4">4</label>
+<input type="radio" name="4.3" id="4.3_5" value="5">
+<label for="4.3_5">5</label>
+
+</div>
+<input type="text" name="catatan_4.3" placeholder="Catatan (jika ada)">
+</div>
+
+<h2 class="section-title">5. Pengesanan</h2>
+
+<div class="form-group">
+
+<label>5.1 Kaedah pentaksiran yang digunakan oleh guru bersesuaian dan menepati Standard Kandungan, Standard Pembelajaran dan Standard Prestasi dalam DSKP.</label>
+
+<div class="scale">
+
+<input type="radio" name="5.1" id="5.1_1" value="1">
+<label for="5.1_1">1</label>
+<input type="radio" name="5.1" id="5.1_2" value="2">
+<label for="5.1_2">2</label>
+<input type="radio" name="5.1" id="5.1_3" value="3">
+<label for="5.1_3">3</label>
+<input type="radio" name="5.1" id="5.1_4" value="4">
+<label for="5.1_4">4</label>
+<input type="radio" name="5.1" id="5.1_5" value="5">
+<label for="5.1_5">5</label>
+
+</div>
+<input type="text" name="catatan_5.1" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+
+<label>5.2 Instumen pentaksiran yang digunakan oleh guru bersesuaian dan menepati Standard Kandungan, Standard Pembelajaran dan Standard Prestasi dalam DSKP.</label>
+
+<div class="scale">
+
+<input type="radio" name="5.2" id="5.2_1" value="1">
+<label for="5.2_1">1</label>
+<input type="radio" name="5.2" id="5.2_2" value="2">
+<label for="5.2_2">2</label>
+<input type="radio" name="5.2" id="5.2_3" value="3">
+<label for="5.2_3">3</label>
+<input type="radio" name="5.2" id="5.2_4" value="4">
+<label for="5.2_4">4</label>
+<input type="radio" name="5.2" id="5.2_5" value="5">
+<label for="5.2_5">5</label>
+
+</div>
+<input type="text" name="catatan_5.2" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+
+<label>5.3 Kaedah pentaksiran yang digunakan oleh guru sesuai dengan tahap penguasaan murid.</label>
+
+<div class="scale">
+
+<input type="radio" name="5.3" id="5.3_1" value="1">
+<label for="5.3_1">1</label>
+<input type="radio" name="5.3" id="5.3_2" value="2">
+<label for="5.3_2">2</label>
+<input type="radio" name="5.3" id="5.3_3" value="3">
+<label for="5.3_3">3</label>
+<input type="radio" name="5.3" id="5.3_4" value="4">
+<label for="5.3_4">4</label>
+<input type="radio" name="5.3" id="5.3_5" value="5">
+<label for="5.3_5">5</label>
+
+</div>
+<input type="text" name="catatan_5.3" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+
+<label>5.4 Instrumen pentaksiran yang digunakan oleh guru sesuai dengan tahap penguasaan murid.</label>
+
+<div class="scale">
+
+<input type="radio" name="5.4" id="5.4_1" value="1">
+<label for="5.4_1">1</label>
+<input type="radio" name="5.4" id="5.4_2" value="2">
+<label for="5.4_2">2</label>
+<input type="radio" name="5.4" id="5.4_3" value="3">
+<label for="5.4_3">3</label>
+<input type="radio" name="5.4" id="5.4_4" value="4">
+<label for="5.4_4">4</label>
+<input type="radio" name="5.4" id="5.4_5" value="5">
+<label for="5.4_5">5</label>
+
+</div>
+<input type="text" name="catatan_5.4" placeholder="Catatan (jika ada)">
+</div>
+
+
+
+
+
+<h2 class="section-title">BAHAGIAN B: GURU KANAN MATA PELAJARAN/KETUA PANITIA</h2>
+
+<h2 class="section-title">1. Peranan Guru Kanan Mata Pelajaran/Ketua Panitia</h2>
+
+<div class="form-group">
+<label>1.1 Menguasai konsep PBD.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.1_b" id="1.1_b_ya" value="Ya">
+<label for="1.1_b_ya">Ya</label>
+<input type="radio" name="1.1_b" id="1.1_b_tidak" value="Tidak">
+<label for="1.1_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.1_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.2 Menguasai pentaksiran PBD.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.2_b" id="1.2_b_ya" value="Ya">
+<label for="1.2_b_ya">Ya</label>
+<input type="radio" name="1.2_b" id="1.2_b_tidak" value="Tidak">
+<label for="1.2_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.2_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.3 Menguasai kepentingan PBD.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.3_b" id="1.3_b_ya" value="Ya">
+<label for="1.3_b_ya">Ya</label>
+<input type="radio" name="1.3_b" id="1.3_b_tidak" value="Tidak">
+<label for="1.3_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.3_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.4 Mengadakan mesyuarat penyelarasan penjaminan kualiti PBD.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.4_b" id="1.4_b_ya" value="Ya">
+<label for="1.4_b_ya">Ya</label>
+<input type="radio" name="1.4_b" id="1.4_b_tidak" value="Tidak">
+<label for="1.4_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.4_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.5 Memimpin dan membimbing guru dalam melaksanakan PBD.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.5_b" id="1.5_b_ya" value="Ya">
+<label for="1.5_b_ya">Ya</label>
+<input type="radio" name="1.5_b" id="1.5_b_tidak" value="Tidak">
+<label for="1.5_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.5_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.6 Menerima laporan pelaksanaan penjaminan kualiti daripada Ketua Panitia/Guru.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.6_b" id="1.6_b_ya" value="Ya">
+<label for="1.6_b_ya">Ya</label>
+<input type="radio" name="1.6_b" id="1.6_b_tidak" value="Tidak">
+<label for="1.6_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.6_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.7 Menerima laporan TP PBD murid.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.7_b" id="1.7_b_ya" value="Ya">
+<label for="1.7_b_ya">Ya</label>
+<input type="radio" name="1.7_b" id="1.7_b_tidak" value="Tidak">
+<label for="1.7_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.7_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.8 Menganalisis laporan TP PBD murid.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.8_b" id="1.8_b_ya" value="Ya">
+<label for="1.8_b_ya">Ya</label>
+<input type="radio" name="1.8_b" id="1.8_b_tidak" value="Tidak">
+<label for="1.8_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.8_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.9 Mengambil tindakan susulan bagi tujuan penambahbaikan.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.9_b" id="1.9_b_ya" value="Ya">
+<label for="1.9_b_ya">Ya</label>
+<input type="radio" name="1.9_b" id="1.9_b_tidak" value="Tidak">
+<label for="1.9_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.9_b" placeholder="Catatan (jika ada)">
+</div>
+
+<div class="form-group">
+<label>1.10 Menyediakan laporan TB PBD kepada pengetua / guru besar.</label>
+
+<div class="radio-group">
+<input type="radio" name="1.10_b" id="1.10_b_ya" value="Ya">
+<label for="1.10_b_ya">Ya</label>
+<input type="radio" name="1.10_b" id="1.10_b_tidak" value="Tidak">
+<label for="1.10_b_tidak">Tidak</label>
+</div>
+<input type="text" name="catatan_1.10_b" placeholder="Catatan (jika ada)">
+</div>
+
+
+
+
+</form>
+
+</div>
+
+<script>
+
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+
+function updateProgress(){
+
+const textInputs = document.querySelectorAll(
+'select[name="nama"], select[name="tahun"], select[name="mp"], input[name="jawatan"]'
+);
+const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
+
+let total = textInputs.length + radioGroups.length;
+let filled = 0;
+
+/* kira text */
+
+textInputs.forEach(input=>{
+if(input.value.trim() !== ""){
+filled++;
+}
+});
+
+/* kira radio group */
+
+radioGroups.forEach(name=>{
+if(document.querySelector(`input[name="${name}"]:checked`)){
+filled++;
+}
+});
+
+let percent = Math.round((filled / total) * 100);
+
+/* update width */
+
+progressBar.style.width = percent + "%";
+
+/* update text */
+
+progressText.innerText = percent + "%";
+
+/* tukar warna ikut progress */
+
+if(percent < 30){
+progressBar.style.background = "#e74c3c"; // merah
+}
+else if(percent < 70){
+progressBar.style.background = "#f39c12"; // oren
+}
+else{
+progressBar.style.background = "#2ecc71"; // hijau
+}
+
+}
+
+/* event listener */
+
+document.querySelectorAll("input").forEach(input=>{
+input.addEventListener("change", updateProgress);
+input.addEventListener("keyup", updateProgress);
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
