@@ -336,7 +336,35 @@ Lampiran C – Guru Mata Pelajaran
 
 <div class="form-group">
 <label>Tahun / Tingkatan</label>
-<input type="text" name="tahun">
+<select name="tahun" required>
+
+<option value="">-- Sila Pilih Kelas --</option>
+
+<option>1 Amber</option>
+<option>1 Amethyst</option>
+<option>1 Aquamarine</option>
+
+<option>2 Amber</option>
+<option>2 Amethyst</option>
+<option>2 Aquamarine</option>
+
+<option>3 Amber</option>
+<option>3 Amethyst</option>
+<option>3 Aquamarine</option>
+
+<option>4 Amber</option>
+<option>4 Amethyst</option>
+<option>4 Aquamarine</option>
+
+<option>5 Amber</option>
+<option>5 Amethyst</option>
+<option>5 Aquamarine</option>
+
+<option>6 Amber</option>
+<option>6 Amethyst</option>
+<option>6 Aquamarine</option>
+
+</select>
 </div>
 
 <div class="form-group">
@@ -894,7 +922,7 @@ const progressText = document.getElementById("progressText");
 function updateProgress(){
 
 const textInputs = document.querySelectorAll(
-'select[name="nama"], input[name="jawatan"], input[name="mp"], input[name="tahun"]'
+'select[name="nama"], select[name="tahun"], input[name="jawatan"], input[name="mp"]'
 );
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
 
@@ -952,6 +980,7 @@ input.addEventListener("keyup", updateProgress);
 
 </body>
 </html>
+
 
 
 
