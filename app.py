@@ -122,14 +122,7 @@ def submit():
         ]
 
         sheet.append_row(row)
-
-  
-
-  
-
-  
-
-   elif sesi == "Lampiran_B_Pertengahan_Tahun":
+    elif sesi == "Lampiran_B_Pertengahan_Tahun":
         sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
 
         row = [
