@@ -161,6 +161,24 @@ background:#2c3e50;
 color:white;
 }
 
+.filter-box{
+margin:10px 0 20px 0;
+}
+
+.filter-box label{
+display:block;
+font-weight:600;
+margin-bottom:6px;
+}
+
+#filterMP{
+appearance:none;
+background-image:url("data:image/svg+xml;utf8,<svg fill='%233498db' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5z'/></svg>");
+background-repeat:no-repeat;
+background-position:right 10px center;
+padding-right:35px;
+}
+
 </style>
 </head>
 
@@ -238,7 +256,9 @@ Akhir Tahun
 
 <h2>Bahagian B: Peranan Guru</h2>
 
-<label><b>Tapis Mata Pelajaran:</b></label>
+<div class="filter-box">
+<label>Tapis Mata Pelajaran</label>
+<select id="filterMP">
 <select id="filterMP" onchange="loadLampiranC()">
 <option value="SEMUA">Semua Mata Pelajaran</option>
 <option value="Bahasa Melayu">Bahasa Melayu</option>
