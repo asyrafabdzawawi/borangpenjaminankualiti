@@ -385,7 +385,7 @@ const listA = document.getElementById("listCA");
 listA.innerHTML = "";
 
 let guruList = [];
-let jumlahGuru = 0;
+let guruUnik = new Set();
 
 rows.forEach(row => {
 
@@ -409,7 +409,7 @@ const b111 = cols[59];
 
 if(nama && nama.trim() !== ""){
 
-jumlahGuru++;
+guruUnik.add(nama.trim());
 
 guruList.push(`
 <div class="teacher">
@@ -422,7 +422,7 @@ ${mp} - ${tahun}
 
 });
 
-jumlahA.innerHTML = "<b>Jumlah respon: " + jumlahGuru + " guru</b>";
+jumlahA.innerHTML = "<b>Jumlah respon: " + guruUnik.size + " guru</b>";
 
 listA.innerHTML = guruList.join("");
 
