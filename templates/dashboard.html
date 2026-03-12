@@ -440,7 +440,12 @@ let b12_1=0,b12_2=0,b12_3=0,b12_4=0,b12_5=0;
 let b13_1=0,b13_2=0,b13_3=0,b13_4=0,b13_5=0;
 let b14_1=0,b14_2=0,b14_3=0,b14_4=0,b14_5=0;
 let b15_1=0,b15_2=0,b15_3=0,b15_4=0,b15_5=0;
-
+let b16ya=0,b16tidak=0;
+let b17ya=0,b17tidak=0;
+let b18ya=0,b18tidak=0;
+let b19ya=0,b19tidak=0;
+let b110ya=0,b110tidak=0;
+let b111ya=0,b111tidak=0;
 
 
 rows.forEach(row => {
@@ -490,6 +495,68 @@ if(q11b === "3") b11_3++;
 if(q11b === "4") b11_4++;
 if(q11b === "5") b11_5++;
 
+/* 1.2 */
+
+if(q12b === "1") b12_1++;
+if(q12b === "2") b12_2++;
+if(q12b === "3") b12_3++;
+if(q12b === "4") b12_4++;
+if(q12b === "5") b12_5++;
+
+/* 1.3 */
+
+if(q13b === "1") b13_1++;
+if(q13b === "2") b13_2++;
+if(q13b === "3") b13_3++;
+if(q13b === "4") b13_4++;
+if(q13b === "5") b13_5++;
+
+/* 1.4 */
+
+if(q14b === "1") b14_1++;
+if(q14b === "2") b14_2++;
+if(q14b === "3") b14_3++;
+if(q14b === "4") b14_4++;
+if(q14b === "5") b14_5++;
+
+/* 1.5 */
+
+if(q15b === "1") b15_1++;
+if(q15b === "2") b15_2++;
+if(q15b === "3") b15_3++;
+if(q15b === "4") b15_4++;
+if(q15b === "5") b15_5++;
+
+/* 1.6 */
+
+if(q16b === "Ya") b16ya++;
+if(q16b === "Tidak") b16tidak++;
+
+/* 1.7 */
+
+if(q17b === "Ya") b17ya++;
+if(q17b === "Tidak") b17tidak++;
+
+/* 1.8 */
+
+if(q18b === "Ya") b18ya++;
+if(q18b === "Tidak") b18tidak++;
+
+/* 1.9 */
+
+if(q19b === "Ya") b19ya++;
+if(q19b === "Tidak") b19tidak++;
+
+/* 1.10 */
+
+if(q110b === "Ya") b110ya++;
+if(q110b === "Tidak") b110tidak++;
+
+/* 1.11 */
+
+if(q111b === "Ya") b111ya++;
+if(q111b === "Tidak") b111tidak++;
+
 }
 
 
@@ -510,6 +577,190 @@ backgroundColor:"#3498db"
 options:{
 plugins:{legend:{display:false}},
 scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartB12")?.destroy();
+
+new Chart(document.getElementById("chartB12"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[b12_1,b12_2,b12_3,b12_4,b12_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartB13")?.destroy();
+
+new Chart(document.getElementById("chartB13"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[b13_1,b13_2,b13_3,b13_4,b13_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartB14")?.destroy();
+
+new Chart(document.getElementById("chartB14"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[b14_1,b14_2,b14_3,b14_4,b14_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartB15")?.destroy();
+
+new Chart(document.getElementById("chartB15"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[b15_1,b15_2,b15_3,b15_4,b15_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartB16")?.destroy();
+
+new Chart(document.getElementById("chartB16"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[b16ya,b16tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"}
+}
+}
+});
+
+Chart.getChart("chartB17")?.destroy();
+
+new Chart(document.getElementById("chartB17"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[b17ya,b17tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"}
+}
+}
+});
+
+Chart.getChart("chartB18")?.destroy();
+
+new Chart(document.getElementById("chartB18"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[b18ya,b18tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"}
+}
+}
+});
+
+Chart.getChart("chartB19")?.destroy();
+
+new Chart(document.getElementById("chartB19"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[b19ya,b19tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"}
+}
+}
+});
+
+Chart.getChart("chartB110")?.destroy();
+
+new Chart(document.getElementById("chartB110"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[b110ya,b110tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"}
+}
+}
+});
+
+Chart.getChart("chartB111")?.destroy();
+
+new Chart(document.getElementById("chartB111"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[b111ya,b111tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"}
+}
 }
 });
 
