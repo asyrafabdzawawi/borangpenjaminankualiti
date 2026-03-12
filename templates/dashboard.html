@@ -171,107 +171,58 @@ Akhir Tahun
 <div id="listB" class="list"></div>
 </div>
 
+
+
+
 <div id="tabC" class="tab-content">
+
 <h3>Lampiran C</h3>
-<p id="jumlahC"><b>Jumlah respon: 0 guru</b></p>
 
 <div class="section-tabs">
 <button class="section-btn active" onclick="openSection('A',this)">Bahagian A</button>
 <button class="section-btn" onclick="openSection('B',this)">Bahagian B</button>
+<button class="section-btn" onclick="openSection('C',this)">Bahagian C</button>
 </div>
 
+
+<!-- ======================= -->
+<!-- BAHAGIAN A              -->
+<!-- ======================= -->
 
 <div id="sectionA" class="section-content active">
 
-<h2>Ringkasan Respon Guru</h2>
+<h2>Maklumat Guru Mata Pelajaran</h2>
 
 <p id="jumlahCA"><b>Jumlah respon: 0 guru</b></p>
+
 <div id="listCA" class="list"></div>
 
-<h3>Senarai Guru Yang Mengisi Borang</h3>
-
-<div id="listA" class="list"></div>
-
 </div>
+
+
+<!-- ======================= -->
+<!-- BAHAGIAN B              -->
+<!-- ======================= -->
+
 <div id="sectionB" class="section-content">
 
-<h2>BAHAGIAN B: PERANAN GURU MATA PELAJARAN</h2>
+<h2>Bahagian B: Peranan Guru</h2>
 
-<h3>1. Peranan</h3>
-
-<p>1.1 Menguasai konsep PBD</p>
-
-<div class="chart-box">
-<canvas id="chartB11"></canvas>
-</div>
-
-<p>1.2 Menguasai pentaksiran PBD</p>
-
-<div class="chart-box">
-<canvas id="chartB12"></canvas>
-</div>
-
-<p>1.3 Menguasai kepentingan PBD</p>
-
-<div class="chart-box">
-<canvas id="chartB13"></canvas>
-</div>
-
-<p>1.4 Melaksanakan PBD seperti yang dirancang</p>
-
-<div class="chart-box">
-<canvas id="chartB14"></canvas>
-</div>
-
-<p>1.5 Melaksanakan PBD dengan merujuk kepada Standard Prestasi dalam DSKP</p>
-
-<div class="chart-box">
-<canvas id="chartB15"></canvas>
-</div>
-
-<p>1.6 Memaklumkan kepada murid aspek yang hendak ditaksir</p>
-
-<div class="chart-box">
-<canvas id="chartB16"></canvas>
-</div>
-
-<p>1.7 Memaklumkan kepada murid TP yang diperoleh</p>
-
-<div class="chart-box">
-<canvas id="chartB17"></canvas>
-</div>
-
-<p>1.8 Memberi peluang kepada murid yang ingin ditaksir semula</p>
-
-<div class="chart-box">
-<canvas id="chartB18"></canvas>
-</div>
-
-<p>1.9 Membuat penilaian kendiri bagi menambah baik kualiti PdP serta pentaksiran</p>
-
-<div class="chart-box">
-<canvas id="chartB19"></canvas>
-</div>
-
-<p>1.10 Membuat tindakan susulan bagi menambah baik kualiti PdP serta pentaksiran</p>
-
-<div class="chart-box">
-<canvas id="chartB110"></canvas>
-</div>
-
-<p>1.11 Merekod dan membuat catatan TP murid secara sistematik</p>
-
-<div class="chart-box">
-<canvas id="chartB111"></canvas>
-</div>
-
-<p>1.12 Mengisi TP dalam templat pelaporan sekurang-kurangnya dua kali setahun</p>
-
-<div class="chart-box">
-<canvas id="chartB112"></canvas>
-</div>
+<p>Analisis graf akan dipaparkan di sini.</p>
 
 </div>
+
+
+<!-- ======================= -->
+<!-- BAHAGIAN C              -->
+<!-- ======================= -->
+
+<div id="sectionC" class="section-content">
+
+<h2>Bahagian C: Penjaminan Mutu</h2>
+
+<p>Analisis graf akan dipaparkan di sini.</p>
+
 </div>
 
 </div>
@@ -408,7 +359,7 @@ jumlahA.innerHTML = "<b>Jumlah respon: " + jumlahGuru + " guru</b>";
 
 listA.innerHTML = guruList.join("");
 
-const jumlahC = document.getElementById("jumlahC");
+
 
 /* selepas ini semua kod cikgu kekal */
 
@@ -728,7 +679,7 @@ if(q112b === "Tidak") b112tidak++;
 
 });
 
-jumlahC.innerHTML = "<b>Jumlah respon: " + count + " guru</b>";
+
 
 /* PIE CHART 1.1 */
 
