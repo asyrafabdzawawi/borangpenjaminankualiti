@@ -157,8 +157,13 @@ Akhir Tahun
 </div>
 
 <div id="tabA" class="tab-content active">
+
 <h3>Lampiran A</h3>
+
+<p id="jumlahA"><b>Jumlah respon: 0 guru</b></p>
+
 <div id="listA" class="list"></div>
+
 </div>
 
 <div id="tabB" class="tab-content">
@@ -175,122 +180,19 @@ Akhir Tahun
 <button class="section-btn" onclick="openSection('B',this)">Bahagian B</button>
 </div>
 
+
 <div id="sectionA" class="section-content active">
 
-<h2>BAHAGIAN A: PENGURUSAN DAN PELAKSANAAN PENJAMINAN KUALITI</h2>
+<h2>Ringkasan Respon Guru</h2>
 
-<h3>1. Pengurusan Penjaminan Kualiti</h3>
-<p>1.1 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah</p>
+<p id="jumlahCA"><b>Jumlah respon: 0 guru</b></p>
+<div id="listCA" class="list"></div>
 
-<div class="chart-box">
-<canvas id="chart11"></canvas>
-</div>
+<h3>Senarai Guru Yang Mengisi Borang</h3>
 
-<h3>2. Pementoran</h3>
-<p>2.1 Menerima bimbingan daripada GKMP/KP</p>
-
-<div class="bar-chart-box">
-<canvas id="chart21"></canvas>
-</div>
-
-<p>2.2 Menyertai aktiviti pembangunan profesionalisme berterusan</p>
-
-<div class="bar-chart-box">
-<canvas id="chart22"></canvas>
-</div>
-
-<h3>3. Penyelarasan</h3>
-
-<p>3.1 Perbincangan penentuan tahap penguasaan bersama GKMP/KP</p>
-
-<div class="bar-chart-box">
-<canvas id="chart31"></canvas>
-</div>
-
-<p>3.2 Perbincangan penentuan tahap penguasaan bersama ahli panitia</p>
-
-<div class="bar-chart-box">
-<canvas id="chart32"></canvas>
-</div>
-
-<p>3.3 Meningkatkan kefahaman dan pengetahuan terhadap Standard Prestasi</p>
-
-<div class="bar-chart-box">
-<canvas id="chart33"></canvas>
-</div>
-
-<p>3.4 Menentukan tahap penguasaan murid secara adil</p>
-
-<div class="bar-chart-box">
-<canvas id="chart34"></canvas>
-</div>
-
-<p>3.5 Mengemukakan hasil kerja murid kepada GKMP/KP</p>
-
-<div class="bar-chart-box">
-<canvas id="chart35"></canvas>
-</div>
-
-<h3>4. Pemantauan</h3>
-
-<p>4.1 Melaksanakan perekodan tahap penguasaan murid secara sistematik</p>
-
-<div class="bar-chart-box">
-<canvas id="chart41"></canvas>
-</div>
-
-<p>4.2 Membuat analisis TP murid bagi tujuan tindakan susulan</p>
-
-<div class="bar-chart-box">
-<canvas id="chart42"></canvas>
-</div>
-
-<p>4.3 Menyediakan pelaporan TP murid sekurang-kurangnya dua kali setahun</p>
-
-<div class="bar-chart-box">
-<canvas id="chart43"></canvas>
-</div>
-
-<h3>5. Pengesanan</h3>
-
-<p>5.1 Memastikan instrumen sesuai diguna pakai untuk tujuan pentaksiran</p>
-
-<div class="bar-chart-box">
-<canvas id="chart51"></canvas>
-</div>
-
-<p>5.2 Memastikan kaedah pentaksiran menepati Standard Kandungan, Standard Pembelajaran dan Standard Prestasi</p>
-
-<div class="bar-chart-box">
-<canvas id="chart52"></canvas>
-</div>
-
-<p>5.3 Memastikan instrumen pentaksiran menepati Standard Kandungan, Standard Pembelajaran dan Standard Prestasi</p>
-
-<div class="bar-chart-box">
-<canvas id="chart53"></canvas>
-</div>
-
-<p>5.4 Memastikan kaedah pentaksiran menepati tahap penguasaan murid dalam DSKP</p>
-
-<div class="bar-chart-box">
-<canvas id="chart54"></canvas>
-</div>
-
-<p>5.5 Memastikan instrumen pentaksiran menepati tahap penguasaan murid dalam DSKP</p>
-
-<div class="bar-chart-box">
-<canvas id="chart55"></canvas>
-</div>
-
-<p>5.6 Menghantar sampel instrumen pentaksiran kepada GKMP/KP</p>
-
-<div class="bar-chart-box">
-<canvas id="chart56"></canvas>
-</div>
+<div id="listA" class="list"></div>
 
 </div>
-
 <div id="sectionB" class="section-content">
 
 <h2>BAHAGIAN B: PERANAN GURU MATA PELAJARAN</h2>
@@ -467,6 +369,44 @@ fetch(sheetURL)
 /* ================================ */
 
 const rows = data.split("\n").slice(1);
+/* ========================= */
+/* ANALISIS BAHAGIAN A       */
+/* ========================= */
+
+const jumlahA = document.getElementById("jumlahCA");
+const listA = document.getElementById("listCA");
+
+listA.innerHTML = "";
+
+let guruList = [];
+let jumlahGuru = 0;
+
+rows.forEach(row => {
+
+const cols = row.split(",");
+
+const nama = cols[1];
+const mp = cols[3];
+const tahun = cols[4];
+
+if(nama && nama.trim() !== ""){
+
+jumlahGuru++;
+
+guruList.push(`
+<div class="teacher">
+<b>${nama}</b><br>
+${mp} - ${tahun}
+</div>
+`);
+
+}
+
+});
+
+jumlahA.innerHTML = "<b>Jumlah respon: " + jumlahGuru + " guru</b>";
+
+listA.innerHTML = guruList.join("");
 
 const jumlahC = document.getElementById("jumlahC");
 
