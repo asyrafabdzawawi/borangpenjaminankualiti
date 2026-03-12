@@ -468,7 +468,7 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 <label for="1.3_1_b">1</label>
 <input type="radio" name="1.3_b" id="1.3_2_b" value="2">
 <label for="1.3_2_b">2</label>
-<input type="radio" name="1.3_b" id="1._b" value="3">
+<input type="radio" name="1.3_b" id="1.3_3_b" value="3">
 <label for="1.3_3_b">3</label>
 <input type="radio" name="1.3_b" id="1.3_4_b" value="4">
 <label for="1.3_4_b">4</label>
@@ -601,16 +601,16 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 </label>
 
 <div class="scale">
-<input type="radio" name="2.1_C" id="2.1_1_c" value="1">
+<input type="radio" name="2.1_c" id="2.1_1_c" value="1">
 <label for="2.1_1_c">1</label>
-<input type="radio" name="2.1_C" id="2.1_1_c" value="2">
-<label for="2.1_1_c">2</label>
-<input type="radio" name="2.1_C" id="2.1_1_c" value="3">
-<label for="2.1_1_c">3</label>
-<input type="radio" name="2.1_C" id="2.1_1_c" value="4">
-<label for="2.1_1_c">4</label>
-<input type="radio" name="2.1_C" id="2.1_1_c" value="5">
-<label for="2.1_1_c">5</label>
+<input type="radio" name="2.1_c" id="2.1_2_c" value="2">
+<label for="2.1_2_c">2</label>
+<input type="radio" name="2.1_c" id="2.1_3_c" value="3">
+<label for="2.1_3_c">3</label>
+<input type="radio" name="2.1_c" id="2.1_4_c" value="4">
+<label for="2.1_4_c">4</label>
+<input type="radio" name="2.1_c" id="2.1_5_c" value="5">
+<label for="2.1_5_c">5</label>
 </div>
 <input type="text" name="catatan_2.1_c" placeholder="Catatan (jika ada)">
 </div>
@@ -621,15 +621,15 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 </label>
 
 <div class="scale">
-<input type="radio" name="2.2_C" id="2.2_1_c" value="1">
+<input type="radio" name="2.2_c" id="2.2_1_c" value="1">
 <label for="2.2_1_c">1</label>
-<input type="radio" name="2.2_C" id="2.2_2_c" value="2">
+<input type="radio" name="2.2_c" id="2.2_2_c" value="2">
 <label for="2.2_2_c">2</label>
-<input type="radio" name="2.2_C" id="2.2_3_c" value="3">
+<input type="radio" name="2.2_c" id="2.2_3_c" value="3">
 <label for="2.2_3_c">3</label>
-<input type="radio" name="2.2_C" id="2.2_4_c" value="4">
+<input type="radio" name="2.2_c" id="2.2_4_c" value="4">
 <label for="2.2_4_c">4</label>
-<input type="radio" name="2.2_C" id="2.2_5_c" value="5">
+<input type="radio" name="2.2_c" id="2.2_5_c" value="5">
 <label for="2.2_5_c">5</label>
 </div>
 <input type="text" name="catatan_2.2_c" placeholder="Catatan (jika ada)">
@@ -643,7 +643,7 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 
 <div class="form-group">
 <label>
-3.1 enyediakan instrumen pentaksiran yang sesuai dan menepati kandungan kurikulum semasa. 
+3.1 Menyediakan instrumen pentaksiran yang sesuai dan menepati kandungan kurikulum semasa. 
 </label>
 
 <div class="scale">
@@ -738,9 +738,9 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 <label for="4.1_2_c">2</label>
 <input type="radio" name="4.1_c" id="4.1_3_c" value="3">
 <label for="4.1_3_c">3</label>
-<input type="radio" name="4.1_c" id="4.1_3_c" value="4">
+<input type="radio" name="4.1_c" id="4.1_4_c" value="4">
 <label for="4.1_4_c">4</label>
-<input type="radio" name="4.1_c" id="4.1_3_c" value="5">
+<input type="radio" name="4.1_c" id="4.1_5_c" value="5">
 <label for="4.1_5_c">5</label>
 
 </div>
@@ -837,6 +837,9 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 
 </div>
 
+
+
+
 <script>
 
 const progressBar = document.getElementById("progressBar");
@@ -847,20 +850,17 @@ function updateProgress(){
 const textInputs = document.querySelectorAll(
 'select[name="nama"], select[name="tahun"], select[name="mp"], input[name="jawatan"]'
 );
+
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
 
 let total = textInputs.length + radioGroups.length;
 let filled = 0;
-
-/* kira text */
 
 textInputs.forEach(input=>{
 if(input.value.trim() !== ""){
 filled++;
 }
 });
-
-/* kira radio group */
 
 radioGroups.forEach(name=>{
 if(document.querySelector(`input[name="${name}"]:checked`)){
@@ -870,39 +870,56 @@ filled++;
 
 let percent = Math.round((filled / total) * 100);
 
-/* update width */
-
 progressBar.style.width = percent + "%";
-
-/* update text */
-
 progressText.innerText = percent + "%";
 
-/* tukar warna ikut progress */
-
 if(percent < 30){
-progressBar.style.background = "#e74c3c"; // merah
+progressBar.style.background = "#e74c3c";
 }
 else if(percent < 70){
-progressBar.style.background = "#f39c12"; // oren
+progressBar.style.background = "#f39c12";
 }
 else{
-progressBar.style.background = "#2ecc71"; // hijau
+progressBar.style.background = "#2ecc71";
 }
 
 }
 
-/* event listener */
-
-document.querySelectorAll("input").forEach(input=>{
-input.addEventListener("change", updateProgress);
-input.addEventListener("keyup", updateProgress);
+document.querySelectorAll("input, select").forEach(el=>{
+el.addEventListener("change", updateProgress);
+el.addEventListener("keyup", updateProgress);
 });
+
+
+/* STEP FORM */
+
+let currentStep = 1;
+
+function showStep(step){
+
+document.querySelectorAll(".step").forEach(s=>{
+s.style.display="none";
+});
+
+document.getElementById("step"+step).style.display="block";
+
+}
+
+function nextStep(){
+currentStep++;
+showStep(currentStep);
+}
+
+function prevStep(){
+currentStep--;
+showStep(currentStep);
+}
 
 </script>
 
 </body>
 </html>
+
 
 
 
