@@ -208,7 +208,61 @@ Akhir Tahun
 
 <h2>Bahagian B: Peranan Guru</h2>
 
-<p>Analisis graf akan dipaparkan di sini.</p>
+<h3>1.1 Memahami kepentingan PBD</h3>
+<div class="bar-chart-box">
+<canvas id="chartB11"></canvas>
+</div>
+
+<h3>1.2 Menguasai konsep PBD</h3>
+<div class="bar-chart-box">
+<canvas id="chartB12"></canvas>
+</div>
+
+<h3>1.3 Menguasai pelaksanaan PBD</h3>
+<div class="bar-chart-box">
+<canvas id="chartB13"></canvas>
+</div>
+
+<h3>1.4 Menguasai kaedah pentaksiran</h3>
+<div class="bar-chart-box">
+<canvas id="chartB14"></canvas>
+</div>
+
+<h3>1.5 Menguasai instrumen pentaksiran</h3>
+<div class="bar-chart-box">
+<canvas id="chartB15"></canvas>
+</div>
+
+
+<h3>1.6 Memaklumkan tahap penguasaan kepada murid</h3>
+<div class="chart-box">
+<canvas id="chartB16"></canvas>
+</div>
+
+<h3>1.7 Memberi peluang murid ditaksir semula</h3>
+<div class="chart-box">
+<canvas id="chartB17"></canvas>
+</div>
+
+<h3>1.8 Penilaian kendiri PdP</h3>
+<div class="chart-box">
+<canvas id="chartB18"></canvas>
+</div>
+
+<h3>1.9 Merekod tahap penguasaan murid</h3>
+<div class="chart-box">
+<canvas id="chartB19"></canvas>
+</div>
+
+<h3>1.10 Menyediakan pelaporan TP</h3>
+<div class="chart-box">
+<canvas id="chartB110"></canvas>
+</div>
+
+<h3>1.11 Menyediakan instrumen ujian</h3>
+<div class="chart-box">
+<canvas id="chartB111"></canvas>
+</div>
 
 </div>
 
@@ -340,6 +394,18 @@ const nama = cols[1];
 const mp = cols[3];
 const tahun = cols[4];
 
+const b11 = cols[39];
+const b12 = cols[41];
+const b13 = cols[43];
+const b14 = cols[45];
+const b15 = cols[47];
+const b16 = cols[49];
+const b17 = cols[51];
+const b18 = cols[53];
+const b19 = cols[55];
+const b110 = cols[57];
+const b111 = cols[59];
+
 if(nama && nama.trim() !== ""){
 
 jumlahGuru++;
@@ -369,137 +435,13 @@ let count = 0;
 let ya = 0;
 let tidak = 0;
 
-let s1 = 0;
-let s2 = 0;
-let s3 = 0;
-let s4 = 0;
-let s5 = 0;
+let b11_1=0,b11_2=0,b11_3=0,b11_4=0,b11_5=0;
+let b12_1=0,b12_2=0,b12_3=0,b12_4=0,b12_5=0;
+let b13_1=0,b13_2=0,b13_3=0,b13_4=0,b13_5=0;
+let b14_1=0,b14_2=0,b14_3=0,b14_4=0,b14_5=0;
+let b15_1=0,b15_2=0,b15_3=0,b15_4=0,b15_5=0;
 
-let t1 = 0;
-let t2 = 0;
-let t3 = 0;
-let t4 = 0;
-let t5 = 0;
 
-let u1 = 0;
-let u2 = 0;
-let u3 = 0;
-let u4 = 0;
-let u5 = 0;
-
-let v1 = 0;
-let v2 = 0;
-let v3 = 0;
-let v4 = 0;
-let v5 = 0;
-
-let w1 = 0;
-let w2 = 0;
-let w3 = 0;
-let w4 = 0;
-let w5 = 0;
-
-let x1 = 0;
-let x2 = 0;
-let x3 = 0;
-let x4 = 0;
-let x5 = 0;
-
-let y1 = 0;
-let y2 = 0;
-let y3 = 0;
-let y4 = 0;
-let y5 = 0;
-
-let z1 = 0;
-let z2 = 0;
-let z3 = 0;
-let z4 = 0;
-let z5 = 0;
-
-let a1 = 0;
-let a2 = 0;
-let a3 = 0;
-let a4 = 0;
-let a5 = 0;
-
-let b1 = 0;
-let b2 = 0;
-let b3 = 0;
-let b4 = 0;
-let b5 = 0;
-
-let c1 = 0;
-let c2 = 0;
-let c3 = 0;
-let c4 = 0;
-let c5 = 0;
-
-let d1 = 0;
-let d2 = 0;
-let d3 = 0;
-let d4 = 0;
-let d5 = 0;
-
-let e1 = 0;
-let e2 = 0;
-let e3 = 0;
-let e4 = 0;
-let e5 = 0;
-
-let f1 = 0;
-let f2 = 0;
-let f3 = 0;
-let f4 = 0;
-let f5 = 0;
-
-let g1 = 0;
-let g2 = 0;
-let g3 = 0;
-let g4 = 0;
-let g5 = 0;
-
-let h1 = 0;
-let h2 = 0;
-let h3 = 0;
-let h4 = 0;
-let h5 = 0;
-
-let b11ya = 0;
-let b11tidak = 0;
-
-let b12ya = 0;
-let b12tidak = 0;
-
-let b13ya = 0;
-let b13tidak = 0;
-
-let b14ya = 0;
-let b14tidak = 0;
-
-let b15ya = 0;
-let b15tidak = 0;
-
-let b16ya = 0;
-let b16tidak = 0;
-
-let b17ya = 0;
-let b17tidak = 0;
-
-let b18ya = 0;
-let b18tidak = 0;
-
-let b19ya = 0;
-let b19tidak = 0;
-
-let b110ya = 0;
-let b110tidak = 0;
-
-let b111ya = 0;
-let b111tidak = 0;
-
-let b112ya = 0;
-let b112tidak = 0;
 
 rows.forEach(row => {
 
@@ -539,1013 +481,49 @@ const q112b = cols[61];
 
 
 if(nama && nama.trim() !== ""){
+
 count++;
+
+if(q11b === "1") b11_1++;
+if(q11b === "2") b11_2++;
+if(q11b === "3") b11_3++;
+if(q11b === "4") b11_4++;
+if(q11b === "5") b11_5++;
+
 }
 
-if(q11 === "Ya") ya++;
-if(q11 === "Tidak") tidak++;
 
-if(q21 === "1") s1++;
-if(q21 === "2") s2++;
-if(q21 === "3") s3++;
-if(q21 === "4") s4++;
-if(q21 === "5") s5++;
-
-if(q22 === "1") t1++;
-if(q22 === "2") t2++;
-if(q22 === "3") t3++;
-if(q22 === "4") t4++;
-if(q22 === "5") t5++;
-
-if(q31 === "1") u1++;
-if(q31 === "2") u2++;
-if(q31 === "3") u3++;
-if(q31 === "4") u4++;
-if(q31 === "5") u5++;
-
-if(q32 === "1") v1++;
-if(q32 === "2") v2++;
-if(q32 === "3") v3++;
-if(q32 === "4") v4++;
-if(q32 === "5") v5++;
-
-if(q33 === "1") w1++;
-if(q33 === "2") w2++;
-if(q33 === "3") w3++;
-if(q33 === "4") w4++;
-if(q33 === "5") w5++;
-
-if(q34 === "1") x1++;
-if(q34 === "2") x2++;
-if(q34 === "3") x3++;
-if(q34 === "4") x4++;
-if(q34 === "5") x5++;
-
-if(q35 === "1") y1++;
-if(q35 === "2") y2++;
-if(q35 === "3") y3++;
-if(q35 === "4") y4++;
-if(q35 === "5") y5++;
-
-if(q41 === "1") z1++;
-if(q41 === "2") z2++;
-if(q41 === "3") z3++;
-if(q41 === "4") z4++;
-if(q41 === "5") z5++;
-
-if(q42 === "1") a1++;
-if(q42 === "2") a2++;
-if(q42 === "3") a3++;
-if(q42 === "4") a4++;
-if(q42 === "5") a5++;
-
-if(q43 === "1") b1++;
-if(q43 === "2") b2++;
-if(q43 === "3") b3++;
-if(q43 === "4") b4++;
-if(q43 === "5") b5++;
-
-if(q51 === "1") c1++;
-if(q51 === "2") c2++;
-if(q51 === "3") c3++;
-if(q51 === "4") c4++;
-if(q51 === "5") c5++;
-
-if(q52 === "1") d1++;
-if(q52 === "2") d2++;
-if(q52 === "3") d3++;
-if(q52 === "4") d4++;
-if(q52 === "5") d5++;
-
-if(q53 === "1") e1++;
-if(q53 === "2") e2++;
-if(q53 === "3") e3++;
-if(q53 === "4") e4++;
-if(q53 === "5") e5++;
-
-if(q54 === "1") f1++;
-if(q54 === "2") f2++;
-if(q54 === "3") f3++;
-if(q54 === "4") f4++;
-if(q54 === "5") f5++;
-
-if(q55 === "1") g1++;
-if(q55 === "2") g2++;
-if(q55 === "3") g3++;
-if(q55 === "4") g4++;
-if(q55 === "5") g5++;
-
-if(q56 === "1") h1++;
-if(q56 === "2") h2++;
-if(q56 === "3") h3++;
-if(q56 === "4") h4++;
-if(q56 === "5") h5++;
-
-if(q11b === "Ya") b11ya++;
-if(q11b === "Tidak") b11tidak++;
-
-if(q12b === "Ya") b12ya++;
-if(q12b === "Tidak") b12tidak++;
-
-if(q13b === "Ya") b13ya++;
-if(q13b === "Tidak") b13tidak++;
-
-if(q14b === "Ya") b14ya++;
-if(q14b === "Tidak") b14tidak++;
-
-if(q15b === "Ya") b15ya++;
-if(q15b === "Tidak") b15tidak++;
-
-if(q16b === "Ya") b16ya++;
-if(q16b === "Tidak") b16tidak++;
-
-if(q17b === "Ya") b17ya++;
-if(q17b === "Tidak") b17tidak++;
-
-if(q18b === "Ya") b18ya++;
-if(q18b === "Tidak") b18tidak++;
-
-if(q19b === "Ya") b19ya++;
-if(q19b === "Tidak") b19tidak++;
-
-if(q110b === "Ya") b110ya++;
-if(q110b === "Tidak") b110tidak++;
-
-if(q111b === "Ya") b111ya++;
-if(q111b === "Tidak") b111tidak++;
-
-if(q112b === "Ya") b112ya++;
-if(q112b === "Tidak") b112tidak++;
 
 });
 
-
-
-/* PIE CHART 1.1 */
-
-Chart.getChart("chart11")?.destroy();
-const ctx = document.getElementById('chart11');
-
-new Chart(ctx, {
-type: 'pie',
-data: {
-labels: ['Ya', 'Tidak'],
-datasets: [{
-data: [ya, tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options: {
-plugins: {
-legend: {
-position: 'bottom'
-},
-datalabels: {
-color: '#fff',
-font: {
-weight: 'bold',
-size: 14
-},
-formatter: (value, context) => {
-
-let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-let percentage = (value / total * 100).toFixed(1) + "%";
-
-return percentage;
-
-}
-}
-}
-},
-plugins: [ChartDataLabels]
-});
-
-/* BAR CHART 2.1 */
-
-Chart.getChart("chart21")?.destroy();
-const ctx21 = document.getElementById('chart21');
-
-new Chart(ctx21, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [s1, s2, s3, s4, s5],
-backgroundColor: '#3498db'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 2.2 */
-
-Chart.getChart("chart22")?.destroy();
-const ctx22 = document.getElementById('chart22');
-
-new Chart(ctx22, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [t1, t2, t3, t4, t5],
-backgroundColor: '#9b59b6'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 3.1 */
-
-Chart.getChart("chart31")?.destroy();
-const ctx31 = document.getElementById('chart31');
-
-new Chart(ctx31, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [u1, u2, u3, u4, u5],
-backgroundColor: '#e67e22'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 3.2 */
-
-Chart.getChart("chart32")?.destroy();
-const ctx32 = document.getElementById('chart32');
-
-new Chart(ctx32, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [v1, v2, v3, v4, v5],
-backgroundColor: '#f39c12'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 3.3 */
-
-Chart.getChart("chart33")?.destroy();
-const ctx33 = document.getElementById('chart33');
-
-new Chart(ctx33, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [w1, w2, w3, w4, w5],
-backgroundColor: '#16a085'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 3.4 */
-
-Chart.getChart("chart34")?.destroy();
-const ctx34 = document.getElementById('chart34');
-
-new Chart(ctx34, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [x1, x2, x3, x4, x5],
-backgroundColor: '#8e44ad'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 3.5 */
-
-Chart.getChart("chart35")?.destroy();
-const ctx35 = document.getElementById('chart35');
-
-new Chart(ctx35, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [y1, y2, y3, y4, y5],
-backgroundColor: '#c0392b'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 4.1 */
-
-Chart.getChart("chart41")?.destroy();
-const ctx41 = document.getElementById('chart41');
-
-new Chart(ctx41, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [z1, z2, z3, z4, z5],
-backgroundColor: '#2c3e50'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 4.2 */
-
-Chart.getChart("chart42")?.destroy();
-const ctx42 = document.getElementById('chart42');
-
-new Chart(ctx42, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [a1, a2, a3, a4, a5],
-backgroundColor: '#27ae60'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 4.3 */
-
-Chart.getChart("chart43")?.destroy();
-const ctx43 = document.getElementById('chart43');
-
-new Chart(ctx43, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [b1, b2, b3, b4, b5],
-backgroundColor: '#d35400'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 5.1 */
-
-Chart.getChart("chart51")?.destroy();
-const ctx51 = document.getElementById('chart51');
-
-new Chart(ctx51, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [c1, c2, c3, c4, c5],
-backgroundColor: '#1abc9c'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 5.2 */
-
-Chart.getChart("chart52")?.destroy();
-const ctx52 = document.getElementById('chart52');
-
-new Chart(ctx52, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [d1, d2, d3, d4, d5],
-backgroundColor: '#16a085'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 5.3 */
-
-Chart.getChart("chart53")?.destroy();
-const ctx53 = document.getElementById('chart53');
-
-new Chart(ctx53, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [e1, e2, e3, e4, e5],
-backgroundColor: '#9b59b6'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 5.4 */
-
-Chart.getChart("chart54")?.destroy();
-const ctx54 = document.getElementById('chart54');
-
-new Chart(ctx54, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [f1, f2, f3, f4, f5],
-backgroundColor: '#e67e22'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 5.5 */
-
-Chart.getChart("chart55")?.destroy();
-const ctx55 = document.getElementById('chart55');
-
-new Chart(ctx55, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [g1, g2, g3, g4, g5],
-backgroundColor: '#c0392b'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* BAR CHART 5.6 */
-
-Chart.getChart("chart56")?.destroy();
-const ctx56 = document.getElementById('chart56');
-
-new Chart(ctx56, {
-type: 'bar',
-data: {
-labels: ['1','2','3','4','5'],
-datasets: [{
-label: 'Bilangan Guru',
-data: [h1, h2, h3, h4, h5],
-backgroundColor: '#34495e'
-}]
-},
-options: {
-responsive:true,
-maintainAspectRatio:false,
-plugins:{
-legend:{display:false}
-},
-scales:{
-y:{beginAtZero:true}
-}
-}
-});
-
-/* PIE CHART B1.1 */
 
 Chart.getChart("chartB11")?.destroy();
-const ctxB11 = document.getElementById('chartB11');
-
-new Chart(ctxB11, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b11ya, b11tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
+new Chart(document.getElementById("chartB11"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[b11_1,b11_2,b11_3,b11_4,b11_5],
+backgroundColor:"#3498db"
 }]
 },
 options:{
-plugins:{
-legend:{
-position:'bottom'
-},
-datalabels:{
-color:'#fff',
-font:{
-weight:'bold',
-size:14
-},
-formatter:(value,context)=>{
-
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-let percentage = (value/total*100).toFixed(1)+"%";
-
-return percentage;
-
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
 }
-}
-}
-},
-plugins:[ChartDataLabels]
 });
 
-/* PIE CHART B1.2 */
+});  // tutup .then()
 
-Chart.getChart("chartB12")?.destroy();
-const ctxB12 = document.getElementById('chartB12');
+}  // tutup function loadLampiranC()
 
-new Chart(ctxB12, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b12ya, b12tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{
-position:'bottom'
-},
-datalabels:{
-color:'#fff',
-font:{
-weight:'bold',
-size:14
-},
-formatter:(value,context)=>{
-
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-let percentage = (value/total*100).toFixed(1)+"%";
-
-return percentage;
-
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-/* PIE CHART B1.3 */
-
-/* PIE CHART B1.3 */
-
-Chart.getChart("chartB13")?.destroy();
-const ctxB13 = document.getElementById('chartB13');
-
-new Chart(ctxB13, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b13ya, b13tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.4 */
-
-Chart.getChart("chartB14")?.destroy();
-const ctxB14 = document.getElementById('chartB14');
-
-new Chart(ctxB14, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b14ya, b14tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.5 */
-
-Chart.getChart("chartB15")?.destroy();
-const ctxB15 = document.getElementById('chartB15');
-
-new Chart(ctxB15, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b15ya, b15tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.6 */
-
-Chart.getChart("chartB16")?.destroy();
-const ctxB16 = document.getElementById('chartB16');
-
-new Chart(ctxB16, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b16ya, b16tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.7 */
-
-Chart.getChart("chartB17")?.destroy();
-const ctxB17 = document.getElementById('chartB17');
-
-new Chart(ctxB17, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b17ya, b17tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.8 */
-
-Chart.getChart("chartB18")?.destroy();
-const ctxB18 = document.getElementById('chartB18');
-
-new Chart(ctxB18, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b18ya, b18tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.9 */
-
-Chart.getChart("chartB19")?.destroy();
-const ctxB19 = document.getElementById('chartB19');
-
-new Chart(ctxB19, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b19ya, b19tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.10 */
-
-Chart.getChart("chartB110")?.destroy();
-const ctxB110 = document.getElementById('chartB110');
-
-new Chart(ctxB110, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b110ya, b110tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-
-/* PIE CHART B1.11 */
-
-Chart.getChart("chartB111")?.destroy();
-const ctxB111 = document.getElementById('chartB111');
-
-new Chart(ctxB111, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b111ya, b111tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-/* PIE CHART B1.12 */
-
-Chart.getChart("chartB112")?.destroy();
-const ctxB112 = document.getElementById('chartB112');
-
-new Chart(ctxB112, {
-type: 'pie',
-data: {
-labels: ['Ya','Tidak'],
-datasets: [{
-data: [b112ya, b112tidak],
-backgroundColor: ['#2ecc71','#e74c3c']
-}]
-},
-options:{
-plugins:{
-legend:{position:'bottom'},
-datalabels:{
-color:'#fff',
-font:{weight:'bold',size:14},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+'%';
-}
-}
-}
-},
-plugins:[ChartDataLabels]
-});
-
-});
 
 document.addEventListener("DOMContentLoaded", function(){
 loadLampiranC();
 });
-}
+
+
+
 
 </script>
 
