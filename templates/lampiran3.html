@@ -271,6 +271,7 @@ Lampiran C – Guru Mata Pelajaran
 <div class="progress-text" id="progressText">0%</div>
 </div>
 
+<div class="step" id="step1">
 <h2 class="section-title">BAHAGIAN A: MAKLUMAT GURU MATA PELAJARAN</h2>
 
 <div class="form-group">
@@ -396,6 +397,11 @@ Lampiran C – Guru Mata Pelajaran
 
 </div>
 </div>
+<button type="button" onclick="nextStep()">Seterusnya</button>
+
+</div>
+
+<div class="step" id="step2" style="display:none;">
 
 <h2>BAHAGIAN B: PERANAN GURU MATA PELAJARAN </h2>
 <h2>ARAHAN BAHAGIAN B: </h2>
@@ -535,7 +541,12 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 </div>
 
 
+<button type="button" onclick="prevStep()">Sebelumnya</button>
+<button type="button" onclick="nextStep()">Seterusnya</button>
 
+</div>
+
+<div class="step" id="step3" style="display:none;">
 
 <h2>BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU </h2>
 <h2>ARAHAN BAHAGIAN C: </h2>
@@ -816,12 +827,11 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 <input type="text" name="catatan_5.2_c" placeholder="Catatan (jika ada)">
 </div>
 
-
-
-
-<div class="submit-area">
+<button type="button" onclick="prevStep()">Sebelumnya</button>
 <button type="submit">Hantar Borang</button>
+
 </div>
+
 
 </form>
 
@@ -893,6 +903,7 @@ input.addEventListener("keyup", updateProgress);
 
 </body>
 </html>
+
 
 
 
