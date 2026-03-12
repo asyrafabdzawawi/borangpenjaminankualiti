@@ -257,7 +257,9 @@ background:white;
 
 <h1 class="title">
 INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH BAGI GURU MATA PELAJARAN</h1>
-<p><center>(Alat yang digunakan untuk mengawal mutu pentaksiran)</center></p>
+<p style="text-align:center;">
+(Alat yang digunakan untuk mengawal mutu pentaksiran)
+</p>
 
 
 <div class="subtitle">
@@ -942,6 +944,8 @@ el.addEventListener("change", updateProgress);
 el.addEventListener("keyup", updateProgress);
 });
 
+updateProgress();
+
 
 /* STEP FORM */
 
@@ -958,19 +962,26 @@ document.getElementById("step"+step).style.display="block";
 }
 
 function nextStep(){
+if(currentStep < 3){
 currentStep++;
 showStep(currentStep);
+window.scrollTo({top:0,behavior:"smooth"});
+}
 }
 
 function prevStep(){
+if(currentStep > 1){
 currentStep--;
 showStep(currentStep);
+window.scrollTo({top:0,behavior:"smooth"});
+}
 }
 
 </script>
 
 </body>
 </html>
+
 
 
 
