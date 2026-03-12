@@ -658,7 +658,6 @@ scales:{y:{beginAtZero:true}}
 });
 
 Chart.getChart("chartB16")?.destroy();
-
 new Chart(document.getElementById("chartB16"),{
 type:"pie",
 data:{
@@ -670,13 +669,24 @@ backgroundColor:["#2ecc71","#e74c3c"]
 },
 options:{
 plugins:{
-legend:{position:"bottom"}
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
 }
+}
+},
+plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartB17")?.destroy();
-
 new Chart(document.getElementById("chartB17"),{
 type:"pie",
 data:{
@@ -688,13 +698,24 @@ backgroundColor:["#2ecc71","#e74c3c"]
 },
 options:{
 plugins:{
-legend:{position:"bottom"}
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
 }
+}
+},
+plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartB18")?.destroy();
-
 new Chart(document.getElementById("chartB18"),{
 type:"pie",
 data:{
@@ -706,13 +727,24 @@ backgroundColor:["#2ecc71","#e74c3c"]
 },
 options:{
 plugins:{
-legend:{position:"bottom"}
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
 }
+}
+},
+plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartB19")?.destroy();
-
 new Chart(document.getElementById("chartB19"),{
 type:"pie",
 data:{
@@ -724,13 +756,24 @@ backgroundColor:["#2ecc71","#e74c3c"]
 },
 options:{
 plugins:{
-legend:{position:"bottom"}
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
 }
+}
+},
+plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartB110")?.destroy();
-
 new Chart(document.getElementById("chartB110"),{
 type:"pie",
 data:{
@@ -742,13 +785,24 @@ backgroundColor:["#2ecc71","#e74c3c"]
 },
 options:{
 plugins:{
-legend:{position:"bottom"}
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
 }
+}
+},
+plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartB111")?.destroy();
-
 new Chart(document.getElementById("chartB111"),{
 type:"pie",
 data:{
@@ -760,9 +814,21 @@ backgroundColor:["#2ecc71","#e74c3c"]
 },
 options:{
 plugins:{
-legend:{position:"bottom"}
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
 }
+}
+},
+plugins:[ChartDataLabels]
 });
 
 });  // tutup .then()
