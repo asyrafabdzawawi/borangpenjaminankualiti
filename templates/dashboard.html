@@ -225,6 +225,10 @@ Akhir Tahun
 <option value="Pendidikan Moral">Pendidikan Moral</option>
 <option value="Pendidikan Muzik">Pendidikan Muzik</option>
 </select>
+<p id="noDataMsg" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+Tiada data bagi mata pelajaran ini
+</p>
+<p id="jumlahMP" style="margin-top:8px;font-weight:bold;"></p>
 
 <h3>1.1 Memahami kepentingan PBD</h3>
 <div class="bar-chart-box">
@@ -393,6 +397,7 @@ fetch(sheetURL)
 
 const rows = data.split("\n").slice(1);
 const selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
+let filteredCount = 0;
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
 /* ========================= */
@@ -408,12 +413,24 @@ rows.forEach(row => {
 
 const cols = row.split(",");
 
-const nama = cols[1]?.trim();
+const nama = cols[1];
 const mp = cols[3]?.trim();
+
+/* tapis mata pelajaran */
 
 if(selectedMP !== "SEMUA" && mp !== selectedMP){
 return;
 }
+
+/* TAPIS MATA PELAJARAN */
+
+
+
+
+if(nama && nama.trim() !== ""){
+filteredCount++;
+}
+
 const tahun = cols[4]?.trim();
 
 const b11 = cols[39];
@@ -469,9 +486,8 @@ listA.innerHTML = guruList.join("");
 
 
 
-let count = 0;
-let ya = 0;
-let tidak = 0;
+
+
 
 let b11_1=0,b11_2=0,b11_3=0,b11_4=0,b11_5=0;
 let b12_1=0,b12_2=0,b12_3=0,b12_4=0,b12_5=0;
@@ -491,6 +507,13 @@ rows.forEach(row => {
 const cols = row.split(",");
 
 const nama = cols[1];
+const mp = cols[3]?.trim();
+
+/* tapis mata pelajaran */
+
+if(selectedMP !== "SEMUA" && mp !== selectedMP){
+return;
+}
 const q11 = cols[5];
 const q21 = cols[7];
 const q22 = cols[9];
@@ -524,7 +547,6 @@ const q111b = cols[25];
 
 if(nama && nama.trim() !== ""){
 
-count++;
 
 if(q11b === "1") b11_1++;
 if(q11b === "2") b11_2++;
@@ -590,6 +612,33 @@ if(q111b?.trim() === "Tidak") b111tidak++;
 
 });
 
+const msg = document.getElementById("noDataMsg");
+document.getElementById("jumlahMP").innerHTML =
+"Jumlah respon: " + filteredCount + " guru";
+
+if(filteredCount === 0){
+msg.style.display = "block";
+
+/* kosongkan graf */
+
+b11_1=b11_2=b11_3=b11_4=b11_5=0;
+b12_1=b12_2=b12_3=b12_4=b12_5=0;
+b13_1=b13_2=b13_3=b13_4=b13_5=0;
+b14_1=b14_2=b14_3=b14_4=b14_5=0;
+b15_1=b15_2=b15_3=b15_4=b15_5=0;
+
+b16ya=b16tidak=0;
+b17ya=b17tidak=0;
+b18ya=b18tidak=0;
+b19ya=b19tidak=0;
+b110ya=b110tidak=0;
+b111ya=b111tidak=0;
+
+}else{
+
+msg.style.display = "none";
+
+}
 
 Chart.getChart("chartB11")?.destroy();
 new Chart(document.getElementById("chartB11"),{
