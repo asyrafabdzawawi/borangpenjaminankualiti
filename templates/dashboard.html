@@ -384,8 +384,7 @@ const listA = document.getElementById("listCA");
 
 listA.innerHTML = "";
 
-let guruList = [];
-let guruUnik = new Set();
+let guruMap = {};;
 
 rows.forEach(row => {
 
@@ -409,20 +408,19 @@ const b111 = cols[59];
 
 if(nama && nama.trim() !== ""){
 
-guruUnik.add(nama.trim());
+const key = nama.trim();
 
-guruList.push(`
-<div class="teacher">
-<b>${nama}</b><br>
-${mp} - ${tahun}
-</div>
-`);
+if(!guruMap[key]){
+guruMap[key] = [];
+}
+
+guruMap[key].push(`${mp} - ${tahun}`);
 
 }
 
 });
 
-jumlahA.innerHTML = "<b>Jumlah respon: " + guruUnik.size + " guru</b>";
+jumlahA.innerHTML = "<b>Jumlah respon: " + Object.keys(guruMap).length + " guru</b>";
 
 listA.innerHTML = guruList.join("");
 
