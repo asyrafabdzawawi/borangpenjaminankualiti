@@ -390,9 +390,9 @@ rows.forEach(row => {
 
 const cols = row.split(",");
 
-const nama = cols[1];
-const mp = cols[3];
-const tahun = cols[4];
+const nama = cols[1]?.trim();
+const mp = cols[3]?.trim();
+const tahun = cols[4]?.trim();
 
 const b11 = cols[39];
 const b12 = cols[41];
@@ -414,9 +414,24 @@ if(!guruMap[key]){
 guruMap[key] = [];
 }
 
+if(mp && tahun){
 guruMap[key].push(`${mp} - ${tahun}`);
+}
 
 }
+
+});
+
+let guruList = [];
+
+Object.keys(guruMap).forEach(nama => {
+
+guruList.push(`
+<div class="teacher">
+<b>${nama}</b><br>
+${guruMap[nama].join(", ")}
+</div>
+`);
 
 });
 
