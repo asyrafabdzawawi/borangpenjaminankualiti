@@ -1167,60 +1167,34 @@ plugins:[ChartDataLabels]
 
 Chart.getChart("chartC21")?.destroy();
 new Chart(document.getElementById("chartC21"),{
-type:"pie",
+type:"bar",
 data:{
-labels:["Ya","Tidak"],
+labels:["1","2","3","4","5"],
 datasets:[{
-data:[c21ya,c21tidak],
-backgroundColor:["#2ecc71","#e74c3c"]
+data:[c21_1,c21_2,c21_3,c21_4,c21_5],
+backgroundColor:"#3498db"
 }]
 },
 options:{
-plugins:{
-legend:{position:"bottom"},
-datalabels:{
-color:"#fff",
-font:{
-weight:"bold",
-size:14
-},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+"%";
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
 }
-}
-}
-},
-plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartC22")?.destroy();
 new Chart(document.getElementById("chartC22"),{
-type:"pie",
+type:"bar",
 data:{
-labels:["Ya","Tidak"],
+labels:["1","2","3","4","5"],
 datasets:[{
-data:[c22ya,c22tidak],
-backgroundColor:["#2ecc71","#e74c3c"]
+data:[c22_1,c22_2,c22_3,c22_4,c22_5],
+backgroundColor:"#3498db"
 }]
 },
 options:{
-plugins:{
-legend:{position:"bottom"},
-datalabels:{
-color:"#fff",
-font:{
-weight:"bold",
-size:14
-},
-formatter:(value,context)=>{
-let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
-return (value/total*100).toFixed(1)+"%";
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
 }
-}
-}
-},
-plugins:[ChartDataLabels]
 });
 
 });  // tutup .then()
