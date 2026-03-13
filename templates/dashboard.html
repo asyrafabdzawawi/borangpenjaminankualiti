@@ -130,6 +130,15 @@ padding:10px;
 border-bottom:1px solid #eee;
 }
 
+.teacher b{
+font-size:15px;
+color:#2c3e50;
+}
+
+.teacher{
+line-height:1.7;
+}
+
 .session-tabs{
 display:flex;
 gap:10px;
@@ -518,12 +527,26 @@ let guruList = [];
 
 Object.keys(guruMap).forEach(nama => {
 
+let senaraiMP = "";
+
+guruMap[nama].forEach(item => {
+
+let parts = item.split(" - ");
+let mp = parts[0];
+let kelas = parts[1];
+
+senaraiMP += `• ${mp} : ${kelas}<br>`;
+
+});
+
 guruList.push(`
 <div class="teacher">
 <b>${nama}</b><br>
-${guruMap[nama].join(", ")}
+${senaraiMP}
 </div>
 `);
+
+});
 
 
 
