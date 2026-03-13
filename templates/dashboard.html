@@ -484,7 +484,7 @@ if(nama && nama.trim() !== ""){
 guruUnik.add(nama.trim());
 }
 
-let tahun = cols.slice(4).join(",").replace(/"/g,"").trim();
+let tahun = cols[4]?.replace(/"/g,"").trim();
 
 const b11 = cols[39];
 const b12 = cols[41];
