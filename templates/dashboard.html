@@ -370,6 +370,16 @@ Tiada data bagi mata pelajaran ini
 <canvas id="chartC12"></canvas>
 </div>
 
+<h3>2.1 Menerima latihan pembangunan profesionalisme berterusan</h3>
+<div class="bar-chart-box">
+<canvas id="chartC21"></canvas>
+</div>
+
+<h3>2.2 Menerima bimbingan tentang pelaksanaan dan pengoperasian PBD</h3>
+<div class="bar-chart-box">
+<canvas id="chartC22"></canvas>
+</div>
+
 <h3>3.1 Menyediakan instrumen pentaksiran</h3>
 <div class="bar-chart-box">
 <canvas id="chartC31"></canvas>
@@ -620,6 +630,8 @@ let b111ya=0,b111tidak=0;
 let c11ya=0,c11tidak=0;
 let c12ya=0,c12tidak=0;
 
+let c21_1=0,c21_2=0,c21_3=0,c21_4=0,c21_5=0;
+let c22_1=0,c22_2=0,c22_3=0,c22_4=0,c22_5=0;
 let c31_1=0,c31_2=0,c31_3=0,c31_4=0,c31_5=0;
 let c32_1=0,c32_2=0,c32_3=0,c32_4=0,c32_5=0;
 let c33_1=0,c33_2=0,c33_3=0,c33_4=0,c33_5=0;
@@ -659,6 +671,9 @@ const q111b = clean(row["1.11_b"]);
 
 const q11c = clean(row["1.1_c"]);
 const q12c = clean(row["1.2_c"]);
+
+const q21c = clean(row["2.1_c"]);
+const q22c = clean(row["2.2_c"]);
 
 const q31c = clean(row["3.1_c"]);
 const q32c = clean(row["3.2_c"]);
@@ -718,6 +733,22 @@ if(skor15 === 4) b15_4++;
 if(skor15 === 5) b15_5++;
 /* 1.6 */
 
+const skor21 = Number(q21c);
+
+if(skor21 === 1) c21_1++;
+if(skor21 === 2) c21_2++;
+if(skor21 === 3) c21_3++;
+if(skor21 === 4) c21_4++;
+if(skor21 === 5) c21_5++;
+
+const skor22 = Number(q22c);
+
+if(skor22 === 1) c22_1++;
+if(skor22 === 2) c22_2++;
+if(skor22 === 3) c22_3++;
+if(skor22 === 4) c22_4++;
+if(skor22 === 5) c22_5++;
+
 const skor31 = Number(q31c);
 
 if(skor31 === 1) c31_1++;
@@ -770,6 +801,9 @@ if(q11c?.trim() === "Tidak") c11tidak++;
 
 if(q12c?.trim() === "Ya") c12ya++;
 if(q12c?.trim() === "Tidak") c12tidak++;
+
+if(q21c?.trim() === "Ya") c21ya++;
+if(q21c?.trim() === "Tidak") c21tidak++;
 
 /* 4.3 */
 
@@ -1109,6 +1143,64 @@ data:{
 labels:["Ya","Tidak"],
 datasets:[{
 data:[c12ya,c12tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartC21")?.destroy();
+new Chart(document.getElementById("chartC21"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[c21ya,c21tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartC22")?.destroy();
+new Chart(document.getElementById("chartC22"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[c22ya,c22tidak],
 backgroundColor:["#2ecc71","#e74c3c"]
 }]
 },
