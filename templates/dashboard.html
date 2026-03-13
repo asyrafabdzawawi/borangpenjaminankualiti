@@ -5,6 +5,7 @@
 <title>Dashboard Analisis</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
 
 <style>
@@ -457,7 +458,12 @@ fetch(sheetURL)
 /* CIKGU KEKALKAN SEPERTI ASAL      */
 /* ================================ */
 
-const rows = data.split(/\r?\n/).slice(1).filter(r => r.trim() !== "");
+const parsed = Papa.parse(data, {
+header: true,
+skipEmptyLines: true
+});
+
+const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
 const selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
 let guruUnik = new Set();
@@ -474,10 +480,11 @@ let guruMap = {};;
 
 rows.forEach(row => {
 
-const cols = row.split(",");
 
-const nama = cols[1];
-const mp = clean(cols[3]);
+
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
 
 /* tapis mata pelajaran */
 
@@ -485,9 +492,6 @@ if(selectedMP !== "SEMUA" && mp !== selectedMP){
 return;
 }
 
-if(nama && nama.trim() !== ""){
-guruUnik.add(nama);
-}
 
 /* TAPIS MATA PELAJARAN */
 
@@ -498,34 +502,10 @@ if(nama && nama.trim() !== ""){
 guruUnik.add(nama.trim());
 }
 
-let kelasParts = [];
-
-for(let i = 4; i < cols.length; i++){
-
-let value = cols[i]?.replace(/"/g,"").trim();
-
-if(!value) continue;
-
-/* jika jumpa nombor 1-5, itu sudah masuk bahagian soalan */
-if(/^[1-5]$/.test(value)){
-break;
-}
-
-kelasParts.push(value);
-
-}
-
-let tahun = kelasParts.join(", ");
 
 
-const b14 = cols[45];
-const b15 = cols[47];
-const b16 = cols[49];
-const b17 = cols[51];
-const b18 = cols[53];
-const b19 = cols[55];
-const b110 = cols[57];
-const b111 = cols[59];
+
+
 
 if(nama && nama.trim() !== ""){
 
@@ -587,27 +567,26 @@ let b111ya=0,b111tidak=0;
 
 rows.forEach(row => {
 
-const cols = row.split(",");
-const clean = v => v?.replace(/"/g,"").trim();
-
-const nama = clean(cols[1]);
-const mp = clean(cols[3]);
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
 
 if(selectedMP !== "SEMUA" && mp !== selectedMP){
 return;
 }
+
   
-const q11b = clean(cols[5]);   // 1.1_b
-const q12b = clean(cols[7]);   // 1.2_b
-const q13b = clean(cols[9]);   // 1.3_b
-const q14b = clean(cols[11]);  // 1.4_b
-const q15b = clean(cols[13]);  // 1.5_b
-const q16b = clean(cols[15]);  // 1.6_b
-const q17b = clean(cols[17]);  // 1.7_b
-const q18b = clean(cols[19]);  // 1.8_b
-const q19b = clean(cols[21]);  // 1.9_b
-const q110b = clean(cols[23]); // 1.10_b
-const q111b = clean(cols[25]); // 1.11_b
+const q11b = clean(row["1.1_b"]);
+const q12b = clean(row["1.2_b"]);
+const q13b = clean(row["1.3_b"]);
+const q14b = clean(row["1.4_b"]);
+const q15b = clean(row["1.5_b"]);
+const q16b = clean(row["1.6_b"]);
+const q17b = clean(row["1.7_b"]);
+const q18b = clean(row["1.8_b"]);
+const q19b = clean(row["1.9_b"]);
+const q110b = clean(row["1.10_b"]);
+const q111b = clean(row["1.11_b"]);
 
 if(nama && nama.trim() !== ""){
 
