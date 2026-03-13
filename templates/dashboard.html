@@ -476,7 +476,7 @@ rows.forEach(row => {
 const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
 const nama = cols[1];
-const mp = cols[3]?.replace(/"/g,"").trim();
+const mp = cols[2]?.replace(/"/g,"").trim();
 
 /* tapis mata pelajaran */
 
@@ -586,7 +586,7 @@ const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 const clean = v => v?.replace(/^"|"$/g,"").trim();
 
 const nama = clean(cols[1]);
-const mp = clean(cols[3]);
+const mp = clean(cols[2]);
 
 if(selectedMP !== "SEMUA" && mp !== selectedMP){
 return;
