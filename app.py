@@ -52,6 +52,8 @@ def dashboard():
 def submit():
 
     form = request.form
+    tahun_list = form.getlist("tahun[]")
+    tahun = ", ".join(tahun_list)
 
     sesi = form.get("sesi")
 
@@ -69,7 +71,7 @@ def submit():
         form.get("nama"),
         form.get("jawatan"),
         form.get("mp"),
-        form.get("tahun"),
+        tahun,
 
         form.get("1.1_b"),
         form.get("catatan_1.1_b"),
@@ -130,7 +132,7 @@ def submit():
         form.get("nama"),
         form.get("jawatan"),
         form.get("mp"),
-        form.get("tahun"),
+        tahun,
         form.get("1.1"),
         form.get("catatan_1.1"),
         form.get("1.2"),
@@ -195,7 +197,7 @@ def submit():
         form.get("nama"),
         form.get("jawatan"),
         form.get("mp"),
-        form.get("tahun"),
+        tahun,
         form.get("1.1"),
         form.get("catatan_1.1"),
         form.get("1.2"),
