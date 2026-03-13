@@ -720,13 +720,22 @@ msg.style.display = "none";
 
 }
 
+let labels11 = [];
+let data11 = [];
+
+if(b11_1>0){labels11.push("1");data11.push(b11_1);}
+if(b11_2>0){labels11.push("2");data11.push(b11_2);}
+if(b11_3>0){labels11.push("3");data11.push(b11_3);}
+if(b11_4>0){labels11.push("4");data11.push(b11_4);}
+if(b11_5>0){labels11.push("5");data11.push(b11_5);}
+
 Chart.getChart("chartB11")?.destroy();
 new Chart(document.getElementById("chartB11"),{
 type:"bar",
 data:{
-labels:["1","2","3","4","5"],
+labels:labels11,
 datasets:[{
-data:[b11_1,b11_2,b11_3,b11_4,b11_5],
+data:data11,
 backgroundColor:"#3498db"
 }]
 },
