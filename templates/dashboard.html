@@ -17,13 +17,13 @@
 
 /* hover */
 
-#filterMP:hover{
+#filterMP:hover,
+#filterMP_C:hover{
 border-color:#3498db;
 }
 
-/* bila klik */
-
-#filterMP:focus{
+#filterMP:focus,
+#filterMP_C:focus{
 outline:none;
 border-color:#3498db;
 box-shadow:0 0 0 2px rgba(52,152,219,0.2);
@@ -171,7 +171,8 @@ font-weight:600;
 margin-bottom:6px;
 }
 
-#filterMP{
+#filterMP,
+#filterMP_C{
 padding:10px 14px;
 font-size:14px;
 border-radius:6px;
@@ -380,10 +381,10 @@ Tiada data bagi mata pelajaran ini
 </select>
 
 </div>
-<p id="noDataMsg" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+<p id="noDataMsgC" style="display:none;color:red;font-weight:bold;margin-top:10px;">
 Tiada data bagi mata pelajaran ini
 </p>
-<p id="jumlahMP" style="margin-top:8px;font-weight:bold;"></p>
+<p id="jumlahMPC" style="margin-top:8px;font-weight:bold;"></p>
 
 <h3>1.1 Merujuk Panduan PBS</h3>
 <div class="chart-box">
@@ -565,7 +566,13 @@ skipEmptyLines: true
 
 const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
-const selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
+let selectedMP;
+
+if(document.getElementById("sectionC").classList.contains("active")){
+selectedMP = document.getElementById("filterMP_C")?.value || "SEMUA";
+}else{
+selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
+}
 let guruUnik = new Set();
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
@@ -849,8 +856,18 @@ if(q43c?.trim() === "Tidak") c43tidak++;
 }
 });
 
-const msg = document.getElementById("noDataMsg");
-document.getElementById("jumlahMP").innerHTML =
+let msg;
+let jumlahBox;
+
+if(document.getElementById("sectionC").classList.contains("active")){
+msg = document.getElementById("noDataMsgC");
+jumlahBox = document.getElementById("jumlahMPC");
+}else{
+msg = document.getElementById("noDataMsg");
+jumlahBox = document.getElementById("jumlahMP");
+}
+
+jumlahBox.innerHTML =
 "Jumlah respon: " + guruUnik.size + " guru";
 
 if(guruUnik.size === 0){
