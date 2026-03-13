@@ -474,7 +474,7 @@ let guruMap = {};;
 
 rows.forEach(row => {
 
-const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+const cols = row.split(",");
 
 const nama = cols[1];
 const mp = clean(cols[3]);
@@ -587,7 +587,7 @@ let b111ya=0,b111tidak=0;
 
 rows.forEach(row => {
 
-const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+const cols = row.split(",");
 const clean = v => v?.replace(/"/g,"").trim();
 
 const nama = clean(cols[1]);
