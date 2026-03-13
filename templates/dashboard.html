@@ -467,7 +467,7 @@ rows.forEach(row => {
 const cols = row.split(",");
 
 const nama = cols[1];
-const mp = cols[3]?.trim();
+const mp = cols[3]?.replace(/"/g,"").trim();
 
 /* tapis mata pelajaran */
 
