@@ -484,7 +484,7 @@ if(nama && nama.trim() !== ""){
 guruUnik.add(nama.trim());
 }
 
-const tahun = cols[4]?.trim();
+let tahun = cols.slice(4).join(",").replace(/"/g,"").trim();
 
 const b11 = cols[39];
 const b12 = cols[41];
@@ -560,7 +560,7 @@ rows.forEach(row => {
 const cols = row.split(",");
 
 const nama = cols[1];
-const mp = cols[3]?.trim();
+const mp = cols[3]?.replace(/"/g,"").trim();
 
 /* tapis mata pelajaran */
 
