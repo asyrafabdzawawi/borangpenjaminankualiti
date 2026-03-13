@@ -586,23 +586,23 @@ const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 const clean = v => v?.replace(/^"|"$/g,"").trim();
 
 const nama = clean(cols[1]);
-const mp = clean(cols[2]);
+const mp = clean(cols[3]);
 
 if(selectedMP !== "SEMUA" && mp !== selectedMP){
 return;
 }
   
-const q11b = clean(cols[4]);  // 1.1_b
-const q12b = clean(cols[6]);  // 1.2_b  ← BETUL
-const q13b = clean(cols[10]);
-const q14b = clean(cols[12]);
-const q15b = clean(cols[14]);
-const q16b = clean(cols[15]);
-const q17b = clean(cols[17]);
-const q18b = clean(cols[19]);
-const q19b = clean(cols[21]);
-const q110b = clean(cols[23]);
-const q111b = clean(cols[25]);
+const q11b = clean(cols[5]);   // 1.1_b
+const q12b = clean(cols[7]);   // 1.2_b
+const q13b = clean(cols[9]);   // 1.3_b
+const q14b = clean(cols[11]);  // 1.4_b
+const q15b = clean(cols[13]);  // 1.5_b
+const q16b = clean(cols[15]);  // 1.6_b
+const q17b = clean(cols[17]);  // 1.7_b
+const q18b = clean(cols[19]);  // 1.8_b
+const q19b = clean(cols[21]);  // 1.9_b
+const q110b = clean(cols[23]); // 1.10_b
+const q111b = clean(cols[25]); // 1.11_b
 
 if(nama){
 
