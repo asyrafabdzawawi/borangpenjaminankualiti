@@ -7,6 +7,23 @@
 
 <style>
 
+.checkbox-group{
+display:grid;
+grid-template-columns: repeat(3,1fr);
+gap:8px;
+margin-top:10px;
+}
+
+.checkbox-group label{
+background:#ecf0f1;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.checkbox-group input{
+margin-right:6px;
+}
 /* progress bar */
 
 .scale label:active{
@@ -355,35 +372,37 @@ Lampiran C – Guru Mata Pelajaran
 
 <div class="form-group">
 <label>Tahun / Tingkatan</label>
-<select name="tahun[]" multiple required>
+<div class="form-group">
+<label>Tahun / Tingkatan</label>
 
-<option value="">-- Sila Pilih Kelas --</option>
+<div class="checkbox-group">
 
-<option>1 Amber</option>
-<option>1 Amethyst</option>
-<option>1 Aquamarine</option>
+<label><input type="checkbox" name="tahun[]" value="1 Amber"> 1 Amber</label>
+<label><input type="checkbox" name="tahun[]" value="1 Amethyst"> 1 Amethyst</label>
+<label><input type="checkbox" name="tahun[]" value="1 Aquamarine"> 1 Aquamarine</label>
 
-<option>2 Amber</option>
-<option>2 Amethyst</option>
-<option>2 Aquamarine</option>
+<label><input type="checkbox" name="tahun[]" value="2 Amber"> 2 Amber</label>
+<label><input type="checkbox" name="tahun[]" value="2 Amethyst"> 2 Amethyst</label>
+<label><input type="checkbox" name="tahun[]" value="2 Aquamarine"> 2 Aquamarine</label>
 
-<option>3 Amber</option>
-<option>3 Amethyst</option>
-<option>3 Aquamarine</option>
+<label><input type="checkbox" name="tahun[]" value="3 Amber"> 3 Amber</label>
+<label><input type="checkbox" name="tahun[]" value="3 Amethyst"> 3 Amethyst</label>
+<label><input type="checkbox" name="tahun[]" value="3 Aquamarine"> 3 Aquamarine</label>
 
-<option>4 Amber</option>
-<option>4 Amethyst</option>
-<option>4 Aquamarine</option>
+<label><input type="checkbox" name="tahun[]" value="4 Amber"> 4 Amber</label>
+<label><input type="checkbox" name="tahun[]" value="4 Amethyst"> 4 Amethyst</label>
+<label><input type="checkbox" name="tahun[]" value="4 Aquamarine"> 4 Aquamarine</label>
 
-<option>5 Amber</option>
-<option>5 Amethyst</option>
-<option>5 Aquamarine</option>
+<label><input type="checkbox" name="tahun[]" value="5 Amber"> 5 Amber</label>
+<label><input type="checkbox" name="tahun[]" value="5 Amethyst"> 5 Amethyst</label>
+<label><input type="checkbox" name="tahun[]" value="5 Aquamarine"> 5 Aquamarine</label>
 
-<option>6 Amber</option>
-<option>6 Amethyst</option>
-<option>6 Aquamarine</option>
+<label><input type="checkbox" name="tahun[]" value="6 Amber"> 6 Amber</label>
+<label><input type="checkbox" name="tahun[]" value="6 Amethyst"> 6 Amethyst</label>
+<label><input type="checkbox" name="tahun[]" value="6 Aquamarine"> 6 Aquamarine</label>
 
-</select>
+</div>
+</div>
 </div>
 
 <div class="form-group">
@@ -902,7 +921,7 @@ const progressText = document.getElementById("progressText");
 function updateProgress(){
 
 const textInputs = document.querySelectorAll(
-'select[name="nama"], select[name="tahun"], select[name="mp"], input[name="jawatan"]'
+'select[name="nama"], select[name="tahun[]"], select[name="mp"], input[name="jawatan"]'
 );
 
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
@@ -981,6 +1000,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 
 </body>
 </html>
+
 
 
 
