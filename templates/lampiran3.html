@@ -921,7 +921,7 @@ const progressText = document.getElementById("progressText");
 function updateProgress(){
 
 const textInputs = document.querySelectorAll(
-'select[name="nama"], select[name="tahun[]"], select[name="mp"], input[name="jawatan"]'
+'select[name="nama"], select[name="mp"], input[name="jawatan"]'
 );
 
 const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
@@ -1000,6 +1000,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 
 </body>
 </html>
+
 
 
 
