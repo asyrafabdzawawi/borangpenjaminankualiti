@@ -473,7 +473,7 @@ let guruMap = {};;
 
 rows.forEach(row => {
 
-const cols = row.split(",");
+const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
 const nama = cols[1];
 const mp = cols[3]?.replace(/"/g,"").trim();
@@ -720,22 +720,13 @@ msg.style.display = "none";
 
 }
 
-let labels11 = [];
-let data11 = [];
-
-if(b11_1>0){labels11.push("1");data11.push(b11_1);}
-if(b11_2>0){labels11.push("2");data11.push(b11_2);}
-if(b11_3>0){labels11.push("3");data11.push(b11_3);}
-if(b11_4>0){labels11.push("4");data11.push(b11_4);}
-if(b11_5>0){labels11.push("5");data11.push(b11_5);}
-
 Chart.getChart("chartB11")?.destroy();
 new Chart(document.getElementById("chartB11"),{
 type:"bar",
 data:{
-labels:labels11,
+labels:["1","2","3","4","5"],
 datasets:[{
-data:data11,
+data:[b11_1,b11_2,b11_3,b11_4,b11_5],
 backgroundColor:"#3498db"
 }]
 },
