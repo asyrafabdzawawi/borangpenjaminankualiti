@@ -360,6 +360,27 @@ Tiada data bagi mata pelajaran ini
 
 <h2>Bahagian C: Penjaminan Mutu</h2>
 
+<div class="filter-box">
+<label>Tapis Mata Pelajaran</label>
+
+<select id="filterMP_C" onchange="syncFilterMP()">
+<option value="SEMUA">Semua Mata Pelajaran</option>
+<option value="Bahasa Melayu">Bahasa Melayu</option>
+<option value="Bahasa Inggeris">Bahasa Inggeris</option>
+<option value="Bahasa Arab">Bahasa Arab</option>
+<option value="Matematik">Matematik</option>
+<option value="Sains">Sains</option>
+<option value="Sejarah">Sejarah</option>
+<option value="Reka Bentuk dan Teknologi">Reka Bentuk dan Teknologi</option>
+<option value="Pendidikan Jasmani Dan Kesihatan">Pendidikan Jasmani Dan Kesihatan</option>
+<option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+<option value="Pendidikan Islam">Pendidikan Islam</option>
+<option value="Pendidikan Moral">Pendidikan Moral</option>
+<option value="Pendidikan Muzik">Pendidikan Muzik</option>
+</select>
+
+</div>
+
 <h3>1.1 Merujuk Panduan PBS</h3>
 <div class="chart-box">
 <canvas id="chartC11"></canvas>
@@ -431,7 +452,19 @@ Tiada data bagi mata pelajaran ini
 
 <script>
 
+function syncFilterMP(){
 
+let mp = document.getElementById("filterMP_C").value;
+
+/* selaraskan dengan filter B */
+
+document.getElementById("filterMP").value = mp;
+
+/* reload graf */
+
+loadLampiranC();
+
+}
 
 let currentSession = "pertengahan";
 
