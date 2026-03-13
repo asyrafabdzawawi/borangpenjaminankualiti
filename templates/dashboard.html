@@ -458,6 +458,7 @@ fetch(sheetURL)
 /* ================================ */
 
 const rows = data.split(/\r?\n/).slice(1).filter(r => r.trim() !== "");
+const clean = v => v?.replace(/"/g,"").trim();
 const selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
 let guruUnik = new Set();
 /* ========================= */
@@ -476,7 +477,7 @@ rows.forEach(row => {
 const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
 
 const nama = cols[1];
-const mp = cols[2]?.replace(/"/g,"").trim();
+const mp = clean(cols[3]);
 
 /* tapis mata pelajaran */
 
@@ -583,7 +584,7 @@ let b111ya=0,b111tidak=0;
 rows.forEach(row => {
 
 const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-const clean = v => v?.replace(/^"|"$/g,"").trim();
+const clean = v => v?.replace(/"/g,"").trim();
 
 const nama = clean(cols[1]);
 const mp = clean(cols[3]);
