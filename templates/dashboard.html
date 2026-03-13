@@ -619,11 +619,17 @@ if(nama && nama.trim() !== ""){
 const key = nama.trim();
 
 if(!guruMap[key]){
-guruMap[key] = [];
+guruMap[key] = {};
 }
 
 if(mp && tahun){
-guruMap[key].push(`${mp} - ${tahun}`);
+
+if(!guruMap[key][mp]){
+guruMap[key][mp] = [];
+}
+
+guruMap[key][mp].push(tahun);
+
 }
 
 }
@@ -634,12 +640,22 @@ let guruList = [];
 
 Object.keys(guruMap).forEach(nama => {
 
+let mpList = "";
+
+Object.keys(guruMap[nama]).forEach(mp => {
+
+mpList += `${mp} - ${guruMap[nama][mp].join(", ")}<br>`;
+
+});
+
 guruList.push(`
 <div class="teacher">
 <b>${nama}</b><br>
-${guruMap[nama].join(", ")}
+${mpList}
 </div>
 `);
+
+});
 
 
 
