@@ -485,7 +485,7 @@ if(selectedMP !== "SEMUA" && mp !== selectedMP){
 return;
 }
 
-if(nama){
+if(nama && nama.trim() !== ""){
 guruUnik.add(nama);
 }
 
@@ -609,7 +609,7 @@ const q19b = clean(cols[21]);  // 1.9_b
 const q110b = clean(cols[23]); // 1.10_b
 const q111b = clean(cols[25]); // 1.11_b
 
-if(nama){
+if(nama && nama.trim() !== ""){
 
 const skor11 = Number(q11b);
 
@@ -633,28 +633,26 @@ if(skor12 === 5) b12_5++;
 
 /* 1.3 */
 
-if(q13b === "1") b13_1++;
-if(q13b === "2") b13_2++;
-if(q13b === "3") b13_3++;
-if(q13b === "4") b13_4++;
-if(q13b === "5") b13_5++;
+const skor13 = Number(q13b);
+if(skor13 === 1) b13_1++;
+if(skor13 === 2) b13_2++;
+if(skor13 === 3) b13_3++;
+if(skor13 === 4) b13_4++;
+if(skor13 === 5) b13_5++;
 
-/* 1.4 */
+const skor14 = Number(q14b);
+if(skor14 === 1) b14_1++;
+if(skor14 === 2) b14_2++;
+if(skor14 === 3) b14_3++;
+if(skor14 === 4) b14_4++;
+if(skor14 === 5) b14_5++;
 
-if(q14b === "1") b14_1++;
-if(q14b === "2") b14_2++;
-if(q14b === "3") b14_3++;
-if(q14b === "4") b14_4++;
-if(q14b === "5") b14_5++;
-
-/* 1.5 */
-
-if(q15b === "1") b15_1++;
-if(q15b === "2") b15_2++;
-if(q15b === "3") b15_3++;
-if(q15b === "4") b15_4++;
-if(q15b === "5") b15_5++;
-
+const skor15 = Number(q15b);
+if(skor15 === 1) b15_1++;
+if(skor15 === 2) b15_2++;
+if(skor15 === 3) b15_3++;
+if(skor15 === 4) b15_4++;
+if(skor15 === 5) b15_5++;
 /* 1.6 */
 
 if(q16b === "Ya") b16ya++;
