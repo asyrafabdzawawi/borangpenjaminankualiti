@@ -360,7 +360,60 @@ Tiada data bagi mata pelajaran ini
 
 <h2>Bahagian C: Penjaminan Mutu</h2>
 
-<p>Analisis graf akan dipaparkan di sini.</p>
+<h3>1.1 Merujuk Panduan PBS</h3>
+<div class="chart-box">
+<canvas id="chartC11"></canvas>
+</div>
+
+<h3>1.2 Merujuk Panduan PBD</h3>
+<div class="chart-box">
+<canvas id="chartC12"></canvas>
+</div>
+
+<h3>3.1 Menyediakan instrumen pentaksiran</h3>
+<div class="bar-chart-box">
+<canvas id="chartC31"></canvas>
+</div>
+
+<h3>3.2 Menggunakan instrumen pentaksiran</h3>
+<div class="bar-chart-box">
+<canvas id="chartC32"></canvas>
+</div>
+
+<h3>3.3 Memilih kaedah pentaksiran</h3>
+<div class="bar-chart-box">
+<canvas id="chartC33"></canvas>
+</div>
+
+<h3>3.4 Melaksanakan kaedah pentaksiran</h3>
+<div class="bar-chart-box">
+<canvas id="chartC34"></canvas>
+</div>
+
+<h3>4.1 Perekodan tahap penguasaan</h3>
+<div class="bar-chart-box">
+<canvas id="chartC41"></canvas>
+</div>
+
+<h3>4.2 Tindakan susulan</h3>
+<div class="bar-chart-box">
+<canvas id="chartC42"></canvas>
+</div>
+
+<h3>4.3 Penyerahan pelaporan</h3>
+<div class="chart-box">
+<canvas id="chartC43"></canvas>
+</div>
+
+<h3>5.1 Perbincangan panitia</h3>
+<div class="bar-chart-box">
+<canvas id="chartC51"></canvas>
+</div>
+
+<h3>5.2 Menentukan tahap penguasaan murid</h3>
+<div class="bar-chart-box">
+<canvas id="chartC52"></canvas>
+</div>
 
 </div>
 
@@ -564,6 +617,22 @@ let b19ya=0,b19tidak=0;
 let b110ya=0,b110tidak=0;
 let b111ya=0,b111tidak=0;
 
+let c11ya=0,c11tidak=0;
+let c12ya=0,c12tidak=0;
+
+let c31_1=0,c31_2=0,c31_3=0,c31_4=0,c31_5=0;
+let c32_1=0,c32_2=0,c32_3=0,c32_4=0,c32_5=0;
+let c33_1=0,c33_2=0,c33_3=0,c33_4=0,c33_5=0;
+let c34_1=0,c34_2=0,c34_3=0,c34_4=0,c34_5=0;
+
+let c41_1=0,c41_2=0,c41_3=0,c41_4=0,c41_5=0;
+let c42_1=0,c42_2=0,c42_3=0,c42_4=0,c42_5=0;
+
+let c43ya=0,c43tidak=0;
+
+let c51_1=0,c51_2=0,c51_3=0,c51_4=0,c51_5=0;
+let c52_1=0,c52_2=0,c52_3=0,c52_4=0,c52_5=0;
+
 
 rows.forEach(row => {
 
@@ -587,6 +656,21 @@ const q18b = clean(row["1.8_b"]);
 const q19b = clean(row["1.9_b"]);
 const q110b = clean(row["1.10_b"]);
 const q111b = clean(row["1.11_b"]);
+
+const q11c = clean(row["1.1_c"]);
+const q12c = clean(row["1.2_c"]);
+
+const q31c = clean(row["3.1_c"]);
+const q32c = clean(row["3.2_c"]);
+const q33c = clean(row["3.3_c"]);
+const q34c = clean(row["3.4_c"]);
+
+const q41c = clean(row["4.1_c"]);
+const q42c = clean(row["4.2_c"]);
+const q43c = clean(row["4.3_c"]);
+
+const q51c = clean(row["5.1_c"]);
+const q52c = clean(row["5.2_c"]);
 
 if(nama && nama.trim() !== ""){
 
@@ -634,6 +718,22 @@ if(skor15 === 4) b15_4++;
 if(skor15 === 5) b15_5++;
 /* 1.6 */
 
+const skor31 = Number(q31c);
+
+if(skor31 === 1) c31_1++;
+if(skor31 === 2) c31_2++;
+if(skor31 === 3) c31_3++;
+if(skor31 === 4) c31_4++;
+if(skor31 === 5) c31_5++;
+
+const skor32 = Number(q32c);
+
+if(skor32 === 1) c32_1++;
+if(skor32 === 2) c32_2++;
+if(skor32 === 3) c32_3++;
+if(skor32 === 4) c32_4++;
+if(skor32 === 5) c32_5++;
+
 if(q16b?.trim() === "Ya") b16ya++;
 if(q16b?.trim() === "Tidak") b16tidak++;
 /* 1.7 */
@@ -660,6 +760,21 @@ if(q110b?.trim() === "Tidak") b110tidak++;
 
 if(q111b?.trim() === "Ya") b111ya++;
 if(q111b?.trim() === "Tidak") b111tidak++;
+
+/* 1.1 */
+
+if(q11c?.trim() === "Ya") c11ya++;
+if(q11c?.trim() === "Tidak") c11tidak++;
+
+/* 1.2 */
+
+if(q12c?.trim() === "Ya") c12ya++;
+if(q12c?.trim() === "Tidak") c12tidak++;
+
+/* 4.3 */
+
+if(q43c?.trim() === "Ya") c43ya++;
+if(q43c?.trim() === "Tidak") c43tidak++;
 
 }
 });
@@ -954,6 +1069,34 @@ return (value/total*100).toFixed(1)+"%";
 }
 }
 }
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartC11")?.destroy();
+
+new Chart(document.getElementById("chartC11"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[c11ya,c11tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartC11")?.destroy();
+
+new Chart(document.getElementById("chartC12"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[c12ya,c12tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
 },
 plugins:[ChartDataLabels]
 });
