@@ -495,9 +495,7 @@ guruUnik.add(nama.trim());
 
 let tahun = cols[4]?.replace(/"/g,"").trim();
 
-const b11 = cols[39];
-const b12 = cols[41];
-const b13 = cols[43];
+
 const b14 = cols[45];
 const b15 = cols[47];
 const b16 = cols[49];
@@ -527,26 +525,13 @@ let guruList = [];
 
 Object.keys(guruMap).forEach(nama => {
 
-let senaraiMP = "";
-
-guruMap[nama].forEach(item => {
-
-let parts = item.split(" - ");
-let mp = parts[0];
-let kelas = parts[1];
-
-senaraiMP += `• ${mp} : ${kelas}<br>`;
-
-});
-
 guruList.push(`
 <div class="teacher">
 <b>${nama}</b><br>
-${senaraiMP}
+${guruMap[nama].join(", ")}
 </div>
 `);
 
-});
 
 
 
