@@ -493,7 +493,24 @@ if(nama && nama.trim() !== ""){
 guruUnik.add(nama.trim());
 }
 
-let tahun = cols.slice(4,6).join(", ").replace(/"/g,"").trim();
+let kelasParts = [];
+
+for(let i = 4; i < cols.length; i++){
+
+let value = cols[i]?.replace(/"/g,"").trim();
+
+if(!value) continue;
+
+/* jika jumpa nombor 1-5, itu sudah masuk bahagian soalan */
+if(/^[1-5]$/.test(value)){
+break;
+}
+
+kelasParts.push(value);
+
+}
+
+let tahun = kelasParts.join(", ");
 
 
 const b14 = cols[45];
