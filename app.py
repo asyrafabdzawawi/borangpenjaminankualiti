@@ -132,7 +132,7 @@ def submit():
     elif sesi == "Lampiran_B_Pertengahan_Tahun":
         sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
 
-       row = [
+        row = [
         timestamp,
         form.get("nama"),
         form.get("jawatan"),
