@@ -486,6 +486,11 @@ const sheetPertengahan =
 const sheetAkhir =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=197431078&single=true&output=csv";
 
+const sheetB_Pertengahan =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=1154001042&single=true&output=csv";
+
+const sheetB_Akhir =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=1021309513&single=true&output=csv";
 
 /* SESSION SWITCH */
 
@@ -504,6 +509,10 @@ if(document.getElementById("tabC").classList.contains("active")){
 loadLampiranC();
 }
 
+if(document.getElementById("tabB").classList.contains("active")){
+loadLampiranB();
+}
+
 }
 
 
@@ -519,6 +528,10 @@ document.querySelectorAll(".tab-btn")
 
 document.getElementById("tab"+tab).classList.add("active");
 btn.classList.add("active");
+
+if(tab === "B"){
+loadLampiranB();
+}
 
 if(tab === "C"){
 loadLampiranC();
@@ -541,6 +554,100 @@ document.getElementById("section"+section).classList.add("active");
 btn.classList.add("active");
 
 }
+
+/* LOAD DATA LAMPIRAN B */
+
+function loadLampiranB(){
+
+let sheetURL;
+
+if(currentSession === "pertengahan"){
+sheetURL = sheetB_Pertengahan;
+}else{
+sheetURL = sheetB_Akhir;
+}
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+
+const parsed = Papa.parse(data,{
+header:true,
+skipEmptyLines:true
+});
+
+const rows = parsed.data;
+
+const clean = v => v?.replace(/"/g,"").trim();
+
+const jumlahB = document.getElementById("jumlahB");
+const listB = document.getElementById("listB");
+
+if(jumlahB && listB){
+
+listB.innerHTML = "";
+
+let guruMapB = {};
+
+rows.forEach(row => {
+
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
+
+if(nama && nama.trim() !== ""){
+
+const key = nama.trim();
+
+if(!guruMapB[key]){
+guruMapB[key] = {};
+}
+
+if(mp && tahun){
+
+if(!guruMapB[key][mp]){
+guruMapB[key][mp] = [];
+}
+
+guruMapB[key][mp].push(tahun);
+
+}
+
+}
+
+});
+
+let guruListB = [];
+
+Object.keys(guruMapB).forEach(nama => {
+
+let mpList = "";
+
+Object.keys(guruMapB[nama]).forEach(mp => {
+
+mpList += `${mp} - ${guruMapB[nama][mp].join(", ")}<br>`;
+
+});
+
+guruListB.push(`
+<div class="teacher">
+<b>${nama}</b><br>
+${mpList}
+</div>
+`);
+
+});
+
+jumlahB.innerHTML =
+"<b>Jumlah respon: " + Object.keys(guruMapB).length + " guru</b>";
+
+listB.innerHTML = guruListB.join("");
+
+}
+
+});
+}
+
 
 
 /* LOAD DATA LAMPIRAN C */
@@ -672,79 +779,6 @@ listA.innerHTML = guruList.join("");
 
 }
 
-
-/* ========================= */
-/* ANALISIS BAHAGIAN A B     */
-/* ========================= */
-
-const jumlahB = document.getElementById("jumlahB");
-const listB = document.getElementById("listB");
-
-if(jumlahB && listB){
-
-listB.innerHTML = "";
-
-let guruMapB = {};
-
-rows.forEach(row => {
-
-const nama = clean(row["nama"]);
-const mp = clean(row["mp"]);
-const tahun = clean(row["tahun"]);
-
-if(selectedMP !== "SEMUA" && mp !== selectedMP){
-return;
-}
-
-if(nama && nama.trim() !== ""){
-
-const key = nama.trim();
-
-if(!guruMapB[key]){
-guruMapB[key] = {};
-}
-
-if(mp && tahun){
-
-if(!guruMapB[key][mp]){
-guruMapB[key][mp] = [];
-}
-
-guruMapB[key][mp].push(tahun);
-
-}
-
-}
-
-});
-
-let guruListB = [];
-
-Object.keys(guruMapB).forEach(nama => {
-
-let mpList = "";
-
-Object.keys(guruMapB[nama]).forEach(mp => {
-
-mpList += `${mp} - ${guruMapB[nama][mp].join(", ")}<br>`;
-
-});
-
-guruListB.push(`
-<div class="teacher">
-<b>${nama}</b><br>
-${mpList}
-</div>
-`);
-
-});
-
-jumlahB.innerHTML =
-"<b>Jumlah respon: " + Object.keys(guruMapB).length + " guru</b>";
-
-listB.innerHTML = guruListB.join("");
-
-}
 
 
 
@@ -1610,6 +1644,7 @@ plugins:[ChartDataLabels]
 
 document.addEventListener("DOMContentLoaded", function(){
 loadLampiranC();
+loadLampiranB();
 });
 
 
