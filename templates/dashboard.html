@@ -228,8 +228,13 @@ Akhir Tahun
 </div>
 
 <div id="tabB" class="tab-content">
+
 <h3>Lampiran B</h3>
+
+<p id="jumlahB"><b>Jumlah respon: 0 guru</b></p>
+
 <div id="listB" class="list"></div>
+
 </div>
 
 
@@ -581,9 +586,11 @@ let guruUnik = new Set();
 const jumlahA = document.getElementById("jumlahCA");
 const listA = document.getElementById("listCA");
 
+if(jumlahA && listA){
+
 listA.innerHTML = "";
 
-let guruMap = {};;
+let guruMap = {};
 
 rows.forEach(row => {
 
@@ -662,6 +669,82 @@ ${mpList}
 jumlahA.innerHTML = "<b>Jumlah respon: " + Object.keys(guruMap).length + " guru</b>";
 
 listA.innerHTML = guruList.join("");
+
+}
+
+
+/* ========================= */
+/* ANALISIS BAHAGIAN A B     */
+/* ========================= */
+
+const jumlahB = document.getElementById("jumlahB");
+const listB = document.getElementById("listB");
+
+if(jumlahB && listB){
+
+listB.innerHTML = "";
+
+let guruMapB = {};
+
+rows.forEach(row => {
+
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
+
+if(selectedMP !== "SEMUA" && mp !== selectedMP){
+return;
+}
+
+if(nama && nama.trim() !== ""){
+
+const key = nama.trim();
+
+if(!guruMapB[key]){
+guruMapB[key] = {};
+}
+
+if(mp && tahun){
+
+if(!guruMapB[key][mp]){
+guruMapB[key][mp] = [];
+}
+
+guruMapB[key][mp].push(tahun);
+
+}
+
+}
+
+});
+
+let guruListB = [];
+
+Object.keys(guruMapB).forEach(nama => {
+
+let mpList = "";
+
+Object.keys(guruMapB[nama]).forEach(mp => {
+
+mpList += `${mp} - ${guruMapB[nama][mp].join(", ")}<br>`;
+
+});
+
+guruListB.push(`
+<div class="teacher">
+<b>${nama}</b><br>
+${mpList}
+</div>
+`);
+
+});
+
+jumlahB.innerHTML =
+"<b>Jumlah respon: " + Object.keys(guruMapB).length + " guru</b>";
+
+listB.innerHTML = guruListB.join("");
+
+}
 
 
 
@@ -881,7 +964,7 @@ const skor33 = Number(q33c);
 if(skor33 === 1) c33_1++;
 if(skor33 === 2) c33_2++;
 if(skor33 === 3) c33_3++;
-if(skor32 === 4) c33_4++;
+if(skor33 === 4) c33_4++;
 if(skor33 === 5) c33_5++;
 
 /* 3.4_c */
