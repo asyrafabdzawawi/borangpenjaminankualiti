@@ -746,6 +746,8 @@ const q52c = clean(row["5.2_c"]);
 
 if(nama && nama.trim() !== ""){
 
+/* 1.1 */
+
 const skor11 = Number(q11b);
 
 if(skor11 === 1) b11_1++;
@@ -775,12 +777,16 @@ if(skor13 === 3) b13_3++;
 if(skor13 === 4) b13_4++;
 if(skor13 === 5) b13_5++;
 
+/* 1.4 */
+
 const skor14 = Number(q14b);
 if(skor14 === 1) b14_1++;
 if(skor14 === 2) b14_2++;
 if(skor14 === 3) b14_3++;
 if(skor14 === 4) b14_4++;
 if(skor14 === 5) b14_5++;
+
+/* 1.5 */
 
 const skor15 = Number(q15b);
 if(skor15 === 1) b15_1++;
@@ -790,37 +796,6 @@ if(skor15 === 4) b15_4++;
 if(skor15 === 5) b15_5++;
 /* 1.6 */
 
-const skor21 = Number(q21c);
-
-if(skor21 === 1) c21_1++;
-if(skor21 === 2) c21_2++;
-if(skor21 === 3) c21_3++;
-if(skor21 === 4) c21_4++;
-if(skor21 === 5) c21_5++;
-
-const skor22 = Number(q22c);
-
-if(skor22 === 1) c22_1++;
-if(skor22 === 2) c22_2++;
-if(skor22 === 3) c22_3++;
-if(skor22 === 4) c22_4++;
-if(skor22 === 5) c22_5++;
-
-const skor31 = Number(q31c);
-
-if(skor31 === 1) c31_1++;
-if(skor31 === 2) c31_2++;
-if(skor31 === 3) c31_3++;
-if(skor31 === 4) c31_4++;
-if(skor31 === 5) c31_5++;
-
-const skor32 = Number(q32c);
-
-if(skor32 === 1) c32_1++;
-if(skor32 === 2) c32_2++;
-if(skor32 === 3) c32_3++;
-if(skor32 === 4) c32_4++;
-if(skor32 === 5) c32_5++;
 
 if(q16b?.trim() === "Ya") b16ya++;
 if(q16b?.trim() === "Tidak") b16tidak++;
@@ -849,22 +824,94 @@ if(q110b?.trim() === "Tidak") b110tidak++;
 if(q111b?.trim() === "Ya") b111ya++;
 if(q111b?.trim() === "Tidak") b111tidak++;
 
-/* 1.1 */
+/* 1.1_c*/
 
 if(q11c?.trim() === "Ya") c11ya++;
 if(q11c?.trim() === "Tidak") c11tidak++;
 
-/* 1.2 */
+/* 1.2_c */
 
 if(q12c?.trim() === "Ya") c12ya++;
 if(q12c?.trim() === "Tidak") c12tidak++;
 
+/* 2.1_c */
+
+const skor21 = Number(q21c);
+
+if(skor21 === 1) c21_1++;
+if(skor21 === 2) c21_2++;
+if(skor21 === 3) c21_3++;
+if(skor21 === 4) c21_4++;
+if(skor21 === 5) c21_5++;
+
+/* 2.2_c */
+
+const skor22 = Number(q22c);
+
+if(skor22 === 1) c22_1++;
+if(skor22 === 2) c22_2++;
+if(skor22 === 3) c22_3++;
+if(skor22 === 4) c22_4++;
+if(skor22 === 5) c22_5++;
+
+/* 3.1_c */
+
+const skor31 = Number(q31c);
+
+if(skor31 === 1) c31_1++;
+if(skor31 === 2) c31_2++;
+if(skor31 === 3) c31_3++;
+if(skor31 === 4) c31_4++;
+if(skor31 === 5) c31_5++;
+
+/* 3.2_c */
+
+const skor32 = Number(q32c);
+
+if(skor32 === 1) c32_1++;
+if(skor32 === 2) c32_2++;
+if(skor32 === 3) c32_3++;
+if(skor32 === 4) c32_4++;
+if(skor32 === 5) c32_5++;
+
+/* 3.3_c */
+
+const skor33 = Number(q33c);
+
+if(skor33 === 1) c33_1++;
+if(skor33 === 2) c33_2++;
+if(skor33 === 3) c33_3++;
+if(skor32 === 4) c33_4++;
+if(skor33 === 5) c33_5++;
+
+/* 3.4_c */
+
+const skor34 = Number(q34c);
+
+if(skor34 === 1) c34_1++;
+if(skor34 === 2) c34_2++;
+if(skor34 === 3) c34_3++;
+if(skor34 === 4) c34_4++;
+if(skor34 === 5) c34_5++;
 
 
-/* 4.3 */
+/* 4.2_c */
+
+if(q42c?.trim() === "Ya") c42ya++;
+if(q42c?.trim() === "Tidak") c42tidak++;
+
+/* 4.3_c */
 
 if(q43c?.trim() === "Ya") c43ya++;
 if(q43c?.trim() === "Tidak") c43tidak++;
+
+/* 5.1_c */
+if(q51c?.trim() === "Ya") c51ya++;
+if(q51c?.trim() === "Tidak") c51tidak++;
+
+/* 5.2_c */
+if(q52c?.trim() === "Ya") c52ya++;
+if(q52c?.trim() === "Tidak") c52tidak++;
 
 }
 });
