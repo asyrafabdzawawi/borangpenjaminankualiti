@@ -659,12 +659,24 @@ skipEmptyLines:true
 });
 
 const rows = parsed.data;
-
 const clean = v => v?.replace(/"/g,"").trim();
+
+/* kira jumlah respon Bahagian B */
+
+let guruUnikBB = new Set();
+
+rows.forEach(row=>{
+const nama = clean(row["nama"]);
+if(nama && nama.trim() !== ""){
+guruUnikBB.add(nama.trim());
+}
+});
+
+document.getElementById("jumlahBB").innerHTML =
+"<b>Jumlah respon: " + guruUnikBB.size + " guru</b>";
 
 const jumlahB = document.getElementById("jumlahB");
 const listB = document.getElementById("listB");
-
 if(jumlahB && listB){
 
 listB.innerHTML = "";
@@ -672,6 +684,10 @@ listB.innerHTML = "";
 let guruMapB = {};
 
 rows.forEach(row => {
+
+
+
+
 
 const nama = clean(row["nama"]);
 const mp = clean(row["mp"]);
