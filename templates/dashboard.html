@@ -609,54 +609,92 @@ function loadLampiranB(){
 let sheetURL;
 
 if(currentSession === "pertengahan"){
-sheetURL = sheetB_Pertengahan;
+sheetURL = sheetPertengahan;
 }else{
-sheetURL = sheetB_Akhir;
+sheetURL = sheetAkhir;
 }
 
 fetch(sheetURL)
 .then(res => res.text())
 .then(data => {
 
-const parsed = Papa.parse(data,{
-header:true,
-skipEmptyLines:true
+/* ================================ */
+/* BERMULA DI SINI KOD ANALISIS     */
+/* CIKGU KEKALKAN SEPERTI ASAL      */
+/* ================================ */
+
+const parsed = Papa.parse(data, {
+header: true,
+skipEmptyLines: true
 });
 
 const rows = parsed.data;
-
 const clean = v => v?.replace(/"/g,"").trim();
+let selectedMP;
 
-const jumlahB = document.getElementById("jumlahB");
-const listB = document.getElementById("listB");
+if(document.getElementById("sectionB").classList.contains("active")){
+selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
+}else{
+selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
+}
+let guruUnik = new Set();
+/* ========================= */
+/* ANALISIS BAHAGIAN A       */
+/* ========================= */
+
+const jumlahB = document.getElementById("jumlahBA");
+const listB = document.getElementById("listBA");
 
 if(jumlahB && listB){
 
 listB.innerHTML = "";
 
-let guruMapB = {};
+let guruMap = {};
 
 rows.forEach(row => {
+
+
 
 const nama = clean(row["nama"]);
 const mp = clean(row["mp"]);
 const tahun = clean(row["tahun"]);
 
+/* tapis mata pelajaran */
+
+if(selectedMP !== "SEMUA" && mp !== selectedMP){
+return;
+}
+
+
+/* TAPIS MATA PELAJARAN */
+
+
+
+
+if(nama && nama.trim() !== ""){
+guruUnik.add(nama.trim());
+}
+
+
+
+
+
+
 if(nama && nama.trim() !== ""){
 
 const key = nama.trim();
 
-if(!guruMapB[key]){
-guruMapB[key] = {};
+if(!guruMap[key]){
+guruMap[key] = {};
 }
 
 if(mp && tahun){
 
-if(!guruMapB[key][mp]){
-guruMapB[key][mp] = [];
+if(!guruMap[key][mp]){
+guruMap[key][mp] = [];
 }
 
-guruMapB[key][mp].push(tahun);
+guruMap[key][mp].push(tahun);
 
 }
 
@@ -664,19 +702,19 @@ guruMapB[key][mp].push(tahun);
 
 });
 
-let guruListB = [];
+let guruList = [];
 
-Object.keys(guruMapB).forEach(nama => {
+Object.keys(guruMap).forEach(nama => {
 
 let mpList = "";
 
-Object.keys(guruMapB[nama]).forEach(mp => {
+Object.keys(guruMap[nama]).forEach(mp => {
 
-mpList += `${mp} - ${guruMapB[nama][mp].join(", ")}<br>`;
+mpList += `${mp} - ${guruMap[nama][mp].join(", ")}<br>`;
 
 });
 
-guruListB.push(`
+guruList.push(`
 <div class="teacher">
 <b>${nama}</b><br>
 ${mpList}
@@ -685,15 +723,97 @@ ${mpList}
 
 });
 
-jumlahB.innerHTML =
-"<b>Jumlah respon: " + Object.keys(guruMapB).length + " guru</b>";
 
-listB.innerHTML = guruListB.join("");
+
+jumlahB.innerHTML = "<b>Jumlah respon: " + Object.keys(guruMap).length + " guru</b>";
+
+listB.innerHTML = guruList.join("");
 
 }
 
+
+
+let bb11_1=0,bb11_2=0,bb11_3=0,bb11_4=0,bb11_5=0;
+
+
+
+
+rows.forEach(row => {
+
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
+
+if(selectedMP !== "SEMUA" && mp !== selectedMP){
+return;
+}
+
+  
+const q11bb = clean(row["1.1_b"]);
+
+
+if(nama && nama.trim() !== ""){
+
+/* 1.1 */
+
+const skor11b = Number(q11bb);
+
+if(skor11b === 1) bb11_1++;
+if(skor11b === 2) bb11_2++;
+if(skor11b === 3) bb11_3++;
+if(skor11b === 4) bb11_4++;
+if(skor11b === 5) bb11_5++;
+
+}
 });
+
+let msg;
+let jumlahBox;
+
+if(document.getElementById("sectionB").classList.contains("active")){
+msg = document.getElementById("noDataMsgB");
+jumlahBox = document.getElementById("jumlahMPB");
+}else{
+msg = document.getElementById("noDataMsg");
+jumlahBox = document.getElementById("jumlahMP");
 }
+
+jumlahBox.innerHTML =
+"Jumlah respon: " + guruUnik.size + " guru";
+
+if(guruUnik.size === 0){
+msg.style.display = "block";
+
+/* kosongkan graf */
+
+bb11_1=bb11_2=bb11_3=bb11_4=bb11_5=0;
+
+
+}else{
+
+msg.style.display = "none";
+
+}
+
+Chart.getChart("chartB11")?.destroy();
+new Chart(document.getElementById("chartB11"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bb11_1,bb11_2,bb11_3,bb11_4,bb11_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+
+
+}  // tutup function loadLampiranB()
 
 
 
