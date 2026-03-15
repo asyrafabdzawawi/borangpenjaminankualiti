@@ -249,16 +249,47 @@ Akhir Tahun
 
 </div>
 
-<!-- Bahagian B -->
+
+
+<!-- ======================= -->
+<!-- BAHAGIAN B              -->
+<!-- ======================= -->
 
 <div id="sectionBB" class="section-content">
 
-<h2>Bahagian B</h2>
+<h2>Bahagian B: Peranan Guru</h2>
 
-<p>Analisis boleh letak di sini jika perlu.</p>
+<div class="filter-box">
+<label>Tapis Mata Pelajaran</label>
+
+<select id="filterMP_B" onchange="loadLampiranB()">
+<option value="SEMUA">Semua Mata Pelajaran</option>
+<option value="Bahasa Melayu">Bahasa Melayu</option>
+<option value="Bahasa Inggeris">Bahasa Inggeris</option>
+<option value="Bahasa Arab">Bahasa Arab</option>
+<option value="Matematik">Matematik</option>
+<option value="Sains">Sains</option>
+<option value="Sejarah">Sejarah</option>
+<option value="Reka Bentuk dan Teknologi">Reka Bentuk dan Teknologi</option>
+<option value="Pendidikan Jasmani Dan Kesihatan">Pendidikan Jasmani Dan Kesihatan</option>
+<option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+<option value="Pendidikan Islam">Pendidikan Islam</option>
+<option value="Pendidikan Moral">Pendidikan Moral</option>
+<option value="Pendidikan Muzik">Pendidikan Muzik</option>
+</select>
 
 </div>
+<p id="noDataMsg" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+Tiada data bagi mata pelajaran ini
+</p>
+<p id="jumlahMP_B" style="margin-top:8px;font-weight:bold;"></p>
 
+<h3>1.1 Memahami kepentingan PBD</h3>
+<div class="bar-chart-box">
+<canvas id="chartBB11"></canvas>
+</div>
+
+</div>
 <!-- Bahagian C -->
 
 <div id="sectionBC" class="section-content">
@@ -609,9 +640,9 @@ function loadLampiranB(){
 let sheetURL;
 
 if(currentSession === "pertengahan"){
-sheetURL = sheetPertengahan;
+sheetURL = sheetB_Pertengahan;
 }else{
-sheetURL = sheetAkhir;
+sheetURL = sheetB_Akhir;
 }
 
 fetch(sheetURL)
@@ -632,18 +663,18 @@ const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
 let selectedMP;
 
-if(document.getElementById("sectionB").classList.contains("active")){
+if(document.getElementById("sectionBB").classList.contains("active")){
 selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
 }else{
-selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
+selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
 }
 let guruUnik = new Set();
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
 /* ========================= */
 
-const jumlahB = document.getElementById("jumlahBA");
-const listB = document.getElementById("listBA");
+const jumlahB = document.getElementById("jumlahB");
+const listB = document.getElementById("listB");
 
 if(jumlahB && listB){
 
@@ -770,9 +801,9 @@ if(skor11b === 5) bb11_5++;
 let msg;
 let jumlahBox;
 
-if(document.getElementById("sectionB").classList.contains("active")){
-msg = document.getElementById("noDataMsgB");
-jumlahBox = document.getElementById("jumlahMPB");
+if(document.getElementById("sectionBB").classList.contains("active")){
+msg = document.getElementById("noDataMsg");
+jumlahBox = document.getElementById("jumlahMP_B");
 }else{
 msg = document.getElementById("noDataMsg");
 jumlahBox = document.getElementById("jumlahMP");
@@ -795,8 +826,8 @@ msg.style.display = "none";
 
 }
 
-Chart.getChart("chartB11")?.destroy();
-new Chart(document.getElementById("chartB11"),{
+Chart.getChart("chartBB11")?.destroy();
+new Chart(document.getElementById("chartBB11"),{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
