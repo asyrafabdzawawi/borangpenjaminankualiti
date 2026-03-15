@@ -253,44 +253,9 @@ Akhir Tahun
 
 <div id="sectionBB" class="section-content">
 
-<h2>Bahagian B: Peranan GKMP / Ketua Panitia</h2>
+<h2>Bahagian B</h2>
 
-<p id="jumlahBB"><b>Jumlah respon: 0 guru</b></p>
-
-<h3>1.1 Memahami kepentingan PBD</h3>
-<div class="bar-chart-box">
-<canvas id="chartBB11"></canvas>
-</div>
-
-<h3>1.2 Menguasai konsep PBD</h3>
-<div class="bar-chart-box">
-<canvas id="chartBB12"></canvas>
-</div>
-
-<h3>1.3 Menguasai pelaksanaan PBD</h3>
-<div class="bar-chart-box">
-<canvas id="chartBB13"></canvas>
-</div>
-
-<h3>1.4 Menguasai kaedah pentaksiran</h3>
-<div class="bar-chart-box">
-<canvas id="chartBB14"></canvas>
-</div>
-
-<h3>1.5 Menguasai instrumen pentaksiran</h3>
-<div class="bar-chart-box">
-<canvas id="chartBB15"></canvas>
-</div>
-
-<h3>1.6 Memberi sokongan profesional kepada guru</h3>
-<div class="chart-box">
-<canvas id="chartBB16"></canvas>
-</div>
-
-<h3>1.7 Menyemak instrumen ujian</h3>
-<div class="chart-box">
-<canvas id="chartBB17"></canvas>
-</div>
+<p>Analisis boleh letak di sini jika perlu.</p>
 
 </div>
 
@@ -659,24 +624,12 @@ skipEmptyLines:true
 });
 
 const rows = parsed.data;
+
 const clean = v => v?.replace(/"/g,"").trim();
-
-/* kira jumlah respon Bahagian B */
-
-let guruUnikBB = new Set();
-
-rows.forEach(row=>{
-const nama = clean(row["nama"]);
-if(nama && nama.trim() !== ""){
-guruUnikBB.add(nama.trim());
-}
-});
-
-document.getElementById("jumlahBB").innerHTML =
-"<b>Jumlah respon: " + guruUnikBB.size + " guru</b>";
 
 const jumlahB = document.getElementById("jumlahB");
 const listB = document.getElementById("listB");
+
 if(jumlahB && listB){
 
 listB.innerHTML = "";
@@ -685,16 +638,11 @@ let guruMapB = {};
 
 rows.forEach(row => {
 
-
-
-
-
 const nama = clean(row["nama"]);
 const mp = clean(row["mp"]);
 const tahun = clean(row["tahun"]);
 
 if(nama && nama.trim() !== ""){
-
 
 const key = nama.trim();
 
@@ -744,114 +692,7 @@ listB.innerHTML = guruListB.join("");
 
 }
 
-let bb11_1=0,bb11_2=0,bb11_3=0,bb11_4=0,bb11_5=0;
-let bb12_1=0,bb12_2=0,bb12_3=0,bb12_4=0,bb12_5=0;
-let bb13_1=0,bb13_2=0,bb13_3=0,bb13_4=0,bb13_5=0;
-let bb14_1=0,bb14_2=0,bb14_3=0,bb14_4=0,bb14_5=0;
-let bb15_1=0,bb15_2=0,bb15_3=0,bb15_4=0,bb15_5=0;
-
-let bb16ya=0,bb16tidak=0;
-let bb17ya=0,bb17tidak=0;
-
-rows.forEach(row => {
-
-const nama = clean(row["nama"]);
-const mp = clean(row["mp"]);
-const tahun = clean(row["tahun"]);
-
-
-
-  
-const q11bb = clean(row["1.1_b"]);
-const q12bb = clean(row["1.2_b"]);
-const q13bb = clean(row["1.3_b"]);
-const q14bb = clean(row["1.4_b"]);
-const q15bb = clean(row["1.5_b"]);
-const q16bb = clean(row["1.6_b"]);
-const q17bb = clean(row["1.7_b"]);
-
-    
-
-if(nama && nama.trim() !== ""){
-
-/* 1.1 */
-
-const skor11b = Number(q11bb);
-
-if(skor11b === 1) bb11_1++;
-if(skor11b === 2) bb11_2++;
-if(skor11b === 3) bb11_3++;
-if(skor11b === 4) bb11_4++;
-if(skor11b === 5) bb11_5++;
-
-/* 1.2 */
-
-
-
-const skor12b = Number(q12bb);
-
-if(skor12b === 1) bb12_1++;
-if(skor12b === 2) bb12_2++;
-if(skor12b === 3) bb12_3++;
-if(skor12b === 4) bb12_4++;
-if(skor12b === 5) bb12_5++;
-
-/* 1.3 */
-
-const skor13b = Number(q13bb);
-if(skor13b === 1) bb13_1++;
-if(skor13b === 2) bb13_2++;
-if(skor13b === 3) bb13_3++;
-if(skor13b === 4) bb13_4++;
-if(skor13b === 5) bb13_5++;
-
-/* 1.4 */
-
-const skor14b = Number(q14bb);
-if(skor14b === 1) bb14_1++;
-if(skor14b === 2) bb14_2++;
-if(skor14b === 3) bb14_3++;
-if(skor14b === 4) bb14_4++;
-if(skor14b === 5) bb14_5++;
-
-/* 1.5 */
-
-const skor15b = Number(q15bb);
-if(skor15b === 1) bb15_1++;
-if(skor15b === 2) bb15_2++;
-if(skor15b === 3) bb15_3++;
-if(skor15b === 4) bb15_4++;
-if(skor15b === 5) bb15_5++;
-/* 1.6 */
-
-
-if(q16bb?.trim() === "Ya") bb16ya++;
-if(q16bb?.trim() === "Tidak") bb16tidak++;
-/* 1.7 */
-
-if(q17bb?.trim() === "Ya") bb17ya++;
-if(q17bb?.trim() === "Tidak") bb17tidak++;
-
-}
 });
-
-
-Chart.getChart("chartBB11")?.destroy();
-new Chart(document.getElementById("chartBB11"),{
-type:"bar",
-data:{
-labels:["1","2","3","4","5"],
-datasets:[{
-data:[bb11_1,bb11_2,bb11_3,bb11_4,bb11_5],
-backgroundColor:"#3498db"
-}]
-},
-options:{
-plugins:{legend:{display:false}},
-scales:{y:{beginAtZero:true}}
-}
-});
-
 }
 
 
@@ -1787,34 +1628,60 @@ plugins:[ChartDataLabels]
 
 Chart.getChart("chartC51")?.destroy();
 new Chart(document.getElementById("chartC51"),{
-type:"bar",
+type:"pie",
 data:{
-labels:["1","2","3","4","5"],
+labels:["Ya","Tidak"],
 datasets:[{
-data:[c51_1,c51_2,c51_3,c51_4,c51_5],
-backgroundColor:"#3498db"
+data:[c51ya,c51tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
 }]
 },
 options:{
-plugins:{legend:{display:false}},
-scales:{y:{beginAtZero:true}}
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
+}
+}
+},
+plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartC52")?.destroy();
 new Chart(document.getElementById("chartC52"),{
-type:"bar",
+type:"pie",
 data:{
-labels:["1","2","3","4","5"],
+labels:["Ya","Tidak"],
 datasets:[{
-data:[c52_1,c52_2,c52_3,c52_4,c52_5],
-backgroundColor:"#3498db"
+data:[c52ya,c52tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
 }]
 },
 options:{
-plugins:{legend:{display:false}},
-scales:{y:{beginAtZero:true}}
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
 }
+}
+}
+},
+plugins:[ChartDataLabels]
 });
 
 });  // tutup .then()
