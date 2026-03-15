@@ -22,11 +22,13 @@ Chart.register(ChartDataLabels);
 /* hover */
 
 #filterMP:hover,
+#filterMP_B:hover,
 #filterMP_C:hover{
 border-color:#3498db;
 }
 
 #filterMP:focus,
+#filterMP_B:focus,
 #filterMP_C:focus{
 outline:none;
 border-color:#3498db;
@@ -176,6 +178,7 @@ margin-bottom:6px;
 }
 
 #filterMP,
+#filterMP_B,
 #filterMP_C{
 padding:10px 14px;
 font-size:14px;
@@ -283,7 +286,7 @@ Akhir Tahun
 </select>
 
 </div>
-<p id="noDataMsg" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+<p id="noDataMsgB" style="display:none;color:red;font-weight:bold;margin-top:10px;">
 Tiada data bagi mata pelajaran ini
 </p>
 <p id="jumlahMP_B" style="margin-top:8px;font-weight:bold;"></p>
@@ -636,6 +639,8 @@ document.querySelectorAll("#tabB .section-btn")
 document.getElementById("sectionB"+section).classList.add("active");
 btn.classList.add("active");
 
+loadLampiranB();
+
 }
 
 /* LOAD DATA LAMPIRAN B */
@@ -707,9 +712,7 @@ return;
 
 
 
-if(nama && nama.trim() !== ""){
-guruUnik.add(nama.trim());
-}
+
 
 
 
@@ -765,6 +768,9 @@ jumlahB.innerHTML = "<b>Jumlah respon: " + Object.keys(guruMap).length + " guru<
 
 listB.innerHTML = guruList.join("");
 
+/* ========================= */
+
+
 }
 
 
@@ -790,6 +796,10 @@ const q11bb = clean(row["1.1_b"]);
 
 if(nama && nama.trim() !== ""){
 
+guruUnik.add(nama.trim());   // TAMBAH BARIS INI
+
+/* 1.1 */
+
 /* 1.1 */
 
 const skor11b = Number(q11bb);
@@ -807,11 +817,11 @@ let msg;
 let jumlahBox;
 
 if(document.getElementById("sectionBB").classList.contains("active")){
-msg = document.getElementById("noDataMsg");
+msg = document.getElementById("noDataMsgB");
 jumlahBox = document.getElementById("jumlahMP_B");
 }else{
-msg = document.getElementById("noDataMsg");
-jumlahBox = document.getElementById("jumlahMP");
+msg = document.getElementById("noDataMsgB");
+jumlahBox = document.getElementById("jumlahMP_B");
 }
 
 jumlahBox.innerHTML =
@@ -831,8 +841,13 @@ msg.style.display = "none";
 
 }
 
+const canvas = document.getElementById("chartBB11");
+
+if(canvas){
+
 Chart.getChart("chartBB11")?.destroy();
-new Chart(document.getElementById("chartBB11"),{
+
+new Chart(canvas,{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
@@ -847,9 +862,11 @@ scales:{y:{beginAtZero:true}}
 }
 });
 
+}
 
-
+});
 }  // tutup function loadLampiranB()
+
 
 
 
@@ -1065,6 +1082,10 @@ const q51c = clean(row["5.1_c"]);
 const q52c = clean(row["5.2_c"]);
 
 if(nama && nama.trim() !== ""){
+
+guruUnik.add(nama.trim());   // TAMBAH INI
+
+
 
 /* 1.1 */
 
