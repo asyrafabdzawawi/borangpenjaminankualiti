@@ -296,6 +296,11 @@ Tiada data bagi mata pelajaran ini
 <canvas id="chartBB11"></canvas>
 </div>
 
+<h3>1.1 Menguasai konsep PBD</h3>
+<div class="bar-chart-box">
+<canvas id="chartBB12"></canvas>
+</div>
+
 </div>
 <!-- Bahagian C -->
 
@@ -852,14 +857,10 @@ msg.style.display = "none";
 
 }
 
-const canvas = document.getElementById("chartBB11");
-const canvas = document.getElementById("chartBB12");
 
-if(canvas){
 
 Chart.getChart("chartBB11")?.destroy();
-
-new Chart(canvas,{
+new Chart(document.getElementById("chartBB11"),{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
@@ -875,8 +876,7 @@ scales:{y:{beginAtZero:true}}
 });
 
 Chart.getChart("chartBB12")?.destroy();
-
-new Chart(canvas,{
+new Chart(document.getElementById("chartBB12"),{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
