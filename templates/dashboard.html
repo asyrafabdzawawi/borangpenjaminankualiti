@@ -334,10 +334,41 @@ Tiada data bagi mata pelajaran ini
 
 <div id="sectionBC" class="section-content">
 
-<h2>Bahagian C</h2>
+<h2>Bahagian C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU</h2>
 
-<p>Analisis boleh letak di sini jika perlu.</p>
+<div class="filter-box">
+<label>Tapis Mata Pelajaran</label>
 
+<select id="filterMP_C" onchange="syncFilterMP()">
+<option value="SEMUA">Semua Mata Pelajaran</option>
+<option value="Bahasa Melayu">Bahasa Melayu</option>
+<option value="Bahasa Inggeris">Bahasa Inggeris</option>
+<option value="Bahasa Arab">Bahasa Arab</option>
+<option value="Matematik">Matematik</option>
+<option value="Sains">Sains</option>
+<option value="Sejarah">Sejarah</option>
+<option value="Reka Bentuk dan Teknologi">Reka Bentuk dan Teknologi</option>
+<option value="Pendidikan Jasmani Dan Kesihatan">Pendidikan Jasmani Dan Kesihatan</option>
+<option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+<option value="Pendidikan Islam">Pendidikan Islam</option>
+<option value="Pendidikan Moral">Pendidikan Moral</option>
+<option value="Pendidikan Muzik">Pendidikan Muzik</option>
+</select>
+
+</div>
+<p id="noDataMsgBC" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+Tiada data bagi mata pelajaran ini
+</p>
+<p id="jumlahMPBC" style="margin-top:8px;font-weight:bold;"></p>
+
+<h3>1.1 Merujuk Panduan Pengurusan Pentaksiran Berasaskan Sekolah (PBS) yang sedang berkuat kuasa.</h3>
+<div class="chart-box">
+<canvas id="chartBC11"></canvas>
+</div>
+
+<h3>1.2 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah (PBD) yang sedang berkuat kuasa.</h3>
+<div class="chart-box">
+<canvas id="chartBC12"></canvas>
 </div>
 
 </div>
@@ -815,6 +846,9 @@ let bb14_1=0,bb14_2=0,bb14_3=0,bb14_4=0,bb14_5=0;
 let bb15_1=0,bb15_2=0,bb15_3=0,bb15_4=0,bb15_5=0;
 let bb16ya=0,bb16tidak=0;
 let bb17ya=0,bb17tidak=0;
+let bc11ya=0,bc11tidak=0;
+let bc12ya=0,bc12tidak=0;
+
 
 
 
@@ -837,6 +871,8 @@ const q14bb = clean(row["1.4_b"]);
 const q15bb = clean(row["1.5_b"]);
 const q16bb = clean(row["1.6_b"]);
 const q17bb = clean(row["1.7_b"]);
+const q11bc = clean(row["2.1_c"]);
+const q12bc = clean(row["2.2_c"]);
 
 
 if(nama && nama.trim() !== ""){
@@ -850,6 +886,7 @@ const skor12b = Number(q12bb);
 const skor13b = Number(q13bb);
 const skor14b = Number(q14bb);
 const skor15b = Number(q15bb);
+
 
 if(skor11b === 1) bb11_1++;
 if(skor11b === 2) bb11_2++;
