@@ -776,6 +776,10 @@ listB.innerHTML = guruList.join("");
 
 
 let bb11_1=0,bb11_2=0,bb11_3=0,bb11_4=0,bb11_5=0;
+let bb12_1=0,bb12_2=0,bb12_3=0,bb12_4=0,bb12_5=0;
+let bb13_1=0,bb13_2=0,bb13_3=0,bb13_4=0,bb13_5=0;
+let bb14_1=0,bb14_2=0,bb14_3=0,bb14_4=0,bb14_5=0;
+let bb15_1=0,bb15_2=0,bb15_3=0,bb15_4=0,bb15_5=0;
 
 
 
@@ -798,17 +802,22 @@ if(nama && nama.trim() !== ""){
 
 guruUnik.add(nama.trim());   // TAMBAH BARIS INI
 
-/* 1.1 */
 
-/* 1.1 */
 
 const skor11b = Number(q11bb);
+const skor12b = Number(q12bb);
 
 if(skor11b === 1) bb11_1++;
 if(skor11b === 2) bb11_2++;
 if(skor11b === 3) bb11_3++;
 if(skor11b === 4) bb11_4++;
 if(skor11b === 5) bb11_5++;
+
+if(skor12b === 1) bb12_1++;
+if(skor12b === 2) bb12_2++;
+if(skor12b === 3) bb12_3++;
+if(skor12b === 4) bb12_4++;
+if(skor12b === 5) bb12_5++;
 
 }
 });
@@ -833,6 +842,7 @@ msg.style.display = "block";
 /* kosongkan graf */
 
 bb11_1=bb11_2=bb11_3=bb11_4=bb11_5=0;
+bb12_1=bb12_2=bb12_3=bb12_4=bb12_5=0;
 
 
 }else{
@@ -853,6 +863,23 @@ data:{
 labels:["1","2","3","4","5"],
 datasets:[{
 data:[bb11_1,bb11_2,bb11_3,bb11_4,bb11_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBB12")?.destroy();
+
+new Chart(canvas,{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bb12_1,bb12_2,bb12_3,bb12_4,bb12_5],
 backgroundColor:"#3498db"
 }]
 },
