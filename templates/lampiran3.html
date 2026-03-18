@@ -926,42 +926,52 @@ const progressText = document.getElementById("progressText");
 
 function updateProgress(){
 
-const textInputs = document.querySelectorAll(
-'select[name="nama"], select[name="mp"], input[name="jawatan"]'
-);
+    const textInputs = document.querySelectorAll(
+        'select[name="nama"], select[name="mp"], input[name="jawatan"]'
+    );
 
-const radioGroups = [...new Set([...document.querySelectorAll("input[type=radio]")].map(r => r.name))];
+    const checkboxes = document.querySelectorAll('input[name="tahun[]"]');
 
-let total = textInputs.length + radioGroups.length;
-let filled = 0;
+    const radioGroups = [...new Set(
+        [...document.querySelectorAll("input[type=radio]")].map(r => r.name)
+    )];
 
-textInputs.forEach(input=>{
-if(input.value.trim() !== ""){
-filled++;
-}
-});
+    let total = textInputs.length + radioGroups.length + 1; // +1 untuk group checkbox
+    let filled = 0;
 
-radioGroups.forEach(name=>{
-if(document.querySelector(`input[name="${name}"]:checked`)){
-filled++;
-}
-});
+    // Text & Select
+    textInputs.forEach(input=>{
+        if(input.value.trim() !== ""){
+            filled++;
+        }
+    });
 
-let percent = Math.round((filled / total) * 100);
+    // Checkbox (anggap 1 group sahaja)
+    if([...checkboxes].some(cb => cb.checked)){
+        filled++;
+    }
 
-progressBar.style.width = percent + "%";
-progressText.innerText = percent + "%";
+    // Radio
+    radioGroups.forEach(name=>{
+        if(document.querySelector(`input[name="${name}"]:checked`)){
+            filled++;
+        }
+    });
 
-if(percent < 30){
-progressBar.style.background = "#e74c3c";
-}
-else if(percent < 70){
-progressBar.style.background = "#f39c12";
-}
-else{
-progressBar.style.background = "#2ecc71";
-}
+    let percent = Math.round((filled / total) * 100);
 
+    progressBar.style.width = percent + "%";
+    progressText.innerText = percent + "%";
+
+    if(percent < 30){
+        progressBar.style.background = "#e74c3c";
+    }
+    else if(percent < 70){
+        progressBar.style.background = "#f39c12";
+    }
+    else{
+        progressBar.style.background = "#2ecc71";
+    }
 }
 
 document.querySelectorAll("input, select").forEach(el=>{
