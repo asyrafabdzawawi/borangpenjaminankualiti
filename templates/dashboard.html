@@ -1887,8 +1887,245 @@ return (value/total*100).toFixed(1)+"%";
 plugins:[ChartDataLabels]
 });
 
+Chart.getChart("chartAC11")?.destroy();
+new Chart(document.getElementById("chartAC11"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[ac11ya,ac11tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartAC12")?.destroy();
+new Chart(document.getElementById("chartAC12"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[ac12ya,ac12tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartAC21")?.destroy();
+
+new Chart(document.getElementById("chartAC21"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac21_1,ac21_2,ac21_3,ac21_4,ac21_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC22")?.destroy();
+
+new Chart(document.getElementById("chartAC22"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac22_1,ac22_2,ac22_3,ac22_4,ac22_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC31")?.destroy();
+
+new Chart(document.getElementById("chartAC31"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac31_1,ac31_2,ac31_3,ac31_4,ac31_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC32")?.destroy();
+
+new Chart(document.getElementById("chartAC32"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac32_1,ac32_2,ac32_3,ac32_4,ac32_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC41")?.destroy();
+
+new Chart(document.getElementById("chartAC41"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac41_1,ac41_2,ac41_3,ac41_4,ac41_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC42")?.destroy();
+
+new Chart(document.getElementById("chartAC42"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac42_1,ac42_2,ac42_3,ac42_4,ac42_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC43")?.destroy();
+new Chart(document.getElementById("chartAC43"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[ac43ya,ac43tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
 
 
+Chart.getChart("chartAC51")?.destroy();
+
+new Chart(document.getElementById("chartAC51"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac51_1,ac51_2,ac51_3,ac51_4,ac51_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartAC452")?.destroy();
+
+new Chart(document.getElementById("chartAC52"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ac52_1,ac52_2,ac52_3,ac52_4,ac52_5],
+backgroundColor:"#9b59b6"
+}]
+},
+options:{
+responsive:true,
+maintainAspectRatio:false,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
 
 
 
