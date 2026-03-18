@@ -1442,6 +1442,99 @@ scales:{y:{beginAtZero:true}}
 }
 });
 
+Chart.getChart("chartBC41")?.destroy();
+new Chart(document.getElementById("chartBC41"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc41_1,bc41_2,bc41_3,bc41_4,bc41_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBC42")?.destroy();
+new Chart(document.getElementById("chartBC42"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc42_1,bc42_2,bc42_3,bc42_4,bc42_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBC43")?.destroy();
+new Chart(document.getElementById("chartBC43"),{
+type:"pie",
+data:{
+labels:["Ya","Tidak"],
+datasets:[{
+data:[bc43ya,bc43tidak],
+backgroundColor:["#2ecc71","#e74c3c"]
+}]
+},
+options:{
+plugins:{
+legend:{position:"bottom"},
+datalabels:{
+color:"#fff",
+font:{
+weight:"bold",
+size:14
+},
+formatter:(value,context)=>{
+let total = context.chart.data.datasets[0].data.reduce((a,b)=>a+b,0);
+return (value/total*100).toFixed(1)+"%";
+}
+}
+}
+},
+plugins:[ChartDataLabels]
+});
+
+Chart.getChart("chartBC51")?.destroy();
+new Chart(document.getElementById("chartBC51"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc51_1,bc51_2,bc51_3,bc51_4,bc51_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBC52")?.destroy();
+new Chart(document.getElementById("chartBC52"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc52_1,bc52_2,bc52_3,bc52_4,bc52_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
 
 
 });  // tutup .then()
