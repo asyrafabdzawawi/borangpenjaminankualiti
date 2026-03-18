@@ -1570,9 +1570,14 @@ msg.style.display = "none";
 }
 
 const sectionAB = document.getElementById("sectionAB");
+const sectionAC = document.getElementById("sectionAC");
 
-if(!sectionAB.classList.contains("active")){
-    return; // STOP kalau belum buka Bahagian B
+if(sectionAB.classList.contains("active")){
+    // render chart B sahaja
+}
+
+if(sectionAC.classList.contains("active")){
+    // render chart C sahaja
 }
   
 Chart.getChart("chartAB11")?.destroy();
