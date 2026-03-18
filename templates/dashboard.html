@@ -1231,15 +1231,7 @@ skipEmptyLines: true
 const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
 
-let selectedMP;
-
-const sectionAC = document.getElementById("sectionAC");
-
-if(sectionAC && sectionAC.classList.contains("active")){
-    selectedMP = document.getElementById("filterMP_AC")?.value || "SEMUA";
-}else{
-    selectedMP = document.getElementById("filterMP_A")?.value || "SEMUA";
-}
+let selectedMP = document.getElementById("filterMP_A")?.value || "SEMUA";
 let guruUnik = new Set();
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
