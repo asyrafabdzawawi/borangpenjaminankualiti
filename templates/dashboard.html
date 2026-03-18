@@ -253,11 +253,219 @@ Akhir Tahun
 
 <h3>Lampiran A</h3>
 
+<div class="section-tabs">
+<button class="section-btn active" onclick="openSectionB('A',this)">Bahagian A</button>
+<button class="section-btn" onclick="openSectionB('B',this)">Bahagian B</button>
+<button class="section-btn" onclick="openSectionB('C',this)">Bahagian C</button>
+</div>
+
+<!-- Bahagian A -->
+
+<div id="sectionAA" class="section-content active">
+
+<h2>Maklumat Guru Mata Pelajaran</h2>
+
 <p id="jumlahA"><b>Jumlah respon: 0 guru</b></p>
 
 <div id="listA" class="list"></div>
 
 </div>
+
+
+
+<!-- ======================= -->
+<!-- BAHAGIAN B              -->
+<!-- ======================= -->
+
+<div id="sectionAB" class="section-content">
+
+<h2>Bahagian B: Peranan Guru</h2>
+
+<div class="filter-box">
+<label>Tapis Mata Pelajaran</label>
+
+<select id="filterMP_A" onchange="loadLampiranB()">
+<option value="SEMUA">Semua Mata Pelajaran</option>
+<option value="Bahasa Melayu">Bahasa Melayu</option>
+<option value="Bahasa Inggeris">Bahasa Inggeris</option>
+<option value="Bahasa Arab">Bahasa Arab</option>
+<option value="Matematik">Matematik</option>
+<option value="Sains">Sains</option>
+<option value="Sejarah">Sejarah</option>
+<option value="Reka Bentuk dan Teknologi">Reka Bentuk dan Teknologi</option>
+<option value="Pendidikan Jasmani Dan Kesihatan">Pendidikan Jasmani Dan Kesihatan</option>
+<option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+<option value="Pendidikan Islam">Pendidikan Islam</option>
+<option value="Pendidikan Moral">Pendidikan Moral</option>
+<option value="Pendidikan Muzik">Pendidikan Muzik</option>
+</select>
+
+</div>
+<p id="noDataMsgA" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+Tiada data bagi mata pelajaran ini
+</p>
+<p id="jumlahMP_A" style="margin-top:8px;font-weight:bold;"></p>
+
+<h3>1.1 Memahami kepentingan Pentaksiran Bilik Darjah (PBD).</h3>
+<div class="bar-chart-box">
+<canvas id="chartAB11"></canvas>
+</div>
+
+<h3>1.2 Menguasai konsep PBD merujuk kepada panduan pelaksanaan PBD yang sedang berkuat kuasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAB12"></canvas>
+</div>
+
+<h3>1.3 Menguasai pelaksanaan PBD merujuk kepada kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAB13"></canvas>
+</div>
+
+<h3>1.4 Menguasai kaedah pentaksiran merujuk kepada kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAB14"></canvas>
+</div>
+
+<h3>1.5 Menguasai instrumen pentaksiran merujuk kepada kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAB15"></canvas>
+</div>
+
+<h3>1.6 Memberi sokongan profesional berterusan kepada Guru Kanan Mata Pelajaran / Ketua Panitia dalam melaksanakan PBD.</h3>
+<div class="chart-box">
+<canvas id="chartAB16"></canvas>
+</div>
+
+<h3>1.7 Menerajui pelaksanaan PBD di peringkat sekolah .</h3>
+<div class="chart-box">
+<canvas id="chartAB17"></canvas>
+</div>
+
+<h3>1.8 Melaksanakan penjaminan mutu PBD </h3>
+<div class="chart-box">
+<canvas id="chartAB18"></canvas>
+</div>
+
+<h3>1.9 Menyelesaikan isu pelaksanaan dan pengoperasian PBD </h3>
+<div class="chart-box">
+<canvas id="chartAB19"></canvas>
+</div>
+
+<h3>1.10 Mengukur keberkesanan tindak susul PBD  </h3>
+<div class="chart-box">
+<canvas id="chartAB110"></canvas>
+</div>
+
+<h3>1.11 Menentusahkan laporan PBD yang disediakan untuk pihak berkepentingan.  </h3>
+<div class="chart-box">
+<canvas id="chartAB111"></canvas>
+</div>
+
+<h3>1.12 Menerajui aktiviti pembangunan profesional berterusan dalam pelaksanaan PBD  </h3>
+<div class="chart-box">
+<canvas id="chartAB112"></canvas>
+</div>
+
+<h3>1.13 Menentusahkan instrumen ujian akhir sesi akademik mengikut format dan Jadual Spesifikasi Ujian (JSU) yang ditetapkan. (bagi pentaksiran sumatif)  </h3>
+<div class="chart-box">
+<canvas id="chartAB113"></canvas>
+</div>
+
+
+</div>
+<!-- Bahagian C -->
+
+<div id="sectionAC" class="section-content">
+
+<h2>Bahagian C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU</h2>
+
+<div class="filter-box">
+<label>Tapis Mata Pelajaran</label>
+
+<select id="filterMP_AC" onchange="syncFilterMP()">
+<option value="SEMUA">Semua Mata Pelajaran</option>
+<option value="Bahasa Melayu">Bahasa Melayu</option>
+<option value="Bahasa Inggeris">Bahasa Inggeris</option>
+<option value="Bahasa Arab">Bahasa Arab</option>
+<option value="Matematik">Matematik</option>
+<option value="Sains">Sains</option>
+<option value="Sejarah">Sejarah</option>
+<option value="Reka Bentuk dan Teknologi">Reka Bentuk dan Teknologi</option>
+<option value="Pendidikan Jasmani Dan Kesihatan">Pendidikan Jasmani Dan Kesihatan</option>
+<option value="Pendidikan Seni Visual">Pendidikan Seni Visual</option>
+<option value="Pendidikan Islam">Pendidikan Islam</option>
+<option value="Pendidikan Moral">Pendidikan Moral</option>
+<option value="Pendidikan Muzik">Pendidikan Muzik</option>
+</select>
+
+</div>
+<p id="noDataMsgAC" style="display:none;color:red;font-weight:bold;margin-top:10px;">
+Tiada data bagi mata pelajaran ini
+</p>
+<p id="jumlahMPAC" style="margin-top:8px;font-weight:bold;"></p>
+
+<h3>1.1 Merujuk Panduan Pengurusan Pentaksiran Berasaskan Sekolah (PBS) yang sedang berkuat kuasa.</h3>
+<div class="chart-box">
+<canvas id="chartAC11"></canvas>
+</div>
+
+<h3>1.2 Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah (PBD) yang sedang berkuat kuasa.</h3>
+<div class="chart-box">
+<canvas id="chartAC12"></canvas>
+</div>
+
+<h3>2.1 Merangka aktiviti pembangunan profesionalisme berterusan kepada guru bagi meningkatkan pengetahuan, kefahaman dan kemahiran dalam pelaksanaan PBD.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC21"></canvas>
+</div>
+
+<h3>2.2 Memberi bimbingan tentang pelaksanaan dan pengoperasian PBD kepada guru mengikut keperluan.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC22"></canvas>
+</div>
+
+<h3>3.1 Menyemak sampel instrumen pentaksiran yang digunakan oleh guru untuk memastikan ia sesuai dan menepati kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC31"></canvas>
+</div>
+
+<h3>3.2 Menyemak sampel kaedah pentaksiran yang digunakan oleh guru untuk memastikan ia sesuai dan menepati kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC32"></canvas>
+</div>
+
+<h3>4.1 Memantau perekodan tahap penguasaan murid.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC41"></canvas>
+</div>
+
+<h3>4.2 Memberi sokongan profesional dalam pelaksanaan tindakan susulan bagi meningkatkan tahap penguasaan murid.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC42"></canvas>
+</div>
+
+<h3>4.3 Mengesahkan pelaporan tahap penguasaan murid sekurang-kurangnya dua kali setahun (pertengahan tahun dan akhir tahun) sebelum diserahkan kepada pihak berkepentingan.</h3>
+<div class="chart-box">
+<canvas id="chartAC43"></canvas>
+</div>
+
+<h3>5.1 Melaksanakan sesi perbincangan bersama/dalam panitia bagi menyelaras tahap penguasaan murid merujuk kepada Standard Prestasi yang ditetapkan.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC51"></canvas>
+</div>
+
+
+<h3>5.2 Memberi sokongan profesional kepada guru dalam menentukan tahap penguasaan secara adil mengikut keupayaan sebenar murid.</h3>
+<div class="bar-chart-box">
+<canvas id="chartAC52"></canvas>
+</div>
+
+
+
+
+</div>
+</div>
+
 
 <div id="tabB" class="tab-content">
 
@@ -710,12 +918,27 @@ function syncFilterMP(){
         }
     }
 
+    // ===== LAMPIRAN A =====
+    else if(document.getElementById("tabA").classList.contains("active")){
+
+        const sectionAC = document.getElementById("sectionAC");
+
+        if(sectionAC && sectionAC.classList.contains("active")){
+            mp = document.getElementById("filterMP_AC")?.value || "SEMUA";
+        }
+        else{
+            mp = document.getElementById("filterMP_A")?.value || "SEMUA";
+        }
+    }
+
     /* ========================= */
     /* SYNC SEMUA DROPDOWN       */
     /* ========================= */
 
     [
         "filterMP",
+        "filterMP_AC",
+        "filterMP_A",
         "filterMP_C",
         "filterMP_B",
         "filterMP_BC"
@@ -736,6 +959,10 @@ function syncFilterMP(){
         loadLampiranB();
     }
 
+     if(document.getElementById("tabA").classList.contains("active")){
+        loadLampiranA();
+    }
+
 }
 
 let currentSession = "pertengahan";
@@ -754,6 +981,12 @@ const sheetB_Pertengahan =
 
 const sheetB_Akhir =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=1021309513&single=true&output=csv";
+
+const sheetA_Pertengahan =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=1501743525&single=true&output=csv";
+
+const sheetA_Akhir =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR8Tl5sDCaVKwe35rLITcvOHnLTTzfCDRxEKXE1fN4unnQyXSRKTbo4vT9OtussZJyOIFEP1bhF5M6j/pub?gid=52087525&single=true&output=csv";
 
 /* SESSION SWITCH */
 
@@ -776,6 +1009,10 @@ if(document.getElementById("tabB").classList.contains("active")){
 loadLampiranB();
 }
 
+if(document.getElementById("tabA").classList.contains("active")){
+loadLampiranA();
+}
+
 }
 
 
@@ -792,6 +1029,10 @@ document.querySelectorAll(".tab-btn")
 document.getElementById("tab"+tab).classList.add("active");
 btn.classList.add("active");
 
+if(tab === "A"){
+loadLampiranA();
+}
+  
 if(tab === "B"){
 loadLampiranB();
 }
@@ -857,6 +1098,384 @@ btn.classList.add("active");
 loadLampiranB();
 
 }
+
+function openSectionA(section,btn){
+
+document.querySelectorAll("#tabA .section-content")
+.forEach(t => t.classList.remove("active"));
+
+document.querySelectorAll("#tabA .section-btn")
+.forEach(a => a.classList.remove("active"));
+
+document.getElementById("sectionA"+section).classList.add("active");
+btn.classList.add("active");
+
+loadLampiranA();
+
+}
+
+/* LOAD DATA LAMPIRAN A */
+
+function loadLampiranA(){
+
+let sheetURL;
+
+if(currentSession === "pertengahan"){
+sheetURL = sheetB_Pertengahan;
+}else{
+sheetURL = sheetB_Akhir;
+}
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+
+/* ================================ */
+/* BERMULA DI SINI KOD ANALISIS     */
+/* CIKGU KEKALKAN SEPERTI ASAL      */
+/* ================================ */
+
+const parsed = Papa.parse(data, {
+header: true,
+skipEmptyLines: true
+});
+
+const rows = parsed.data;
+const clean = v => v?.replace(/"/g,"").trim();
+
+let selectedMP = document.getElementById("filterMP_A")?.value || "SEMUA";
+let guruUnik = new Set();
+/* ========================= */
+/* ANALISIS BAHAGIAN A       */
+/* ========================= */
+
+const jumlahA = document.getElementById("jumlahA");
+const listA = document.getElementById("listA");
+
+if(jumlahA && listA){
+
+listB.innerHTML = "";
+
+let guruMap = {};
+
+rows.forEach(row => {
+
+
+
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
+
+/* tapis mata pelajaran */
+
+if(selectedMP !== "SEMUA" && mp !== selectedMP){
+return;
+}
+
+
+/* TAPIS MATA PELAJARAN */
+
+
+
+
+
+
+
+
+
+
+
+if(nama && nama.trim() !== ""){
+
+const key = nama.trim();
+
+if(!guruMap[key]){
+guruMap[key] = {};
+}
+
+if(mp && tahun){
+
+if(!guruMap[key][mp]){
+guruMap[key][mp] = [];
+}
+
+guruMap[key][mp].push(tahun);
+
+}
+
+}
+
+});
+
+let guruList = [];
+
+Object.keys(guruMap).forEach(nama => {
+
+let mpList = "";
+
+Object.keys(guruMap[nama]).forEach(mp => {
+
+mpList += `${mp} - ${guruMap[nama][mp].join(", ")}<br>`;
+
+});
+
+guruList.push(`
+<div class="teacher">
+<b>${nama}</b><br>
+${mpList}
+</div>
+`);
+
+});
+
+
+
+jumlahA.innerHTML = "<b>Jumlah respon: " + Object.keys(guruMap).length + " guru</b>";
+
+listA.innerHTML = guruList.join("");
+
+/* ========================= */
+
+
+}
+
+
+
+let ab11_1=0,ab11_2=0,ab11_3=0,ab11_4=0,ab11_5=0;
+let ab12_1=0,ab12_2=0,ab12_3=0,ab12_4=0,ab12_5=0;
+let ab13_1=0,ab13_2=0,ab13_3=0,ab13_4=0,ab13_5=0;
+let ab14_1=0,ab14_2=0,ab14_3=0,ab14_4=0,ab14_5=0;
+let ab15_1=0,ab15_2=0,ab15_3=0,ab15_4=0,ab15_5=0;
+let ab16ya=0,ab16tidak=0;
+let ab17ya=0,ab17tidak=0;
+let ac11ya=0,ac11tidak=0;
+let ac12ya=0,ac12tidak=0;
+
+let ac21_1=0,ac21_2=0,ac21_3=0,ac21_4=0,ac21_5=0;
+let ac22_1=0,ac22_2=0,ac22_3=0,ac22_4=0,ac22_5=0;
+let ac31_1=0,ac31_2=0,ac31_3=0,ac31_4=0,ac31_5=0;
+let ac32_1=0,ac32_2=0,ac32_3=0,ac32_4=0,ac32_5=0;
+let ac41_1=0,ac41_2=0,ac41_3=0,ac41_4=0,ac41_5=0;
+let ac42_1=0,ac42_2=0,ac42_3=0,ac42_4=0,ac42_5=0;
+let ac43ya=0,ac43tidak=0;
+let ac51_1=0,ac51_2=0,ac51_3=0,ac51_4=0,ac51_5=0;
+let ac52_1=0,ac52_2=0,ac52_3=0,ac52_4=0,ac52_5=0;
+
+
+
+
+rows.forEach(row => {
+
+const nama = clean(row["nama"]);
+const mp = clean(row["mp"]);
+const tahun = clean(row["tahun"]);
+
+if(selectedMP !== "SEMUA" && mp !== selectedMP){
+return;
+}
+
+  
+const q11ab = clean(row["1.1_b"]);
+const q12ab = clean(row["1.2_b"]);
+const q13ab = clean(row["1.3_b"]);
+const q14ab = clean(row["1.4_b"]);
+const q15ab = clean(row["1.5_b"]);
+const q16ab = clean(row["1.6_b"]);
+const q17ab = clean(row["1.7_b"]);
+const q11ac = clean(row["1.1_c"]);
+const q12ac = clean(row["1.2_c"]);
+const q21ac = clean(row["2.1_c"]);
+const q22ac = clean(row["2.2_c"]);
+const q31ac = clean(row["3.1_c"]);
+const q32ac = clean(row["3.2_c"]);
+const q41ac = clean(row["4.1_c"]);
+const q42ac = clean(row["4.2_c"]);
+const q43ac = clean(row["4.3_c"]);
+const q51ac = clean(row["5.1_c"]);
+const q52bc = clean(row["5.2_c"]);
+
+
+if(nama && nama.trim() !== ""){
+
+guruUnik.add(nama.trim());   // TAMBAH BARIS INI
+
+
+
+const skor11b = Number(q11ab);
+const skor12b = Number(q12ab);
+const skor13b = Number(q13ab);
+const skor14b = Number(q14ab);
+const skor15b = Number(q15ab);
+const skor16b = Number(q16ab);
+const skor17b = Number(q17ab);
+const skor21b = Number(q21ac);
+const skor22b = Number(q22ac);
+const skor31b = Number(q31ac);
+const skor32b = Number(q32ac);
+const skor41b = Number(q41ac);
+const skor42b = Number(q42ac);
+const skor43b = Number(q43ac);
+const skor51b = Number(q51ac);
+const skor52b = Number(q52ac);
+
+
+if(skor11b === 1) ab11_1++;
+if(skor11b === 2) ab11_2++;
+if(skor11b === 3) ab11_3++;
+if(skor11b === 4) ab11_4++;
+if(skor11b === 5) ab11_5++;
+
+if(skor12b === 1) ab12_1++;
+if(skor12b === 2) ab12_2++;
+if(skor12b === 3) ab12_3++;
+if(skor12b === 4) ab12_4++;
+if(skor12b === 5) ab12_5++;
+
+if(skor13b === 1) ab13_1++;
+if(skor13b === 2) ab13_2++;
+if(skor13b === 3) ab13_3++;
+if(skor13b === 4) ab13_4++;
+if(skor13b === 5) ab13_5++;
+
+if(skor14b === 1) ab14_1++;
+if(skor14b === 2) ab14_2++;
+if(skor14b === 3) ab14_3++;
+if(skor14b === 4) ab14_4++;
+if(skor14b === 5) ab14_5++;
+
+if(skor15b === 1) ab15_1++;
+if(skor15b === 2) ab15_2++;
+if(skor15b === 3) ab15_3++;
+if(skor15b === 4) ab15_4++;
+if(skor15b === 5) ab15_5++;
+
+if(q16ab?.trim() === "Ya") ab16ya++;
+if(q16ab?.trim() === "Tidak") ab16tidak++;
+
+if(q17ab?.trim() === "Ya") ab17ya++;
+if(q17ab?.trim() === "Tidak") ab17tidak++;
+
+if(q11ac?.trim() === "Ya") ac11ya++;
+if(q11ac?.trim() === "Tidak") ac11tidak++;
+
+if(q12ac?.trim() === "Ya") ac12ya++;
+if(q12ac?.trim() === "Tidak") ac12tidak++;
+
+if(skor21b === 1) ac21_1++;
+if(skor21b === 2) ac21_2++;
+if(skor21b === 3) ac21_3++;
+if(skor21b === 4) ac21_4++;
+if(skor21b === 5) ac21_5++;
+
+if(skor22b === 1) ac22_1++;
+if(skor22b === 2) ac22_2++;
+if(skor22b === 3) ac22_3++;
+if(skor22b === 4) ac22_4++;
+if(skor22b === 5) ac22_5++;
+
+if(skor31b === 1) ac31_1++;
+if(skor31b === 2) ac31_2++;
+if(skor31b === 3) ac31_3++;
+if(skor31b === 4) ac31_4++;
+if(skor31b === 5) ac31_5++;
+
+if(skor32b === 1) ac32_1++;
+if(skor32b === 2) ac32_2++;
+if(skor32b === 3) ac32_3++;
+if(skor32b === 4) ac32_4++;
+if(skor32b === 5) ac32_5++;
+
+if(skor41b === 1) ac41_1++;
+if(skor41b === 2) ac41_2++;
+if(skor41b === 3) ac41_3++;
+if(skor41b === 4) ac41_4++;
+if(skor41b === 5) ac41_5++;
+
+if(skor42b === 1) ac42_1++;
+if(skor42b === 2) ac42_2++;
+if(skor42b === 3) ac42_3++;
+if(skor42b === 4) ac42_4++;
+if(skor42b === 5) ac42_5++;
+
+if(q43ac?.trim() === "Ya") ac43ya++;
+if(q43ac?.trim() === "Tidak") ac43tidak++;
+
+if(skor51b === 1) ac51_1++;
+if(skor51b === 2) ac51_2++;
+if(skor51b === 3) ac51_3++;
+if(skor51b === 4) ac51_4++;
+if(skor51b === 5) ac51_5++;
+
+if(skor52b === 1) ac52_1++;
+if(skor52b === 2) ac52_2++;
+if(skor52b === 3) ac52_3++;
+if(skor52b === 4) ac52_4++;
+if(skor52b === 5) ac52_5++;
+
+}
+});
+
+let msg;
+let jumlahBox;
+
+
+msg = document.getElementById("noDataMsgA");
+jumlahBox = document.getElementById("jumlahMP_A");
+
+
+jumlahBox.innerHTML =
+"Jumlah respon: " + guruUnik.size + " guru";
+
+if(guruUnik.size === 0){
+msg.style.display = "block";
+
+/* kosongkan graf */
+
+ab11_1=ab11_2=ab11_3=ab11_4=ab11_5=0;
+ab12_1=ab12_2=ab12_3=ab12_4=ab12_5=0;
+ab13_1=ab13_2=ab13_3=ab13_4=ab13_5=0;
+ab14_1=ab14_2=ab14_3=ab14_4=ab14_5=0;
+ab15_1=ab15_2=ab15_3=ab15_4=ab15_5=0;
+ab16ya=ab16tidak=0;
+ab17ya=ab17tidak=0;
+ac11ya=ac11tidak=0;
+ac21_1=ac21_2=ac21_3=ac21_4=ac21_5=0;
+ac22_1=ac22_2=ac22_3=ac22_4=ac22_5=0;
+ac31_1=ac31_2=ac31_3=ac31_4=ac31_5=0;
+ac32_1=ac32_2=ac32_3=ac32_4=ac32_5=0;
+ac41_1=ac41_2=ac41_3=ac41_4=ac41_5=0;
+ac42_1=ac42_2=ac42_3=c42_4=ac42_5=0;
+ac43ya=ac43tidak=0;
+ac51_1=ac51_2=ac51_3=ac51_4=ac51_5=0;
+ac52_1=ac52_2=ac52_3=ac52_4=ac52_5=0;
+
+
+
+}else{
+
+msg.style.display = "none";
+
+}
+
+
+
+Chart.getChart("chartAB11")?.destroy();
+new Chart(document.getElementById("chartAB11"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[ab11_1,ab11_2,ab11_3,ab11_4,ab11_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+
 
 /* LOAD DATA LAMPIRAN B */
 
