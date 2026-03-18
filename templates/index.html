@@ -14,14 +14,8 @@
 transition: all 0.25s ease;
 }
 
-.menu-button:hover{
-transform: translateY(-3px) scale(1.02);
-}
 
-.container{
-background: rgba(255,255,255,0.95);
-backdrop-filter: blur(10px);
-}
+
 
 body{
 font-family: "Segoe UI", Arial, sans-serif;
@@ -39,17 +33,19 @@ margin-bottom:15px;
 }
   
 .menu-button:hover{
-transform:translateY(-2px);
+transform: translateY(-3px) scale(1.02);
 box-shadow:0 5px 12px rgba(0,0,0,0.15);
 }
   
 .container{
-background:white;
+background: rgba(255,255,255,0.95);
+backdrop-filter: blur(10px);
 padding:50px;
 border-radius:12px;
 box-shadow:0 10px 30px rgba(0,0,0,0.1);
 text-align:center;
-width:420px;
+width:90%;
+max-width:420px;
 }
 
 h1{
@@ -71,7 +67,7 @@ border:none;
 border-radius:8px;
 font-size:16px;
 cursor:pointer;
-transition:0.2s;
+transition: all 0.25s ease;
 }
 
 .form-btn{
@@ -109,12 +105,7 @@ color:#95a5a6;
 
 <h1>SISTEM INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH</h1>
 <p>Sila pilih instrumen mengikut peranan anda</p>
-<p id="date"></p>
 
-<script>
-document.getElementById("date").innerText =
-"Tarikh: " + new Date().toLocaleDateString();
-</script>
 <button class="menu-button form-btn"
 onclick="window.location.href='/lampirana'">
 📄 Lampiran A - Pengetua/Guru Besar/Guru Penolong Kanan
