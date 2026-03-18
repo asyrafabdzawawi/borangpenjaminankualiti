@@ -61,13 +61,14 @@ margin-bottom:30px;
 .menu-button{
 display:block;
 width:100%;
-padding:14px;
+padding:16px;
 margin:12px 0;
 border:none;
-border-radius:8px;
-font-size:16px;
+border-radius:10px;
+font-size:15px;
 cursor:pointer;
 transition: all 0.25s ease;
+text-align:left;
 }
 
 .form-btn{
@@ -106,20 +107,21 @@ color:#95a5a6;
 <h1>SISTEM INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH</h1>
 <p>Sila pilih instrumen mengikut peranan anda</p>
 
-<button class="menu-button form-btn"
-onclick="window.location.href='/lampirana'">
-📄 Lampiran A - Pengetua/Guru Besar/Guru Penolong Kanan
+<button class="menu-button form-btn">
+📄 <b>Lampiran A</b><br>
+<small>Pengetua / Guru Besar / Guru Penolong Kanan</small>
+</button>
+
+<button class="menu-button form-btn">
+📘 <b>Lampiran B</b><br>
+<small>Guru Kanan Mata Pelajaran / Ketua Panitia</small>
+</button>
+
+<button class="menu-button form-btn">
+👨‍🏫 <b>Lampiran C</b><br>
+<small>Guru Mata Pelajaran</small>
 </button>
   
-<button class="menu-button form-btn"
-onclick="window.location.href='/lampiranb'">
-📘 Lampiran B - Guru Kanan Mata Pelajaran/Ketua Panitia
-</button>
-  
-<button class="menu-button form-btn"
-onclick="window.location.href='/lampiran3'">
-👨‍🏫 Lampiran C - Guru Mata Pelajaran
-</button>
 
 <button class="menu-button dashboard-btn"
 onclick="window.location.href='/dashboard'">
