@@ -2951,24 +2951,8 @@ let guruUnik = new Set();
 /* ANALISIS BAHAGIAN A       */
 /* ========================= */
 
-let jumlahBox, listBox;
-
-const sectionCA = document.getElementById("sectionCA");
-const sectionCB = document.getElementById("sectionCB");
-const sectionCC = document.getElementById("sectionCC");
-
-if(sectionCA.classList.contains("active")){
-    jumlahBox = document.getElementById("jumlahCA");
-    listBox = document.getElementById("listCA");
-}
-else if(sectionCB.classList.contains("active")){
-    jumlahBox = document.getElementById("jumlahMP");
-    listBox = document.getElementById("listCA"); // atau buat list baru kalau nak
-}
-else if(sectionCC.classList.contains("active")){
-    jumlahBox = document.getElementById("jumlahMPC");
-    listBox = document.getElementById("listCA"); // boleh customize
-}
+const jumlahA = document.getElementById("jumlahCA");
+const listA = document.getElementById("listCA");
 
 if(jumlahA && listA){
 
