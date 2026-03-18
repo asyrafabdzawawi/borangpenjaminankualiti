@@ -712,19 +712,28 @@ function updateProgress(){
         'select[name="nama"], select[name="mp"], input[name="jawatan"]'
     );
 
+    const checkboxes = document.querySelectorAll('input[name="tahun[]"]');
+
     const radioGroups = [...new Set(
         [...document.querySelectorAll("input[type=radio]")].map(r => r.name)
     )];
 
-    let total = textInputs.length + radioGroups.length;
+    let total = textInputs.length + radioGroups.length + 1; // +1 untuk group checkbox
     let filled = 0;
 
+    // Text & Select
     textInputs.forEach(input=>{
         if(input.value.trim() !== ""){
             filled++;
         }
     });
 
+    // Checkbox (anggap 1 group sahaja)
+    if([...checkboxes].some(cb => cb.checked)){
+        filled++;
+    }
+
+    // Radio
     radioGroups.forEach(name=>{
         if(document.querySelector(`input[name="${name}"]:checked`)){
             filled++;
