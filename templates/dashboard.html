@@ -1681,7 +1681,9 @@ if(skor52 === 5) c52_5++;
 let msg;
 let jumlahBox;
 
-if(document.getElementById("sectionCC").classList.contains("active")){
+const sectionCC = document.getElementById("sectionCC");
+
+if(sectionCC && sectionCC.classList.contains("active")){
 msg = document.getElementById("noDataMsgC");
 jumlahBox = document.getElementById("jumlahMPC");
 }else{
