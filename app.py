@@ -187,7 +187,7 @@ def submit():
         sheet.append_row(row)
 
 
-     elif sesi == "Lampiran_A_Pertengahan_Tahun":
+    elif sesi == "Lampiran_A_Pertengahan_Tahun":
         sheet = spreadsheet.worksheet("Lampiran_A_Pertengahan_Tahun")
 
         row = [
@@ -211,7 +211,7 @@ def submit():
         form.get("catatan_1.6_b"),
         form.get("1.7_b"),
         form.get("catatan_1.7_b"),
-          form.get("1.8"),
+        form.get("1.8_b"),
         form.get("catatan_1.8_b"),
         form.get("1.9_b"),
         form.get("catatan_1.9_b"),
