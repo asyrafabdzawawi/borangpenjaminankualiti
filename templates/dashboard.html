@@ -1522,12 +1522,20 @@ let msg;
 let jumlahBox;
 
 
-msg = document.getElementById("noDataMsgA");
-jumlahBox = document.getElementById("jumlahMP_A");
+const sectionAC = document.getElementById("sectionAC");
+
+if(sectionAC && sectionAC.classList.contains("active")){
+    msg = document.getElementById("noDataMsgAC");
+    jumlahBox = document.getElementById("jumlahMPAC");
+}else{
+    msg = document.getElementById("noDataMsgA");
+    jumlahBox = document.getElementById("jumlahMP_A");
+}
 
 
-jumlahBox.innerHTML =
-"Jumlah respon: " + guruUnik.size + " guru";
+if(jumlahBox){
+    jumlahBox.innerHTML = "Jumlah respon: " + guruUnik.size + " guru";
+}
 
 if(guruUnik.size === 0){
 msg.style.display = "block";
