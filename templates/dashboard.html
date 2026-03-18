@@ -921,10 +921,6 @@ function syncFilterMP(){
 
     let mp = "SEMUA";
 
-    /* ========================= */
-    /* PRIORITY: ikut tab aktif  */
-    /* ========================= */
-
     // ===== LAMPIRAN C =====
     if(document.getElementById("tabC").classList.contains("active")){
 
@@ -937,16 +933,12 @@ function syncFilterMP(){
         else if(sectionCB && sectionCB.classList.contains("active")){
             mp = document.getElementById("filterMP")?.value || "SEMUA";
         }
-        else{
-            // Bahagian A (tiada filter)
-            mp = "SEMUA";
-        }
     }
 
     // ===== LAMPIRAN B =====
     else if(document.getElementById("tabB").classList.contains("active")){
 
-        const sectionBC = document.getElementById("sectionBC");
+        const sectionBC = document.getElementById("sectionBC"); // ✅ penting
 
         if(sectionBC && sectionBC.classList.contains("active")){
             mp = document.getElementById("filterMP_BC")?.value || "SEMUA";
@@ -969,10 +961,7 @@ function syncFilterMP(){
         }
     }
 
-    /* ========================= */
-    /* SYNC SEMUA DROPDOWN       */
-    /* ========================= */
-
+    // SYNC semua dropdown
     [
         "filterMP",
         "filterMP_AC",
@@ -985,22 +974,16 @@ function syncFilterMP(){
         if(el) el.value = mp;
     });
 
-    /* ========================= */
-    /* RELOAD IKUT TAB           */
-    /* ========================= */
-
+    // reload ikut tab
     if(document.getElementById("tabC").classList.contains("active")){
         loadLampiranC();
     }
-
     if(document.getElementById("tabB").classList.contains("active")){
         loadLampiranB();
     }
-
-     if(document.getElementById("tabA").classList.contains("active")){
+    if(document.getElementById("tabA").classList.contains("active")){
         loadLampiranA();
     }
-
 }
 
 let currentSession = "pertengahan";
@@ -1177,7 +1160,10 @@ document.querySelectorAll("#tabB .section-btn")
 document.getElementById("sectionB"+section).classList.add("active");
 btn.classList.add("active");
 
-loadLampiranB();
+// 🔥 TAMBAH DELAY
+setTimeout(() => {
+    loadLampiranB();
+}, 100);
 
 }
 
@@ -1560,7 +1546,7 @@ ab19ya=ab19tidak=0;
 ab110ya=ab110tidak=0;
 ab111ya=ab111tidak=0;
 ab112ya=ab112tidak=0;
-ac113ya=ac113tidak=0;
+ab113ya=ab113tidak=0;
 ac21_1=ac21_2=ac21_3=ac21_4=ac21_5=0;
 ac22_1=ac22_2=ac22_3=ac22_4=ac22_5=0;
 ac31_1=ac31_2=ac31_3=ac31_4=ac31_5=0;
@@ -2196,16 +2182,17 @@ skipEmptyLines: true
 const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
 
+const sectionBC = document.getElementById("sectionBC");
 let selectedMP;
 
-const sectionBC = document.getElementById("sectionBC");
 
 if(sectionBC && sectionBC.classList.contains("active")){
     selectedMP = document.getElementById("filterMP_BC")?.value || "SEMUA";
 }else{
     selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
 }
-let guruUnik = new Set();
+let guruUnik_B = new Set();
+let guruUnik_C = new Set();
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
 /* ========================= */
@@ -2358,8 +2345,11 @@ const q52bc = clean(row["5.2_c"]);
 
 if(nama && nama.trim() !== ""){
 
-guruUnik.add(nama.trim());   // TAMBAH BARIS INI
-
+if(sectionBC && sectionBC.classList.contains("active")){
+    guruUnik_C.add(nama.trim());
+}else{
+    guruUnik_B.add(nama.trim());
+}
 
 
 const skor11b = Number(q11bb);
@@ -2481,7 +2471,6 @@ if(skor52b === 5) bc52_5++;
 let msg;
 let jumlahBox;
 
-const sectionBC = document.getElementById("sectionBC");
 
 if(sectionBC && sectionBC.classList.contains("active")){
     msg = document.getElementById("noDataMsgBC");
@@ -2492,10 +2481,16 @@ if(sectionBC && sectionBC.classList.contains("active")){
 }
 
 
-jumlahBox.innerHTML =
-"Jumlah respon: " + guruUnik.size + " guru";
+let jumlah = (sectionBC && sectionBC.classList.contains("active"))
+    ? guruUnik_C.size
+    : guruUnik_B.size;
 
-if(guruUnik.size === 0){
+if(jumlahBox){
+    jumlahBox.innerHTML = "Jumlah respon: " + jumlah + " guru";
+}else{
+    console.log("ERROR: jumlahBox tak jumpa");
+}
+if(jumlah === 0){
 msg.style.display = "block";
 
 /* kosongkan graf */
@@ -2508,6 +2503,7 @@ bb15_1=bb15_2=bb15_3=bb15_4=bb15_5=0;
 bb16ya=bb16tidak=0;
 bb17ya=bb17tidak=0;
 bc11ya=bc11tidak=0;
+bc12ya=bc12tidak=0;
 bc21_1=bc21_2=bc21_3=bc21_4=bc21_5=0;
 bc22_1=bc22_2=bc22_3=bc22_4=bc22_5=0;
 bc31_1=bc31_2=bc31_3=bc31_4=bc31_5=0;
@@ -2815,6 +2811,8 @@ scales:{y:{beginAtZero:true}}
 }
 });
 
+Chart.getChart("chartBC41")?.destroy();
+
 new Chart(document.getElementById("chartBC41"),{
 type:"bar",
 data:{
@@ -2879,6 +2877,8 @@ return (value/total*100).toFixed(1)+"%";
 },
 plugins:[ChartDataLabels]
 });
+
+Chart.getChart("chartBC51")?.destroy();
 
 new Chart(document.getElementById("chartBC51"),{
 type:"bar",
