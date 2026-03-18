@@ -3062,16 +3062,19 @@ msg.style.display = "none";
 }
 
 Chart.getChart("chartB11")?.destroy();
+
 new Chart(document.getElementById("chartB11"),{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
 datasets:[{
 data:[b11_1,b11_2,b11_3,b11_4,b11_5],
-backgroundColor:"#3498db"
+backgroundColor:"#9b59b6"
 }]
 },
 options:{
+responsive:true,
+maintainAspectRatio:false,
 plugins:{legend:{display:false}},
 scales:{y:{beginAtZero:true}}
 }
@@ -3386,16 +3389,19 @@ plugins:[ChartDataLabels]
 });
 
 Chart.getChart("chartC21")?.destroy();
+
 new Chart(document.getElementById("chartC21"),{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
 datasets:[{
 data:[c21_1,c21_2,c21_3,c21_4,c21_5],
-backgroundColor:"#3498db"
+backgroundColor:"#9b59b6"
 }]
 },
 options:{
+responsive:true,
+maintainAspectRatio:false,
 plugins:{legend:{display:false}},
 scales:{y:{beginAtZero:true}}
 }
