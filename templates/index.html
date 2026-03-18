@@ -10,11 +10,22 @@
 
 <style>
 
+.menu-button{
+transition: all 0.25s ease;
+}
 
-  
+.menu-button:hover{
+transform: translateY(-3px) scale(1.02);
+}
+
+.container{
+background: rgba(255,255,255,0.95);
+backdrop-filter: blur(10px);
+}
+
 body{
 font-family: "Segoe UI", Arial, sans-serif;
-background:#f4f6f9;
+background: linear-gradient(135deg, #74ebd5, #9face6);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -97,20 +108,20 @@ color:#95a5a6;
 <img src="/static/logo.jpg" class="logo">
 
 <h1>SISTEM INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH</h1>
-
+<p>Sila pilih instrumen mengikut peranan anda</p>
 <button class="menu-button form-btn"
 onclick="window.location.href='/lampirana'">
-Lampiran A - Instrumen Penjaminan Mutu Pentaksiran PBD Bagi Pengetua/Guru Besar/Guru Penolong Kanan
+📄 Lampiran A - Pengetua/Guru Besar/Guru Penolong Kanan
 </button>
   
 <button class="menu-button form-btn"
 onclick="window.location.href='/lampiranb'">
-Lampiran B - Instrumen Penjaminan Mutu Pentaksiran PBD Bagi Guru Kanan Mata Pelajaran/Ketua Panitia
+📘 Lampiran B - Guru Kanan Mata Pelajaran/Ketua Panitia
 </button>
   
 <button class="menu-button form-btn"
 onclick="window.location.href='/lampiran3'">
-Lampiran C - Instrumen Penjaminan Mutu Pentaksiran PBD Bagi Guru Mata Pelajaran
+👨‍🏫 Lampiran C - Guru Mata Pelajaran
 </button>
 
 <button class="menu-button dashboard-btn"
