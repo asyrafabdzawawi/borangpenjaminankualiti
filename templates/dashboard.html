@@ -434,7 +434,7 @@ Tiada data bagi mata pelajaran ini
 <div class="filter-box">
 <label>Tapis Mata Pelajaran</label>
 
-<select id="filterMP" onchange="loadLampiranC()">
+<select id="filterMP" onchange="syncFilterMP()">
 <option value="SEMUA">Semua Mata Pelajaran</option>
 <option value="Bahasa Melayu">Bahasa Melayu</option>
 <option value="Bahasa Inggeris">Bahasa Inggeris</option>
@@ -626,9 +626,11 @@ let mp;
 /* detect source */
 let sectionCC = document.getElementById("sectionCC");
 
+const sectionCB = document.getElementById("sectionCB");
+
 if(sectionCC && sectionCC.classList.contains("active")){
     mp = document.getElementById("filterMP_C").value;
-}else if(document.getElementById("sectionCB").classList.contains("active")){
+}else if(sectionCB && sectionCB.classList.contains("active")){
     mp = document.getElementById("filterMP").value;
 }else{
     mp = document.getElementById("filterMP_BC")?.value || "SEMUA";
