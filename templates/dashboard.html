@@ -254,9 +254,9 @@ Akhir Tahun
 <h3>Lampiran A</h3>
 
 <div class="section-tabs">
-<button class="section-btn active" onclick="openSectionB('A',this)">Bahagian A</button>
-<button class="section-btn" onclick="openSectionB('B',this)">Bahagian B</button>
-<button class="section-btn" onclick="openSectionB('C',this)">Bahagian C</button>
+<button class="section-btn active" onclick="openSectionA('A',this)">Bahagian A</button>
+<button class="section-btn" onclick="openSectionA('B',this)">Bahagian B</button>
+<button class="section-btn" onclick="openSectionA('C',this)">Bahagian C</button>
 </div>
 
 <!-- Bahagian A -->
@@ -1121,9 +1121,9 @@ function loadLampiranA(){
 let sheetURL;
 
 if(currentSession === "pertengahan"){
-sheetURL = sheetB_Pertengahan;
+sheetURL = sheetA_Pertengahan;
 }else{
-sheetURL = sheetB_Akhir;
+sheetURL = sheetA_Akhir;
 }
 
 fetch(sheetURL)
@@ -1154,7 +1154,7 @@ const listA = document.getElementById("listA");
 
 if(jumlahA && listA){
 
-listB.innerHTML = "";
+listA.innerHTML = "";
 
 let guruMap = {};
 
@@ -1444,7 +1444,7 @@ ac22_1=ac22_2=ac22_3=ac22_4=ac22_5=0;
 ac31_1=ac31_2=ac31_3=ac31_4=ac31_5=0;
 ac32_1=ac32_2=ac32_3=ac32_4=ac32_5=0;
 ac41_1=ac41_2=ac41_3=ac41_4=ac41_5=0;
-ac42_1=ac42_2=ac42_3=c42_4=ac42_5=0;
+ac42_1=ac42_2=ac42_3=ac42_4=ac42_5=0;
 ac43ya=ac43tidak=0;
 ac51_1=ac51_2=ac51_3=ac51_4=ac51_5=0;
 ac52_1=ac52_2=ac52_3=ac52_4=ac52_5=0;
