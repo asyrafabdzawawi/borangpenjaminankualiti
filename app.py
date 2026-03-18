@@ -186,7 +186,78 @@ def submit():
 
         sheet.append_row(row)
 
+
+     elif sesi == "Lampiran_A_Pertengahan_Tahun":
+        sheet = spreadsheet.worksheet("Lampiran_A_Pertengahan_Tahun")
+
+        row = [
+        timestamp,
+        form.get("nama"),
+        form.get("jawatan"),
+        form.get("mp"),
+        tahun,
+
+        form.get("1.1_b"),
+        form.get("catatan_1.1_b"),
+        form.get("1.2_b"),
+        form.get("catatan_1.2_b"),
+        form.get("1.3_b"),
+        form.get("catatan_1.3_b"),
+        form.get("1.4_b"),
+        form.get("catatan_1.4_b"),
+        form.get("1.5_b"),
+        form.get("catatan_1.5_b"),
+        form.get("1.6_b"),
+        form.get("catatan_1.6_b"),
+        form.get("1.7_b"),
+        form.get("catatan_1.7_b"),
+          form.get("1.8"),
+        form.get("catatan_1.8_b"),
+        form.get("1.9_b"),
+        form.get("catatan_1.9_b"),
+        form.get("1.10_b"),
+        form.get("catatan_1.10_b"),
+        form.get("1.11_b"),
+        form.get("catatan_1.11_b"),
+        form.get("1.12_b"),
+        form.get("catatan_1.12_b"),
+        form.get("1.13_b"),
+        form.get("catatan_1.13_b"),
+       
         
+
+        form.get("1.1_c"),
+        form.get("catatan_1.1_c"),
+        form.get("1.2_c"),
+        form.get("catatan_1.2_c"),
+
+        form.get("2.1_c"),
+        form.get("catatan_2.1_c"),
+        form.get("2.2_c"),
+        form.get("catatan_2.2_c"),
+
+        form.get("3.1_c"),
+        form.get("catatan_3.1_c"),
+        form.get("3.2_c"),
+        form.get("catatan_3.2_c"),
+        
+
+        form.get("4.1_c"),
+        form.get("catatan_4.1_c"),
+        form.get("4.2_c"),
+        form.get("catatan_4.2_c"),
+        form.get("4.3_c"),
+        form.get("catatan_4.3_c"),
+
+        form.get("5.1_c"),
+        form.get("catatan_5.1_c"),
+        form.get("5.2_c"),
+        form.get("catatan_5.2_c")
+        ]
+
+        sheet.append_row(row)
+
+    
     else:
         sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tn")
 
