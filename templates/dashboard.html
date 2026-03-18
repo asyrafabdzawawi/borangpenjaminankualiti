@@ -403,6 +403,45 @@ Tiada data bagi mata pelajaran ini
 <canvas id="chartBC22"></canvas>
 </div>
 
+<h3>3.1 Menyemak sampel instrumen pentaksiran yang digunakan oleh guru untuk memastikan ia sesuai dan menepati kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartBC31"></canvas>
+</div>
+
+<h3>3.2 Menyemak sampel kaedah pentaksiran yang digunakan oleh guru untuk memastikan ia sesuai dan menepati kandungan kurikulum semasa.</h3>
+<div class="bar-chart-box">
+<canvas id="chartBC32"></canvas>
+</div>
+
+<h3>4.1 Memantau perekodan tahap penguasaan murid.</h3>
+<div class="bar-chart-box">
+<canvas id="chartBC41"></canvas>
+</div>
+
+<h3>4.2 Memberi sokongan profesional dalam pelaksanaan tindakan susulan bagi meningkatkan tahap penguasaan murid.</h3>
+<div class="bar-chart-box">
+<canvas id="chartBC42"></canvas>
+</div>
+
+<h3>4.3 Mengesahkan pelaporan tahap penguasaan murid sekurang-kurangnya dua kali setahun (pertengahan tahun dan akhir tahun) sebelum diserahkan kepada pihak berkepentingan.</h3>
+<div class="chart-box">
+<canvas id="chartBC43"></canvas>
+</div>
+
+<h3>5.1 Melaksanakan sesi perbincangan bersama/dalam panitia bagi menyelaras tahap penguasaan murid merujuk kepada Standard Prestasi yang ditetapkan.</h3>
+<div class="bar-chart-box">
+<canvas id="chartBC51"></canvas>
+</div>
+
+
+<h3>5.2 Memberi sokongan profesional kepada guru dalam menentukan tahap penguasaan secara adil mengikut keupayaan sebenar murid.</h3>
+<div class="bar-chart-box">
+<canvas id="chartBC52"></canvas>
+</div>
+
+
+
+
 </div>
 </div>
 
@@ -937,7 +976,13 @@ let bc12ya=0,bc12tidak=0;
 
 let bc21_1=0,bc21_2=0,bc21_3=0,bc21_4=0,bc21_5=0;
 let bc22_1=0,bc22_2=0,bc22_3=0,bc22_4=0,bc22_5=0;
-
+let bc31_1=0,bc31_2=0,bc31_3=0,bc31_4=0,bc31_5=0;
+let bc32_1=0,bc32_2=0,bc32_3=0,bc32_4=0,bc32_5=0;
+let bc41_1=0,bc41_2=0,bc41_3=0,bc41_4=0,bc41_5=0;
+let bc42_1=0,bc42_2=0,bc42_3=0,bc42_4=0,bc42_5=0;
+let bc43_1=0,bc43_2=0,bc43_3=0,bc43_4=0,bc43_5=0;
+let bc51ya=0,bc51tidak=0;
+let bc52ya=0,bc52tidak=0;
 
 
 
@@ -964,6 +1009,13 @@ const q11bc = clean(row["1.1_c"]);
 const q12bc = clean(row["1.2_c"]);
 const q21bc = clean(row["2.1_c"]);
 const q22bc = clean(row["2.2_c"]);
+const q31bc = clean(row["3.1_c"]);
+const q32bc = clean(row["3.2_c"]);
+const q41bc = clean(row["4.1_c"]);
+const q42bc = clean(row["4.2_c"]);
+const q43bc = clean(row["4.3_c"]);
+const q51bc = clean(row["5.1_c"]);
+const q52bc = clean(row["5.2_c"]);
 
 
 if(nama && nama.trim() !== ""){
@@ -981,6 +1033,13 @@ const skor16b = Number(q16bb);
 const skor17b = Number(q17bb);
 const skor21b = Number(q21bc);
 const skor22b = Number(q22bc);
+const skor31b = Number(q31bc);
+const skor32b = Number(q32bc);
+const skor41b = Number(q41bc);
+const skor42b = Number(q42bc);
+const skor43b = Number(q43bc);
+const skor51b = Number(q51bc);
+const skor52b = Number(q52bc);
 
 
 if(skor11b === 1) bb11_1++;
@@ -1037,6 +1096,45 @@ if(skor22b === 3) bc22_3++;
 if(skor22b === 4) bc22_4++;
 if(skor22b === 5) bc22_5++;
 
+if(skor31b === 1) bc31_1++;
+if(skor31b === 2) bc31_2++;
+if(skor31b === 3) bc31_3++;
+if(skor31b === 4) bc31_4++;
+if(skor31b === 5) bc31_5++;
+
+if(skor32b === 1) bc32_1++;
+if(skor32b === 2) bc32_2++;
+if(skor32b === 3) bc32_3++;
+if(skor32b === 4) bc32_4++;
+if(skor32b === 5) bc32_5++;
+
+if(skor41b === 1) bc41_1++;
+if(skor41b === 2) bc41_2++;
+if(skor41b === 3) bc41_3++;
+if(skor41b === 4) bc41_4++;
+if(skor41b === 5) bc41_5++;
+
+if(skor42b === 1) bc42_1++;
+if(skor42b === 2) bc42_2++;
+if(skor42b === 3) bc42_3++;
+if(skor42b === 4) bc42_4++;
+if(skor42b === 5) bc42_5++;
+
+if(q43bb?.trim() === "Ya") bb43ya++;
+if(q43bb?.trim() === "Tidak") bb43tidak++;
+
+if(skor51b === 1) bc51_1++;
+if(skor51b === 2) bc51_2++;
+if(skor51b === 3) bc51_3++;
+if(skor51b === 4) bc51_4++;
+if(skor51b === 5) bc51_5++;
+
+if(skor52b === 1) bc52_1++;
+if(skor52b === 2) bc52_2++;
+if(skor52b === 3) bc52_3++;
+if(skor52b === 4) bc52_4++;
+if(skor52b === 5) bc52_5++;
+
 }
 });
 
@@ -1066,6 +1164,13 @@ bb17ya=bb17tidak=0;
 bc11ya=bc11tidak=0;
 bc21_1=bc21_2=bc21_3=bc21_4=bc21_5=0;
 bc22_1=bc22_2=bc22_3=bc22_4=bc22_5=0;
+bc31_1=bc31_2=bc31_3=bc31_4=bc31_5=0;
+bc32_1=bc32_2=bc32_3=bc32_4=bc32_5=0;
+bc41_1=bc41_2=bc41_3=bc41_4=bc41_5=0;
+bc42_1=bc42_2=bc42_3=bc42_4=bc42_5=0;
+bc43ya=bc43tidak=0;
+bc51_1=bc51_2=bc51_3=bc51_4=bc51_5=0;
+bc52_1=bc52_2=bc52_3=bc52_4=bc52_5=0;
 
 
 
@@ -1296,6 +1401,38 @@ data:{
 labels:["1","2","3","4","5"],
 datasets:[{
 data:[bc22_1,bc22_2,bc22_3,bc22_4,bc22_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBC31")?.destroy();
+new Chart(document.getElementById("chartBC31"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc31_1,bc31_2,bc31_3,bc31_4,bc31_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBC32")?.destroy();
+new Chart(document.getElementById("chartBC32"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc32_1,bc32_2,bc32_3,bc32_4,bc32_5],
 backgroundColor:"#3498db"
 }]
 },
