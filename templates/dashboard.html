@@ -20,11 +20,7 @@ Chart.register(ChartDataLabels);
 /* DROPDOWN MATA PELAJARAN */
 
 
-.section-content{
-display:none;
-opacity:0;
-transition:opacity 0.3s ease;
-}
+
 
 .section-content.active{
 display:block;
@@ -628,7 +624,9 @@ function syncFilterMP(){
 let mp;
 
 /* detect source */
-if(document.getElementById("sectionCC").classList.contains("active")){
+let sectionCC = document.getElementById("sectionCC");
+
+if(sectionCC && sectionCC.classList.contains("active")){
 mp = document.getElementById("filterMP_C").value;
 }else{
 mp = document.getElementById("filterMP_BC")?.value || "SEMUA";
