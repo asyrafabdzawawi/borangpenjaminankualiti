@@ -963,6 +963,7 @@ const q17bb = clean(row["1.7_b"]);
 const q11bc = clean(row["1.1_c"]);
 const q12bc = clean(row["1.2_c"]);
 const q21bc = clean(row["2.1_c"]);
+const q21bc = clean(row["2.2_c"]);
 
 
 if(nama && nama.trim() !== ""){
@@ -979,6 +980,7 @@ const skor15b = Number(q15bb);
 const skor16b = Number(q16bb);
 const skor17b = Number(q17bb);
 const skor21b = Number(q21bc);
+const skor22b = Number(q22bc);
 
 
 if(skor11b === 1) bb11_1++;
@@ -1029,6 +1031,12 @@ if(skor21b === 3) bc21_3++;
 if(skor21b === 4) bc21_4++;
 if(skor21b === 5) bc21_5++;
 
+if(skor22b === 1) bc22_1++;
+if(skor22b === 2) bc22_2++;
+if(skor22b === 3) bc22_3++;
+if(skor22b === 4) bc22_4++;
+if(skor22b === 5) bc22_5++;
+
 }
 });
 
@@ -1057,6 +1065,7 @@ bb16ya=bb16tidak=0;
 bb17ya=bb17tidak=0;
 bc11ya=bc11tidak=0;
 bc21_1=bc21_2=bc21_3=bc21_4=bc21_5=0;
+bc22_1=bc22_2=bc22_3=bc22_4=bc22_5=0;
 
 
 
@@ -1271,6 +1280,22 @@ data:{
 labels:["1","2","3","4","5"],
 datasets:[{
 data:[bc21_1,bc21_2,bc21_3,bc21_4,bc21_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
+
+Chart.getChart("chartBC22")?.destroy();
+new Chart(document.getElementById("chartBC22"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bc22_1,bc22_2,bc22_3,bc22_4,bc22_5],
 backgroundColor:"#3498db"
 }]
 },
