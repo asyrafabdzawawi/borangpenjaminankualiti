@@ -371,6 +371,11 @@ Tiada data bagi mata pelajaran ini
 <canvas id="chartBC12"></canvas>
 </div>
 
+<h3>2.1 Melaksanakan aktiviti pembangunan profesionalisme berterusan kepada guru bagi meningkatkan pengetahuan, kefahaman dan kemahiran dalam pelaksanaan PBD.</h3>
+<div class="chart-box">
+<canvas id="chartBC21"></canvas>
+</div>
+
 </div>
 
 
@@ -849,6 +854,8 @@ let bb17ya=0,bb17tidak=0;
 let bc11ya=0,bc11tidak=0;
 let bc12ya=0,bc12tidak=0;
 
+let bb21_1=0,bb21_2=0,bb21_3=0,bb21_4=0,bb21_5=0;
+
 
 
 
@@ -873,6 +880,7 @@ const q16bb = clean(row["1.6_b"]);
 const q17bb = clean(row["1.7_b"]);
 const q11bc = clean(row["1.1_c"]);
 const q12bc = clean(row["1.2_c"]);
+const q21bc = clean(row["2.1_c"]);
 
 
 if(nama && nama.trim() !== ""){
@@ -888,6 +896,7 @@ const skor14b = Number(q14bb);
 const skor15b = Number(q15bb);
 const skor16b = Number(q16bb);
 const skor17b = Number(q17bb);
+const skor21b = Number(q21bc);
 
 
 if(skor11b === 1) bb11_1++;
@@ -932,6 +941,12 @@ if(q11bc?.trim() === "Tidak") bc11tidak++;
 if(q12bc?.trim() === "Ya") bc12ya++;
 if(q12bc?.trim() === "Tidak") bc12tidak++;
 
+if(skor21b === 1) bb21_1++;
+if(skor21b === 2) bb21_2++;
+if(skor21b === 3) bb21_3++;
+if(skor21b === 4) bb21_4++;
+if(skor21b === 5) bb21_5++;
+
 }
 });
 
@@ -962,6 +977,8 @@ bb15_1=bb15_2=bb15_3=bb15_4=bb15_5=0;
 bb16ya=bb16tidak=0;
 bb17ya=bb17tidak=0;
 bc11ya=bc11tidak=0;
+bb21_1=bb21_2=bb21_3=bb21_4=bb21_5=0;
+
 
 
 }else{
@@ -1168,7 +1185,21 @@ return (value/total*100).toFixed(1)+"%";
 plugins:[ChartDataLabels]
 });
 
-
+Chart.getChart("chartBB21")?.destroy();
+new Chart(document.getElementById("chartBB21"),{
+type:"bar",
+data:{
+labels:["1","2","3","4","5"],
+datasets:[{
+data:[bb21_1,bb21_2,bb21_3,bb21_4,bb21_5],
+backgroundColor:"#3498db"
+}]
+},
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true}}
+}
+});
 
 
 
