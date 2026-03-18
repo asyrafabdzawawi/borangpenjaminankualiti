@@ -20,7 +20,16 @@ Chart.register(ChartDataLabels);
 /* DROPDOWN MATA PELAJARAN */
 
 
-  
+.section-content{
+display:none;
+opacity:0;
+transition:opacity 0.3s ease;
+}
+
+.section-content.active{
+display:block;
+opacity:1;
+}
 
 /* hover */
 
@@ -402,7 +411,7 @@ Tiada data bagi mata pelajaran ini
 <!-- BAHAGIAN A              -->
 <!-- ======================= -->
 
-<div id="sectionA" class="section-content active">
+<div id="sectionCA" class="section-content active">
 
 <h2>Maklumat Guru Mata Pelajaran</h2>
 
@@ -417,7 +426,7 @@ Tiada data bagi mata pelajaran ini
 <!-- BAHAGIAN B              -->
 <!-- ======================= -->
 
-<div id="sectionB" class="section-content">
+<div id="sectionCB" class="section-content">
 
 <h2>Bahagian B: Peranan Guru</h2>
 
@@ -509,7 +518,7 @@ Tiada data bagi mata pelajaran ini
 <!-- BAHAGIAN C              -->
 <!-- ======================= -->
 
-<div id="sectionC" class="section-content">
+<div id="sectionCC" class="section-content">
 
 <h2>Bahagian C: Penjaminan Mutu</h2>
 
@@ -613,23 +622,30 @@ function syncFilterMP(){
 
 let mp;
 
-/* kalau di Lampiran C */
-if(document.getElementById("sectionC").classList.contains("active")){
+/* detect source */
+if(document.getElementById("sectionCC").classList.contains("active")){
 mp = document.getElementById("filterMP_C").value;
 }else{
-mp = document.getElementById("filterMP_BC").value;
+mp = document.getElementById("filterMP_BC")?.value || "SEMUA";
 }
 
-/* sync */
-let filterB = document.getElementById("filterMP");
-if(filterB){
-filterB.value = mp;
-}
+/* sync semua */
+[
+"filterMP",
+"filterMP_C",
+"filterMP_B",
+"filterMP_BC"
+].forEach(id=>{
+let el = document.getElementById(id);
+if(el) el.value = mp;
+});
 
 loadLampiranC();
+loadLampiranB();
 }
 
 let currentSession = "pertengahan";
+
 
 /* GOOGLE SHEET */
 
@@ -703,9 +719,12 @@ document.querySelectorAll("#tabC .section-content")
 document.querySelectorAll("#tabC .section-btn")
 .forEach(b => b.classList.remove("active"));
 
-document.getElementById("section"+section).classList.add("active");
+/* FIX DI SINI */
+document.getElementById("sectionC"+section).classList.add("active");
+
 btn.classList.add("active");
 
+loadLampiranC();
 }
 
 function openSectionB(section,btn){
@@ -751,13 +770,9 @@ skipEmptyLines: true
 
 const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
-let selectedMP;
 
-if(document.getElementById("sectionBB").classList.contains("active")){
-selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
-}else{
-selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
-}
+
+let selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
 let guruUnik = new Set();
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
@@ -1252,7 +1267,7 @@ const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
 let selectedMP;
 
-if(document.getElementById("sectionC").classList.contains("active")){
+if(document.getElementById("sectionCC").classList.contains("active")){
 selectedMP = document.getElementById("filterMP_C")?.value || "SEMUA";
 }else{
 selectedMP = document.getElementById("filterMP")?.value || "SEMUA";
@@ -1639,7 +1654,7 @@ if(skor52 === 5) c52_5++;
 let msg;
 let jumlahBox;
 
-if(document.getElementById("sectionC").classList.contains("active")){
+if(document.getElementById("sectionCC").classList.contains("active")){
 msg = document.getElementById("noDataMsgC");
 jumlahBox = document.getElementById("jumlahMPC");
 }else{
