@@ -675,22 +675,23 @@ function syncFilterMP(){
 
 let mp = "SEMUA";
 
-/* PRIORITY: ikut tab yang sedang aktif */
+/* PRIORITY: ikut section aktif dengan lebih tepat */
 
 if(document.getElementById("tabC").classList.contains("active")){
 
     if(document.getElementById("sectionCC").classList.contains("active")){
-        mp = document.getElementById("filterMP_C").value;
-    }else{
-        mp = document.getElementById("filterMP").value;
+        mp = document.getElementById("filterMP_C")?.value || "SEMUA";
+    }
+    else if(document.getElementById("sectionCB").classList.contains("active")){
+        mp = document.getElementById("filterMP")?.value || "SEMUA";
     }
 
 }else if(document.getElementById("tabB").classList.contains("active")){
 
     if(document.getElementById("sectionBC").classList.contains("active")){
-        mp = document.getElementById("filterMP_BC").value;
+        mp = document.getElementById("filterMP_BC")?.value || "SEMUA";
     }else{
-        mp = document.getElementById("filterMP_B").value;
+        mp = document.getElementById("filterMP_B")?.value || "SEMUA";
     }
 
 }
