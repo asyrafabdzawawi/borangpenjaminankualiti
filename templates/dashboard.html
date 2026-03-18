@@ -2476,12 +2476,20 @@ if(skor52b === 5) bc52_5++;
 }
 });
 
+
+
 let msg;
 let jumlahBox;
 
+const sectionBC = document.getElementById("sectionBC");
 
-msg = document.getElementById("noDataMsgB");
-jumlahBox = document.getElementById("jumlahMP_B");
+if(sectionBC && sectionBC.classList.contains("active")){
+    msg = document.getElementById("noDataMsgBC");
+    jumlahBox = document.getElementById("jumlahMPBC");
+}else{
+    msg = document.getElementById("noDataMsgB");
+    jumlahBox = document.getElementById("jumlahMP_B");
+}
 
 
 jumlahBox.innerHTML =
