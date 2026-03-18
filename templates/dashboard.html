@@ -284,7 +284,7 @@ Akhir Tahun
 <div class="filter-box">
 <label>Tapis Mata Pelajaran</label>
 
-<select id="filterMP_A" onchange="loadLampiranB()">
+<select id="filterMP_A" onchange="loadLampiranA()">
 <option value="SEMUA">Semua Mata Pelajaran</option>
 <option value="Bahasa Melayu">Bahasa Melayu</option>
 <option value="Bahasa Inggeris">Bahasa Inggeris</option>
@@ -1110,7 +1110,13 @@ document.querySelectorAll("#tabA .section-btn")
 document.getElementById("sectionA"+section).classList.add("active");
 btn.classList.add("active");
 
-loadLampiranA();
+if(section === "B"){
+    setTimeout(() => {
+        loadLampiranA();
+    }, 100);
+}else{
+    loadLampiranA();
+}
 
 }
 
@@ -1457,8 +1463,12 @@ msg.style.display = "none";
 
 }
 
+const sectionAB = document.getElementById("sectionAB");
 
-
+if(!sectionAB.classList.contains("active")){
+    return; // STOP kalau belum buka Bahagian B
+}
+  
 Chart.getChart("chartAB11")?.destroy();
 new Chart(document.getElementById("chartAB11"),{
 type:"bar",
