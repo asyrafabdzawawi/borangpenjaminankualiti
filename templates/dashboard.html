@@ -2196,7 +2196,15 @@ skipEmptyLines: true
 const rows = parsed.data;
 const clean = v => v?.replace(/"/g,"").trim();
 
-let selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
+let selectedMP;
+
+const sectionBC = document.getElementById("sectionBC");
+
+if(sectionBC && sectionBC.classList.contains("active")){
+    selectedMP = document.getElementById("filterMP_BC")?.value || "SEMUA";
+}else{
+    selectedMP = document.getElementById("filterMP_B")?.value || "SEMUA";
+}
 let guruUnik = new Set();
 /* ========================= */
 /* ANALISIS BAHAGIAN A       */
@@ -2823,7 +2831,7 @@ type:"bar",
 data:{
 labels:["1","2","3","4","5"],
 datasets:[{
-data:[bCc2_1,bc42_2,bc42_3,bc42_4,bc42_5],
+data:[bc42_1,bc42_2,bc42_3,bc42_4,bc42_5],
 backgroundColor:"#880AD9"
 }]
 },
