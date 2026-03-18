@@ -19,7 +19,19 @@ Chart.register(ChartDataLabels);
 
 /* DROPDOWN MATA PELAJARAN */
 
+.tab-content{
+display:none;
+}
 
+.tab-content.active{
+display:block;
+animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
 
 
 .section-content.active{
@@ -392,6 +404,7 @@ Tiada data bagi mata pelajaran ini
 </div>
 
 </div>
+</div>
 
 
 
@@ -621,32 +634,40 @@ Tiada data bagi mata pelajaran ini
 
 function syncFilterMP(){
 
-let mp;
+let mp = "SEMUA";
 
-/* detect source */
-let sectionCC = document.getElementById("sectionCC");
+/* PRIORITY: ikut tab yang sedang aktif */
 
-const sectionCB = document.getElementById("sectionCB");
+if(document.getElementById("tabC").classList.contains("active")){
 
-if(sectionCC && sectionCC.classList.contains("active")){
-    mp = document.getElementById("filterMP_C").value;
-}else if(sectionCB && sectionCB.classList.contains("active")){
-    mp = document.getElementById("filterMP").value;
-}else{
-    mp = document.getElementById("filterMP_BC")?.value || "SEMUA";
+    if(document.getElementById("sectionCC").classList.contains("active")){
+        mp = document.getElementById("filterMP_C").value;
+    }else{
+        mp = document.getElementById("filterMP").value;
+    }
+
+}else if(document.getElementById("tabB").classList.contains("active")){
+
+    if(document.getElementById("sectionBC").classList.contains("active")){
+        mp = document.getElementById("filterMP_BC").value;
+    }else{
+        mp = document.getElementById("filterMP_B").value;
+    }
+
 }
 
-/* sync semua */
+/* sync semua dropdown */
 [
 "filterMP",
 "filterMP_C",
 "filterMP_B",
 "filterMP_BC"
 ].forEach(id=>{
-let el = document.getElementById(id);
-if(el) el.value = mp;
+    let el = document.getElementById(id);
+    if(el) el.value = mp;
 });
 
+/* reload ikut tab */
 if(document.getElementById("tabC").classList.contains("active")){
     loadLampiranC();
 }
@@ -654,6 +675,7 @@ if(document.getElementById("tabC").classList.contains("active")){
 if(document.getElementById("tabB").classList.contains("active")){
     loadLampiranB();
 }
+
 }
 
 let currentSession = "pertengahan";
@@ -717,6 +739,9 @@ loadLampiranB();
 
 if(tab === "C"){
 
+// DELAY sikit supaya DOM sempat aktif
+setTimeout(()=>{
+
 // reset semua section dalam Lampiran C
 document.querySelectorAll("#tabC .section-content")
 .forEach(t => t.classList.remove("active"));
@@ -734,6 +759,8 @@ if(btns.length > 0){
 }
 
 loadLampiranC();
+
+}, 50); // penting
 }
 
 }
