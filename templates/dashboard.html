@@ -854,7 +854,7 @@ let bb17ya=0,bb17tidak=0;
 let bc11ya=0,bc11tidak=0;
 let bc12ya=0,bc12tidak=0;
 
-let bb21_1=0,bb21_2=0,bb21_3=0,bb21_4=0,bb21_5=0;
+let bc21_1=0,bc21_2=0,bc21_3=0,bc21_4=0,bc21_5=0;
 
 
 
@@ -941,11 +941,11 @@ if(q11bc?.trim() === "Tidak") bc11tidak++;
 if(q12bc?.trim() === "Ya") bc12ya++;
 if(q12bc?.trim() === "Tidak") bc12tidak++;
 
-if(skor21b === 1) bb21_1++;
-if(skor21b === 2) bb21_2++;
-if(skor21b === 3) bb21_3++;
-if(skor21b === 4) bb21_4++;
-if(skor21b === 5) bb21_5++;
+if(skor21b === 1) bc21_1++;
+if(skor21b === 2) bc21_2++;
+if(skor21b === 3) bc21_3++;
+if(skor21b === 4) bc21_4++;
+if(skor21b === 5) bc21_5++;
 
 }
 });
@@ -977,7 +977,7 @@ bb15_1=bb15_2=bb15_3=bb15_4=bb15_5=0;
 bb16ya=bb16tidak=0;
 bb17ya=bb17tidak=0;
 bc11ya=bc11tidak=0;
-bb21_1=bb21_2=bb21_3=bb21_4=bb21_5=0;
+bc21_1=bc21_2=bc21_3=bc21_4=bc21_5=0;
 
 
 
@@ -1185,13 +1185,13 @@ return (value/total*100).toFixed(1)+"%";
 plugins:[ChartDataLabels]
 });
 
-Chart.getChart("chartBB21")?.destroy();
-new Chart(document.getElementById("chartBB21"),{
+Chart.getChart("chartBC21")?.destroy();
+new Chart(document.getElementById("chartBC21"),{
 type:"bar",
 data:{
 labels:["1","2","3","4","5"],
 datasets:[{
-data:[bb21_1,bb21_2,bb21_3,bb21_4,bb21_5],
+data:[bc21_1,bc21_2,bc21_3,bc21_4,bc21_5],
 backgroundColor:"#3498db"
 }]
 },
