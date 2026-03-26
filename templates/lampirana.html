@@ -794,6 +794,26 @@ function prevStep(){
 
 async function generatePDF(){
 
+const form = document.querySelector("form");
+
+fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+})
+.then(res => res.text())
+.then(() => {
+
+    alert("Rekod berjaya dihantar!");
+    generatePDFOnly();
+
+})
+.catch(() => {
+    alert("Data gagal dihantar!");
+});
+
+}
+async function generatePDFOnly(){
+
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF('p','mm','a4');
 
@@ -920,25 +940,42 @@ y2 += 10;
 
 // LIST ITEM C (1.1 → 5.2)
 const itemsC = [
-"1.1","1.2",
-"2.1","2.2",
-"3.1","3.2",
-"4.1","4.2","4.3",
-"5.1","5.2"
+["1.1","Merujuk Panduan Pengurusan Pentaksiran Berasaskan Sekolah (PBS) yang sedang berkuat kuasa"],
+["1.2","Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah (PBD) yang sedang berkuat kuasa"],
+["2.1","Merangka aktiviti pembangunan profesionalisme berterusan kepada guru"],
+["2.2","Memberi bimbingan tentang pelaksanaan dan pengoperasian PBD kepada GKMP/KP"],
+["3.1","Menentusahkan sampel instrumen pentaksiran yang digunakan oleh guru"],
+["3.2","Menentusahkan sampel kaedah pentaksiran yang digunakan oleh guru"],
+["4.1","Menentusahkan perekodan tahap penguasaan murid"],
+["4.2","Memantau pelaksanaan tindakan susulan bagi meningkatkan tahap penguasaan murid"],
+["4.3","Menentusahkan pelaporan tahap penguasaan murid sekurang-kurangnya dua kali setahun"],
+["5.1","Menentusahkan tahap penguasaan murid merujuk kepada Standard Prestasi"],
+["5.2","Memberi sokongan profesional kepada GKMP/KP dalam menentukan tahap penguasaan"]
 ];
 
-itemsC.forEach(i=>{
-let val = document.querySelector(`input[name="${i}_c"]:checked`)?.value;
-let cat = document.querySelector(`[name="catatan_${i}_c"]`)?.value;
+itemsC.forEach(([no, text])=>{
 
-rowC(i, "Item "+i, val, cat);
+let val = document.querySelector(`input[name="${no}_c"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${no}_c"]`)?.value;
+
+let splitText = doc.splitTextToSize(text, 85);
+
+rowC(no, splitText, val, cat);
+
 });
 
 // ================= SIGN =================
 doc.text("Tandatangan: ____________________", 14, 260);
 doc.text("Nama: " + nama, 14, 270);
-doc.text("Tarikh: ____________________", 14, 280);
+const today = new Date();
 
+const tarikh = today.toLocaleDateString('ms-MY', {
+day: '2-digit',
+month: '2-digit',
+year: 'numeric'
+});
+
+doc.text("Tarikh: " + tarikh, 14, 280);
 // ================= SAVE =================
 doc.save("Lampiran_A_PBD.pdf");
 
