@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <title>Senarai Semak Penjaminan Kualiti PBD</title>
 
 <style>
@@ -692,7 +693,7 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 </div>
 
 <button type="button" onclick="prevStep()">Sebelumnya</button>
-<button type="submit">Hantar Borang</button>
+<button type="button" onclick="generatePDF()">Hantar</button>
 
 </div>
 
@@ -791,6 +792,21 @@ function prevStep(){
     }
 }
 
+function generatePDF(){
+
+    const element = document.querySelector(".container");
+
+    const opt = {
+        margin:       0.5,
+        filename:     'Borang_PBD.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+
+}
 </script>
 
 </body>
