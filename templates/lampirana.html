@@ -9,6 +9,63 @@
 
 <style>
 
+.page{
+    page-break-after: always;
+    min-height: 270mm;
+    padding-bottom: 20px;
+}
+
+.page{
+    page-break-after: always;
+    min-height: 100vh;
+}
+
+.page:last-child{
+    page-break-after: auto;
+}
+
+@media print {
+
+    body{
+        background: white !important;
+    }
+
+    .container{
+        box-shadow: none;
+        padding: 20px;
+    }
+
+    .form-group,
+    .section-title{
+        page-break-inside: avoid;
+    }
+
+    h2, h1{
+        page-break-after: avoid;
+    }
+
+}
+
+/* PDF Optimization */
+.container{
+    width: 210mm;
+    max-width: 210mm;
+}
+
+.form-group{
+    margin-bottom: 15px;
+}
+
+.scale label,
+.radio-group label{
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+.checkbox-group{
+    grid-template-columns: repeat(2,1fr); /* lebih kemas dalam PDF */
+}
+
 /* ================= RESET ================= */
 
 *{
@@ -267,7 +324,7 @@ input[name^="catatan"]{
 <body>
 
 <div class="container">
-
+<div class="step page" id="step1">
 <h1 class="title">
 INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH BAGI PENGETUA/GURU BESAR/GURU PENOLONG KANAN
 </h1>
@@ -291,7 +348,7 @@ Lampiran A – Pengetua/Guru Besar/Guru Penolong Kanan
 
 <!-- ================= STEP 1 ================= -->
 
-<div class="step" id="step1">
+
 
 <h2 class="section-title">
 BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN
@@ -377,7 +434,7 @@ BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN
 
 </div>
 
-<div class="step" id="step2" style="display:none;">
+<div class="step page" id="step2" style="display:none;">
 
 <h2>BAHAGIAN B: PERANAN PENGETUA/GURU BESAR/GURU PENOLONG KANAN </h2>
 <h2>ARAHAN BAHAGIAN B: </h2>
@@ -539,7 +596,7 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 
 </div>
 
-<div class="step" id="step3" style="display:none;">
+<div class="step page" id="step3" style="display:none;">
 
 <h2>BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU </h2>
 <h2>ARAHAN BAHAGIAN C: </h2>
@@ -692,6 +749,19 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 <input type="text" name="catatan_5.2_c" placeholder="Catatan (jika ada)">
 </div>
 
+<br><br>
+
+<div>
+    <div style="border-bottom:1px solid black; width:250px;"></div>
+    <p id="namaGuruPDF">Nama Guru</p>
+    <p>Guru Penilai</p>
+
+    <br><br>
+
+    <div style="border-bottom:1px solid black; width:250px;"></div>
+    <p>Tarikh: <span id="tarikhHariIni"></span></p>
+</div>
+
 <button type="button" onclick="prevStep()">Sebelumnya</button>
 <button type="button" onclick="generatePDF()">Hantar</button>
 
@@ -794,17 +864,48 @@ function prevStep(){
 
 function generatePDF(){
 
+    const steps = document.querySelectorAll(".step");
+
+    // Papar semua step
+    steps.forEach(step=>{
+        step.style.display = "block";
+    });
+
+    // ✅ LETAK SINI (SEKALI SAHAJA)
+    setSignature();
+
     const element = document.querySelector(".container");
 
     const opt = {
-        margin:       0.5,
-        filename:     'Borang_PBD.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+        margin: 10,
+        filename: 'Borang_PBD.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 3 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
     };
 
-    html2pdf().set(opt).from(element).save();
+    html2pdf().set(opt).from(element).save().then(()=>{
+
+        // Restore step asal
+        steps.forEach((step, index)=>{
+            if(index !== (currentStep-1)){
+                step.style.display = "none";
+            }
+        });
+
+    });
+
+}
+
+function setSignature(){
+
+    const nama = document.querySelector('select[name="nama"]').value;
+
+    const today = new Date().toLocaleDateString('ms-MY');
+
+    document.getElementById("namaGuruPDF").innerText = nama || "________________";
+    document.getElementById("tarikhHariIni").innerText = today;
 
 }
 </script>
