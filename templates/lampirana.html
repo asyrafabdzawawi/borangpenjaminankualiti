@@ -2,69 +2,12 @@
 <html lang="ms">
 
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <title>Senarai Semak Penjaminan Kualiti PBD</title>
 
 <style>
-
-.page{
-    page-break-after: always;
-    min-height: 270mm;
-    padding-bottom: 20px;
-}
-
-.page{
-    page-break-after: always;
-    min-height: 100vh;
-}
-
-.page:last-child{
-    page-break-after: auto;
-}
-
-@media print {
-
-    body{
-        background: white !important;
-    }
-
-    .container{
-        box-shadow: none;
-        padding: 20px;
-    }
-
-    .form-group,
-    .section-title{
-        page-break-inside: avoid;
-    }
-
-    h2, h1{
-        page-break-after: avoid;
-    }
-
-}
-
-/* PDF Optimization */
-.container{
-    width: 210mm;
-    max-width: 210mm;
-}
-
-.form-group{
-    margin-bottom: 15px;
-}
-
-.scale label,
-.radio-group label{
-    font-size: 12px;
-    padding: 6px 10px;
-}
-
-.checkbox-group{
-    grid-template-columns: repeat(2,1fr); /* lebih kemas dalam PDF */
-}
 
 /* ================= RESET ================= */
 
@@ -324,7 +267,7 @@ input[name^="catatan"]{
 <body>
 
 <div class="container">
-<div class="step page" id="step1">
+
 <h1 class="title">
 INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH BAGI PENGETUA/GURU BESAR/GURU PENOLONG KANAN
 </h1>
@@ -348,7 +291,7 @@ Lampiran A – Pengetua/Guru Besar/Guru Penolong Kanan
 
 <!-- ================= STEP 1 ================= -->
 
-
+<div class="step" id="step1">
 
 <h2 class="section-title">
 BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN
@@ -434,7 +377,7 @@ BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN
 
 </div>
 
-<div class="step page" id="step2" style="display:none;">
+<div class="step" id="step2" style="display:none;">
 
 <h2>BAHAGIAN B: PERANAN PENGETUA/GURU BESAR/GURU PENOLONG KANAN </h2>
 <h2>ARAHAN BAHAGIAN B: </h2>
@@ -596,7 +539,7 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 
 </div>
 
-<div class="step page" id="step3" style="display:none;">
+<div class="step" id="step3" style="display:none;">
 
 <h2>BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU </h2>
 <h2>ARAHAN BAHAGIAN C: </h2>
@@ -749,21 +692,8 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 <input type="text" name="catatan_5.2_c" placeholder="Catatan (jika ada)">
 </div>
 
-<br><br>
-
-<div>
-    <div style="border-bottom:1px solid black; width:250px;"></div>
-    <p id="namaGuruPDF">Nama Guru</p>
-    <p>Guru Penilai</p>
-
-    <br><br>
-
-    <div style="border-bottom:1px solid black; width:250px;"></div>
-    <p>Tarikh: <span id="tarikhHariIni"></span></p>
-</div>
-
 <button type="button" onclick="prevStep()">Sebelumnya</button>
-<button type="button" onclick="generatePDF()">Hantar</button>
+<button type="button" onclick="generatePDF()">Hantar Borang</button>
 
 </div>
 
@@ -862,52 +792,66 @@ function prevStep(){
     }
 }
 
-function generatePDF(){
+async function generatePDF(){
 
-    const steps = document.querySelectorAll(".step");
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p','mm','a4');
 
-    // Papar semua step
-    steps.forEach(step=>{
-        step.style.display = "block";
-    });
+    // ================= DATA =================
+    const nama = document.querySelector('[name="nama"]').value;
+    const jawatan = document.querySelector('[name="jawatan"]').value;
+    const mp = document.querySelector('[name="mp"]').value;
 
-    // ✅ LETAK SINI (SEKALI SAHAJA)
-    setSignature();
+    const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
+        .map(cb => cb.value).join(", ");
 
-    const element = document.querySelector(".container");
+    // ================= PAGE 1 =================
+    doc.setFontSize(14);
+    doc.text("INSTRUMEN PENJAMINAN MUTU PBD", 105, 15, null, null, "center");
 
-    const opt = {
-        margin: 10,
-        filename: 'Borang_PBD.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 3 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['css', 'legacy'] }
-    };
+    doc.setFontSize(11);
+    doc.text("BAHAGIAN A", 14, 30);
 
-    html2pdf().set(opt).from(element).save().then(()=>{
+    doc.text("Nama: " + nama, 14, 40);
+    doc.text("Jawatan: " + jawatan, 14, 50);
+    doc.text("Mata Pelajaran: " + mp, 14, 60);
+    doc.text("Tahun: " + tahun, 14, 70);
 
-        // Restore step asal
-        steps.forEach((step, index)=>{
-            if(index !== (currentStep-1)){
-                step.style.display = "none";
-            }
-        });
+    // ================= PAGE 2 =================
+    doc.addPage();
 
-    });
+    doc.setFontSize(12);
+    doc.text("BAHAGIAN B", 14, 20);
 
+    let y = 30;
+
+    for(let i=1; i<=5; i++){
+        let val = document.querySelector(`input[name="${i}.1_b"]:checked`);
+        doc.text(`Item ${i}.1: ${val ? val.value : "-"}`, 14, y);
+        y += 10;
+    }
+
+    // ================= PAGE 3 =================
+    doc.addPage();
+
+    doc.text("BAHAGIAN C", 14, 20);
+
+    let y2 = 30;
+
+    for(let i=1; i<=5; i++){
+        let val = document.querySelector(`input[name="${i}.1_c"]:checked`);
+        doc.text(`Item ${i}.1: ${val ? val.value : "-"}`, 14, y2);
+        y2 += 10;
+    }
+
+    // ================= SIGN =================
+    doc.text("Tandatangan: ____________________", 14, 260);
+    doc.text("Nama: " + nama, 14, 270);
+
+    // ================= SAVE =================
+    doc.save("Lampiran_A_PBD.pdf");
 }
 
-function setSignature(){
-
-    const nama = document.querySelector('select[name="nama"]').value;
-
-    const today = new Date().toLocaleDateString('ms-MY');
-
-    document.getElementById("namaGuruPDF").innerText = nama || "________________";
-    document.getElementById("tarikhHariIni").innerText = today;
-
-}
 </script>
 
 </body>
