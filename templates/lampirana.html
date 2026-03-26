@@ -829,8 +829,13 @@ doc.setFont("helvetica");
 doc.setFontSize(10);
 
 // ================= PAGE 1 =================
-doc.setFontSize(12);
-doc.text("LAMPIRAN A - INSTRUMEN PENJAMINAN MUTU PENTAKSIRAN BILIK DARJAH BAGI PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 105, 10, null, null, "center");
+doc.setFontSize(11);
+doc.text("LAMPIRAN A", 105, 8, null, null, "center");
+
+doc.setFontSize(10);
+doc.text("INSTRUMEN PENJAMINAN MUTU", 105, 14, null, null, "center");
+doc.text("PENTAKSIRAN BILIK DARJAH", 105, 19, null, null, "center");
+doc.text("BAGI PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 105, 24, null, null, "center");
 
 doc.setFontSize(10);
 doc.text("BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 14, 20);
@@ -872,9 +877,10 @@ doc.text(no,16,y+6);
 let splitText = doc.splitTextToSize(text, 85);
 doc.text(splitText,26,y+6);
 
-doc.text(val ? val : "-",118,y+6);
+doc.text(val ? val : "-", 129, y+6, { align: "center" });
 
-doc.text(catatan ? catatan : "-",146,y+6);
+let catSplit = doc.splitTextToSize(catatan || "-", 45);
+doc.text(catSplit,146,y+6);
 
 y += 10;
 }
@@ -933,7 +939,8 @@ doc.text(text,26,y2+6);
 
 doc.text(val ? val : "-",118,y2+6);
 
-doc.text(catatan ? catatan : "-",146,y2+6);
+let catSplit = doc.splitTextToSize(catatan || "-", 45);
+doc.text(catSplit,146,y+6);
 
 y2 += 10;
 }
