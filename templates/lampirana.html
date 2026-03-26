@@ -878,21 +878,31 @@ let y = 30;
 // function draw row
 function row(no, text, val, catatan){
 
-doc.rect(14,y,10,10);
-doc.rect(24,y,90,10);
-doc.rect(114,y,30,10);
-doc.rect(144,y,50,10);
+let textLines = doc.splitTextToSize(text, 85);
+let catLines = doc.splitTextToSize(catatan || "-", 45);
 
-doc.text(no,16,y+6);
-let splitText = doc.splitTextToSize(text, 85);
-doc.text(splitText,26,y+6);
+// kira tinggi berdasarkan line
+let lineHeight = 5;
+let maxLines = Math.max(textLines.length, catLines.length);
+let rowHeight = maxLines * lineHeight + 2;
 
-doc.text(val ? val : "-", 129, y+6, { align: "center" });
+// DRAW BOX (ikut tinggi)
+doc.rect(14,y,10,rowHeight);
+doc.rect(24,y,90,rowHeight);
+doc.rect(114,y,30,rowHeight);
+doc.rect(144,y,50,rowHeight);
 
-let catSplit = doc.splitTextToSize(catatan || "-", 45);
-doc.text(catSplit,146,y+6);
+// TEXT
+doc.text(no,16,y+5);
 
-y += 10;
+doc.text(textLines,26,y+5);
+
+doc.text(val ? val : "-", 129, y+5, { align: "center" });
+
+doc.text(catLines,146,y+5);
+
+// MOVE Y
+y += rowHeight;
 }
 
 // AUTO LOOP BAHAGIAN B
@@ -939,20 +949,27 @@ let y2 = 30;
 
 function rowC(no, text, val, catatan){
 
-doc.rect(14,y2,10,10);
-doc.rect(24,y2,90,10);
-doc.rect(114,y2,30,10);
-doc.rect(144,y2,50,10);
+let textLines = doc.splitTextToSize(text, 85);
+let catLines = doc.splitTextToSize(catatan || "-", 45);
 
-doc.text(no,16,y2+6);
-doc.text(text,26,y2+6);
+let lineHeight = 5;
+let maxLines = Math.max(textLines.length, catLines.length);
+let rowHeight = maxLines * lineHeight + 2;
 
-doc.text(val ? val : "-",118,y2+6);
+doc.rect(14,y2,10,rowHeight);
+doc.rect(24,y2,90,rowHeight);
+doc.rect(114,y2,30,rowHeight);
+doc.rect(144,y2,50,rowHeight);
 
-let catSplit = doc.splitTextToSize(catatan || "-", 45);
-doc.text(catSplit,146,y2+6);
+doc.text(no,16,y2+5);
 
-y2 += 10;
+doc.text(textLines,26,y2+5);
+
+doc.text(val ? val : "-",118,y2+5);
+
+doc.text(catLines,146,y2+5);
+
+y2 += rowHeight;
 }
 
 // LIST ITEM C (1.1 → 5.2)
