@@ -838,14 +838,24 @@ doc.text("PENTAKSIRAN BILIK DARJAH", 105, 19, null, null, "center");
 doc.text("BAGI PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 105, 24, null, null, "center");
 
 doc.setFontSize(10);
+doc.setFont("times", "bold");
 doc.text("BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 14, 35);
 
-doc.rect(14, 25, 180, 30);
+doc.setFont("times", "normal");
 
-doc.text("Nama: " + nama, 16, 32);
-doc.text("Jawatan: " + jawatan, 16, 38);
-doc.text("Mata Pelajaran Diajar: " + mp, 16, 44);
-doc.text("Tahun/Tingkatan: " + tahun, 16, 50);
+doc.rect(14, 40, 180, 35);
+
+doc.text("Nama:", 16, 48);
+doc.text(nama, 50, 48);
+
+doc.text("Jawatan:", 16, 55);
+doc.text(jawatan, 50, 55);
+
+doc.text("Mata Pelajaran:", 16, 62);
+doc.text(mp, 50, 62);
+
+doc.text("Tahun/Tingkatan:", 16, 69);
+doc.text(tahun, 50, 69);
 
 // ================= PAGE 2 =================
 doc.addPage();
