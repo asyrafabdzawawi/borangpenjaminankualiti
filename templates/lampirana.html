@@ -794,62 +794,154 @@ function prevStep(){
 
 async function generatePDF(){
 
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p','mm','a4');
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF('p','mm','a4');
 
-    // ================= DATA =================
-    const nama = document.querySelector('[name="nama"]').value;
-    const jawatan = document.querySelector('[name="jawatan"]').value;
-    const mp = document.querySelector('[name="mp"]').value;
+const nama = document.querySelector('[name="nama"]').value;
+const jawatan = document.querySelector('[name="jawatan"]').value;
+const mp = document.querySelector('[name="mp"]').value;
 
-    const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
-        .map(cb => cb.value).join(", ");
+const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
+.map(cb => cb.value).join(", ");
 
-    // ================= PAGE 1 =================
-    doc.setFontSize(14);
-    doc.text("INSTRUMEN PENJAMINAN MUTU PBD", 105, 15, null, null, "center");
+// ================= STYLE =================
+doc.setFont("helvetica");
+doc.setFontSize(10);
 
-    doc.setFontSize(11);
-    doc.text("BAHAGIAN A", 14, 30);
+// ================= PAGE 1 =================
+doc.setFontSize(12);
+doc.text("INSTRUMEN PENJAMINAN MUTU PBD", 105, 10, null, null, "center");
 
-    doc.text("Nama: " + nama, 14, 40);
-    doc.text("Jawatan: " + jawatan, 14, 50);
-    doc.text("Mata Pelajaran: " + mp, 14, 60);
-    doc.text("Tahun: " + tahun, 14, 70);
+doc.setFontSize(10);
+doc.text("BAHAGIAN A: MAKLUMAT", 14, 20);
 
-    // ================= PAGE 2 =================
-    doc.addPage();
+doc.rect(14, 25, 180, 30);
 
-    doc.setFontSize(12);
-    doc.text("BAHAGIAN B", 14, 20);
+doc.text("Nama: " + nama, 16, 32);
+doc.text("Jawatan: " + jawatan, 16, 38);
+doc.text("Mata Pelajaran: " + mp, 16, 44);
+doc.text("Tahun: " + tahun, 16, 50);
 
-    let y = 30;
+// ================= PAGE 2 =================
+doc.addPage();
 
-    for(let i=1; i<=5; i++){
-        let val = document.querySelector(`input[name="${i}.1_b"]:checked`);
-        doc.text(`Item ${i}.1: ${val ? val.value : "-"}`, 14, y);
-        y += 10;
-    }
+doc.text("BAHAGIAN B", 14, 15);
 
-    // ================= PAGE 3 =================
-    doc.addPage();
+// TABLE HEADER
+doc.rect(14,20,10,10);
+doc.rect(24,20,90,10);
+doc.rect(114,20,30,10);
+doc.rect(144,20,50,10);
 
-    doc.text("BAHAGIAN C", 14, 20);
+doc.text("BIL", 16,26);
+doc.text("PERKARA", 26,26);
+doc.text("SKALA", 118,26);
+doc.text("CATATAN", 150,26);
 
-    let y2 = 30;
+let y = 30;
 
-    for(let i=1; i<=5; i++){
-        let val = document.querySelector(`input[name="${i}.1_c"]:checked`);
-        doc.text(`Item ${i}.1: ${val ? val.value : "-"}`, 14, y2);
-        y2 += 10;
-    }
+// function draw row
+function row(no, text, val, catatan){
 
-    // ================= SIGN =================
-    doc.text("Tandatangan: ____________________", 14, 260);
-    doc.text("Nama: " + nama, 14, 270);
+doc.rect(14,y,10,10);
+doc.rect(24,y,90,10);
+doc.rect(114,y,30,10);
+doc.rect(144,y,50,10);
 
-    // ================= SAVE =================
-    doc.save("Lampiran_A_PBD.pdf");
+doc.text(no,16,y+6);
+let splitText = doc.splitTextToSize(text, 85);
+doc.text(splitText,26,y+6);
+
+doc.text(val ? val : "-",118,y+6);
+
+doc.text(catatan ? catatan : "-",146,y+6);
+
+y += 10;
+}
+
+// AUTO LOOP BAHAGIAN B
+const itemsB = [
+["1.1","Memahami kepentingan Pentaksiran Bilik Darjah (PBD)"],
+["1.2","Menguasai konsep PBD"],
+["1.3","Menguasai pelaksanaan PBD"],
+["1.4","Menguasai kaedah pentaksiran"],
+["1.5","Menguasai instrumen pentaksiran"],
+["1.6","Memberi sokongan profesional"],
+["1.7","Menerajui pelaksanaan PBD"],
+["1.8","Melaksanakan penjaminan mutu PBD"],
+["1.9","Menyelesaikan isu pelaksanaan"],
+["1.10","Mengukur keberkesanan"],
+["1.11","Menentusahkan laporan"],
+["1.12","Merajui pembangunan profesional"],
+["1.13","Menentusahkan instrumen ujian"]
+];
+
+itemsB.forEach(([no, text])=>{
+
+let val = document.querySelector(`input[name="${no}_b"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${no}_b"]`)?.value;
+
+row(no, text, val, cat);
+
+});
+// ================= PAGE 3 =================
+doc.addPage();
+
+doc.text("BAHAGIAN C", 14, 15);
+
+doc.rect(14,20,10,10);
+doc.rect(24,20,90,10);
+doc.rect(114,20,30,10);
+doc.rect(144,20,50,10);
+
+doc.text("BIL", 16,26);
+doc.text("PERKARA", 26,26);
+doc.text("SKALA", 118,26);
+doc.text("CATATAN", 150,26);
+
+let y2 = 30;
+
+function rowC(no, text, val, catatan){
+
+doc.rect(14,y2,10,10);
+doc.rect(24,y2,90,10);
+doc.rect(114,y2,30,10);
+doc.rect(144,y2,50,10);
+
+doc.text(no,16,y2+6);
+doc.text(text,26,y2+6);
+
+doc.text(val ? val : "-",118,y2+6);
+
+doc.text(catatan ? catatan : "-",146,y2+6);
+
+y2 += 10;
+}
+
+// LIST ITEM C (1.1 → 5.2)
+const itemsC = [
+"1.1","1.2",
+"2.1","2.2",
+"3.1","3.2",
+"4.1","4.2","4.3",
+"5.1","5.2"
+];
+
+itemsC.forEach(i=>{
+let val = document.querySelector(`input[name="${i}_c"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${i}_c"]`)?.value;
+
+rowC(i, "Item "+i, val, cat);
+});
+
+// ================= SIGN =================
+doc.text("Tandatangan: ____________________", 14, 260);
+doc.text("Nama: " + nama, 14, 270);
+doc.text("Tarikh: ____________________", 14, 280);
+
+// ================= SAVE =================
+doc.save("Lampiran_A_PBD.pdf");
+
 }
 
 </script>
