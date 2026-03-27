@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Senarai Semak Penjaminan Kualiti PBD</title>
@@ -815,7 +816,7 @@ ii. Tandakan skala penilaian berdasarkan penyataan:<br>
 </div>
 
 <button type="button" onclick="prevStep()">Sebelumnya</button>
-<button type="submit">Hantar Borang</button>
+<button type="button" onclick="generatePDF()">Hantar Borang</button>
 
 </div>
 
@@ -917,6 +918,224 @@ currentStep--;
 showStep(currentStep);
 window.scrollTo({top:0,behavior:"smooth"});
 }
+}
+
+
+async function generatePDF(){
+
+const form = document.querySelector("form");
+
+fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+})
+.then(res => res.text())
+.then(() => {
+
+    alert("Rekod berjaya dihantar!");
+    generatePDFOnly();
+
+})
+.catch(() => {
+    alert("Data gagal dihantar!");
+});
+
+}
+async function generatePDFOnly(){
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF('p','mm','a4');
+
+const nama = document.querySelector('[name="nama"]').value;
+const jawatan = document.querySelector('[name="jawatan"]').value;
+const mp = document.querySelector('[name="mp"]').value;
+
+const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
+.map(cb => cb.value).join(", ");
+
+// ================= STYLE =================
+doc.setFont("helvetica");
+doc.setFontSize(10);
+
+// ================= PAGE 1 =================
+doc.setFontSize(11);
+doc.text("LAMPIRAN B", 105, 8, null, null, "center");
+
+doc.setFontSize(10);
+doc.text("INSTRUMEN PENJAMINAN MUTU", 105, 14, null, null, "center");
+doc.text("PENTAKSIRAN BILIK DARJAH", 105, 19, null, null, "center");
+doc.text("BAGI GURU KANAN MATA PELAJARAN/KETUA PANITIA", 105, 24, null, null, "center");
+
+doc.setFontSize(10);
+doc.setFont("times", "bold");
+doc.text("BAHAGIAN A: MAKLUMAT GURU KANAN MATA PELAJARAN/KETUA PANITIA", 14, 35);
+
+doc.setFont("times", "normal");
+
+doc.rect(14, 40, 180, 35);
+
+doc.text("Nama:", 16, 48);
+doc.text(nama, 50, 48);
+
+doc.text("Jawatan:", 16, 55);
+doc.text(jawatan, 50, 55);
+
+doc.text("Mata Pelajaran:", 16, 62);
+doc.text(mp, 50, 62);
+
+doc.text("Tahun/Tingkatan:", 16, 69);
+doc.text(tahun, 50, 69);
+
+// ================= PAGE 2 =================
+doc.addPage();
+
+doc.text("BAHAGIAN B: PERANAN GURU KANAN MATA PELAJARAN/KETUA PANITIA", 14, 15);
+
+// TABLE HEADER
+doc.rect(14,20,10,10);
+doc.rect(24,20,90,10);
+doc.rect(114,20,30,10);
+doc.rect(144,20,50,10);
+
+doc.text("BIL", 16,26);
+doc.text("PERKARA", 26,26);
+doc.text("SKALA", 118,26);
+doc.text("CATATAN", 150,26);
+
+let y = 30;
+
+// function draw row
+function row(no, text, val, catatan){
+
+let textLines = doc.splitTextToSize(text, 85);
+let catLines = doc.splitTextToSize(catatan || "-", 45);
+
+// kira tinggi berdasarkan line
+let lineHeight = 5;
+let maxLines = Math.max(textLines.length, catLines.length);
+let rowHeight = maxLines * lineHeight + 2;
+
+// DRAW BOX (ikut tinggi)
+doc.rect(14,y,10,rowHeight);
+doc.rect(24,y,90,rowHeight);
+doc.rect(114,y,30,rowHeight);
+doc.rect(144,y,50,rowHeight);
+
+// TEXT
+doc.text(no,16,y+5);
+
+doc.text(textLines,26,y+5);
+
+doc.text(val ? val : "-", 129, y+5, { align: "center" });
+
+doc.text(catLines,146,y+5);
+
+// MOVE Y
+y += rowHeight;
+}
+
+// AUTO LOOP BAHAGIAN B
+const itemsB = [
+["1.1","Memahami kepentingan Pentaksiran Bilik Darjah (PBD)"],
+["1.2","Menguasai konsep PBD"],
+["1.3","Menguasai pelaksanaan PBD"],
+["1.4","Menguasai kaedah pentaksiran"],
+["1.5","Menguasai instrumen pentaksiran"],
+["1.6","Memberi sokongan profesional"],
+["1.7","Menyemak instrumen ujian akhir sesi akademik mengikut format dan Jadual Spesifikasi Ujian (JSU)"],
+];
+
+itemsB.forEach(([no, text])=>{
+
+let val = document.querySelector(`input[name="${no}_b"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${no}_b"]`)?.value;
+
+row(no, text, val, cat);
+
+});
+// ================= PAGE 3 =================
+doc.addPage();
+
+doc.text("BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU", 14, 15);
+
+doc.rect(14,20,10,10);
+doc.rect(24,20,90,10);
+doc.rect(114,20,30,10);
+doc.rect(144,20,50,10);
+
+doc.text("BIL", 16,26);
+doc.text("PERKARA", 26,26);
+doc.text("SKALA", 118,26);
+doc.text("CATATAN", 150,26);
+
+let y2 = 30;
+
+function rowC(no, text, val, catatan){
+
+let textLines = doc.splitTextToSize(text, 85);
+let catLines = doc.splitTextToSize(catatan || "-", 45);
+
+let lineHeight = 5;
+let maxLines = Math.max(textLines.length, catLines.length);
+let rowHeight = maxLines * lineHeight + 2;
+
+doc.rect(14,y2,10,rowHeight);
+doc.rect(24,y2,90,rowHeight);
+doc.rect(114,y2,30,rowHeight);
+doc.rect(144,y2,50,rowHeight);
+
+doc.text(no,16,y2+5);
+
+doc.text(textLines,26,y2+5);
+
+doc.text(val ? val : "-",118,y2+5);
+
+doc.text(catLines,146,y2+5);
+
+y2 += rowHeight;
+}
+
+// LIST ITEM C (1.1 → 5.2)
+const itemsC = [
+["1.1","Merujuk Panduan Pengurusan Pentaksiran Berasaskan Sekolah (PBS) yang sedang berkuat kuasa"],
+["1.2","Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah (PBD) yang sedang berkuat kuasa"],
+["2.1","Melaksanakan aktiviti pembangunan profesionalisme berterusan kepada guru"],
+["2.2","Memberi bimbingan tentang pelaksanaan dan pengoperasian PBD kepada guru "],
+["3.1","Menyemak sampel instrumen pentaksiran yang digunakan oleh guru"],
+["3.2","Menyemak sampel kaedah pentaksiran yang digunakan oleh guru u"],
+["4.1","Memantau perekodan tahap penguasaan murid"],
+["4.2","Memberi sokongan profesional dalam pelaksanaan tindakan susulan bagi meningkatkan tahap penguasaan murid."],
+["4.3","Mengesahkan pelaporan tahap penguasaan murid sekurang-kurangnya dua kali setahun"],
+["5.1","Melaksanakan sesi perbincangan bersama/dalam panitia bagi menyelaras tahap penguasaan murid "],
+["5.2","Memberi sokongan profesional kepada guru dalam menentukan tahap penguasaan secara adil "]
+];
+
+itemsC.forEach(([no, text])=>{
+
+let val = document.querySelector(`input[name="${no}_c"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${no}_c"]`)?.value;
+
+let splitText = doc.splitTextToSize(text, 85);
+
+rowC(no, splitText, val, cat);
+
+});
+
+// ================= SIGN =================
+doc.text("Tandatangan: ____________________", 14, 260);
+doc.text("Nama: " + nama, 14, 270);
+const today = new Date();
+
+const tarikh = today.toLocaleDateString('ms-MY', {
+day: '2-digit',
+month: '2-digit',
+year: 'numeric'
+});
+
+doc.text("Tarikh: " + tarikh, 14, 280);
+// ================= SAVE =================
+doc.save("Lampiran_B_PBD.pdf");
+
 }
 
 </script>
