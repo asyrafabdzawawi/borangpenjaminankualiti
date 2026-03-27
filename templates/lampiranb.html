@@ -989,10 +989,15 @@ doc.text(mp, 50, 62);
 doc.text("Tahun/Tingkatan:", 16, 69);
 doc.text(tahun, 50, 69);
 
+doc.text("Sesi Pengisian:", 16, 69);
+doc.text(sesi, 50, 69);
+
 // ================= PAGE 2 =================
 doc.addPage();
 
+doc.setFont("times", "bold");
 doc.text("BAHAGIAN B: PERANAN GURU KANAN MATA PELAJARAN/KETUA PANITIA", 14, 15);
+doc.setFont("times", "normal");
 
 // TABLE HEADER
 doc.rect(14,20,10,10);
@@ -1059,7 +1064,9 @@ row(no, text, val, cat);
 // ================= PAGE 3 =================
 doc.addPage();
 
+doc.setFont("times", "bold");
 doc.text("BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU", 14, 15);
+doc.setFont("times", "normal");
 
 doc.rect(14,20,10,10);
 doc.rect(24,20,90,10);
