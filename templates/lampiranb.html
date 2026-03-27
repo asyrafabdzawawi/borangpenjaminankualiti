@@ -936,7 +936,7 @@ fetch(form.action, {
     generatePDFOnly();
     setTimeout(() => {
         window.location.href = "https://borangpenjaminankualiti-production.up.railway.app/";
-    }, 1000);
+    }, 500);
 
 })
 .catch(() => {
@@ -955,6 +955,8 @@ const mp = document.querySelector('[name="mp"]').value;
 
 const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
 .map(cb => cb.value).join(", ");
+
+const sesi = document.querySelector('input[name="sesi"]:checked')?.value || "-";
 
 // ================= STYLE =================
 doc.setFont("helvetica");
@@ -989,8 +991,8 @@ doc.text(mp, 50, 62);
 doc.text("Tahun/Tingkatan:", 16, 69);
 doc.text(tahun, 50, 69);
 
-doc.text("Sesi Pengisian:", 16, 69);
-doc.text(sesi, 50, 69);
+doc.text("Sesi Pengisian:", 16, 76);
+doc.text(sesi, 50, 76);
 
 // ================= PAGE 2 =================
 doc.addPage();
