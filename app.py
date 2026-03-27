@@ -62,7 +62,7 @@ def submit():
    # =========================
     # 
     # =========================
-    if sesi in ["Sheet1","Sheet2"]:
+    if sesi in ["Lampiran C_Pertengahan_Tahun","Sheet2"]:
 
         sheet = spreadsheet.worksheet(sesi)
 
