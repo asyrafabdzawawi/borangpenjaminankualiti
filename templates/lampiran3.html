@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Senarai Semak Penjaminan Kualiti PBD</title>
@@ -1010,6 +1011,231 @@ currentStep--;
 showStep(currentStep);
 window.scrollTo({top:0,behavior:"smooth"});
 }
+}
+
+
+async function generatePDF(){
+
+const form = document.querySelector("form");
+
+fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+})
+.then(res => res.text())
+.then(() => {
+
+    alert("Rekod berjaya dihantar!");
+    generatePDFOnly();
+    window.location.href = "index.html";
+
+})
+.catch(() => {
+    alert("Data gagal dihantar!");
+});
+
+}
+async function generatePDFOnly(){
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF('p','mm','a4');
+
+const nama = document.querySelector('[name="nama"]').value;
+const jawatan = document.querySelector('[name="jawatan"]').value;
+const mp = document.querySelector('[name="mp"]').value;
+
+const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
+.map(cb => cb.value).join(", ");
+
+// ================= STYLE =================
+doc.setFont("helvetica");
+doc.setFontSize(10);
+
+// ================= PAGE 1 =================
+doc.setFontSize(11);
+doc.text("LAMPIRAN C", 105, 8, null, null, "center");
+
+doc.setFontSize(10);
+doc.text("INSTRUMEN PENJAMINAN MUTU", 105, 14, null, null, "center");
+doc.text("PENTAKSIRAN BILIK DARJAH", 105, 19, null, null, "center");
+doc.text("BAGI GURU MATA PELAJARAN", 105, 24, null, null, "center");
+
+doc.setFontSize(10);
+doc.setFont("times", "bold");
+doc.text("BAHAGIAN A: MAKLUMAT GURU MATA PELAJARAN", 14, 35);
+
+doc.setFont("times", "normal");
+
+doc.rect(14, 40, 180, 35);
+
+doc.text("Nama:", 16, 48);
+doc.text(nama, 50, 48);
+
+doc.text("Jawatan:", 16, 55);
+doc.text(jawatan, 50, 55);
+
+doc.text("Mata Pelajaran:", 16, 62);
+doc.text(mp, 50, 62);
+
+doc.text("Tahun/Tingkatan:", 16, 69);
+doc.text(tahun, 50, 69);
+
+// ================= PAGE 2 =================
+doc.addPage();
+
+doc.text("BAHAGIAN B: PERANAN GURU MATA PELAJARAN", 14, 15);
+
+// TABLE HEADER
+doc.rect(14,20,10,10);
+doc.rect(24,20,90,10);
+doc.rect(114,20,30,10);
+doc.rect(144,20,50,10);
+
+doc.text("BIL", 16,26);
+doc.text("PERKARA", 26,26);
+doc.text("SKALA", 118,26);
+doc.text("CATATAN", 150,26);
+
+let y = 30;
+
+// function draw row
+function row(no, text, val, catatan){
+
+let textLines = doc.splitTextToSize(text, 85);
+let catLines = doc.splitTextToSize(catatan || "-", 45);
+
+// kira tinggi berdasarkan line
+let lineHeight = 5;
+let maxLines = Math.max(textLines.length, catLines.length);
+let rowHeight = maxLines * lineHeight + 2;
+
+// DRAW BOX (ikut tinggi)
+doc.rect(14,y,10,rowHeight);
+doc.rect(24,y,90,rowHeight);
+doc.rect(114,y,30,rowHeight);
+doc.rect(144,y,50,rowHeight);
+
+// TEXT
+doc.text(no,16,y+5);
+
+doc.text(textLines,26,y+5);
+
+doc.text(val ? val : "-", 129, y+5, { align: "center" });
+
+doc.text(catLines,146,y+5);
+
+// MOVE Y
+y += rowHeight;
+}
+
+// AUTO LOOP BAHAGIAN B
+const itemsB = [
+["1.1","Memahami kepentingan Pentaksiran Bilik Darjah (PBD)"],
+["1.2","Menguasai konsep PBD"],
+["1.3","Menguasai pelaksanaan PBD"],
+["1.4","Menguasai kaedah pentaksiran"],
+["1.5","Menguasai instrumen pentaksiran"],
+["1.6","Memaklumkan kepada murid tahap penguasaan yang diperoleh."],
+["1.7","Memberi peluang kepada murid untuk ditaksir semula."],
+["1.8","Membuat penilaian kendiri bagi menambah baik kualiti PDP"],
+["1.9","Merekod dan membuat catatan tahap penguasaan murid dari semasa ke semasa."],
+["1.10","Menyediakan pelaporan tahap penguasaan sekurang-kurangnya dua (2) kali setahun."],
+["1.11","Menyediakan instrumen ujian akhir sesi akademik mengikut format dan Jadual Spesifikasi Ujian (JSU) "],
+];
+
+itemsB.forEach(([no, text])=>{
+
+let val = document.querySelector(`input[name="${no}_b"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${no}_b"]`)?.value;
+
+row(no, text, val, cat);
+
+});
+// ================= PAGE 3 =================
+doc.addPage();
+
+doc.text("BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU", 14, 15);
+
+doc.rect(14,20,10,10);
+doc.rect(24,20,90,10);
+doc.rect(114,20,30,10);
+doc.rect(144,20,50,10);
+
+doc.text("BIL", 16,26);
+doc.text("PERKARA", 26,26);
+doc.text("SKALA", 118,26);
+doc.text("CATATAN", 150,26);
+
+let y2 = 30;
+
+function rowC(no, text, val, catatan){
+
+let textLines = doc.splitTextToSize(text, 85);
+let catLines = doc.splitTextToSize(catatan || "-", 45);
+
+let lineHeight = 5;
+let maxLines = Math.max(textLines.length, catLines.length);
+let rowHeight = maxLines * lineHeight + 2;
+
+doc.rect(14,y2,10,rowHeight);
+doc.rect(24,y2,90,rowHeight);
+doc.rect(114,y2,30,rowHeight);
+doc.rect(144,y2,50,rowHeight);
+
+doc.text(no,16,y2+5);
+
+doc.text(textLines,26,y2+5);
+
+doc.text(val ? val : "-",118,y2+5);
+
+doc.text(catLines,146,y2+5);
+
+y2 += rowHeight;
+}
+
+// LIST ITEM C (1.1 → 5.2)
+const itemsC = [
+["1.1","Merujuk Panduan Pengurusan Pentaksiran Berasaskan Sekolah (PBS) yang sedang berkuat kuasa"],
+["1.2","Merujuk Panduan Pelaksanaan Pentaksiran Bilik Darjah (PBD) yang sedang berkuat kuasa"],
+["2.1","Menerima latihan pembangunan profesionalisme berterusan bagi meningkatkan pengetahuan, kefahaman dan kemahiran dalam pelaksanaan PBD."],
+["2.2","Menerima bimbingan tentang pelaksanaan dan pengoperasian PBD daripada Guru Kanan Mata Pelajaran/Ketua Panitia (GKMP/KP)"],
+["3.1","Menyediakan instrumen pentaksiran yang sesuai dan menepati kandungan kurikulum semasa."],
+["3.2","Menggunakan instrumen pentaksiran yang sesuai dan menepati kandungan kurikulum semasa."],
+["3.3","Memilih kaedah pentaksiran yang sesuai dan menepati kandungan kurikulum semasa."],
+["3.4","Melaksanakan kaedah pentaksiran yang sesuai dan menepati kandungan kurikulum semasa."],
+["4.1","Melaksanakan perekodan tahap penguasaan murid."],
+["4.2","Melaksanakan tindakan susulan bagi meningkatkan tahap penguasaan murid."],
+["4.3","Menyerahkan pelaporan tahap penguasaan murid sekurang-kurangnya dua kali setahun ."],
+["5.1","Melaksanakan perbincangan dalam panitia bagi menyelaras tahap penguasaan murid merujuk kepada Standard Prestasi "],
+["5.2","Menentukan tahap penguasaan murid secara adil mengikut keupayaan sebenar murid merujuk kepada Standard Prestasi "]
+];
+
+itemsC.forEach(([no, text])=>{
+
+let val = document.querySelector(`input[name="${no}_c"]:checked`)?.value;
+let cat = document.querySelector(`[name="catatan_${no}_c"]`)?.value;
+
+let splitText = doc.splitTextToSize(text, 85);
+
+rowC(no, splitText, val, cat);
+
+});
+
+// ================= SIGN =================
+doc.text("Tandatangan: ____________________", 14, 260);
+doc.text("Nama: " + nama, 14, 270);
+const today = new Date();
+
+const tarikh = today.toLocaleDateString('ms-MY', {
+day: '2-digit',
+month: '2-digit',
+year: 'numeric'
+});
+
+doc.text("Tarikh: " + tarikh, 14, 280);
+// ================= SAVE =================
+doc.save("Lampiran_C_PBD.pdf");
+
 }
 
 </script>
