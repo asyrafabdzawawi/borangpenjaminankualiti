@@ -827,6 +827,8 @@ const mp = document.querySelector('[name="mp"]').value;
 const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
 .map(cb => cb.value).join(", ");
 
+const sesi = document.querySelector('input[name="sesi"]:checked')?.value || "-";
+
 // ================= STYLE =================
 doc.setFont("helvetica");
 doc.setFontSize(10);
@@ -846,7 +848,7 @@ doc.text("BAHAGIAN A: MAKLUMAT PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 14, 35)
 
 doc.setFont("times", "normal");
 
-doc.rect(14, 40, 180, 35);
+doc.rect(14, 40, 180, 45);
 
 doc.text("Nama:", 16, 48);
 doc.text(nama, 50, 48);
@@ -860,10 +862,14 @@ doc.text(mp, 50, 62);
 doc.text("Tahun/Tingkatan:", 16, 69);
 doc.text(tahun, 50, 69);
 
+doc.text("Sesi Pengisian:", 16, 76); doc.text(sesi, 50, 76);
+
 // ================= PAGE 2 =================
 doc.addPage();
 
+doc.setFont("times", "bold");
 doc.text("BAHAGIAN B: PERANAN PENGETUA/GURU BESAR/GURU PENOLONG KANAN", 14, 15);
+doc.setFont("times", "normal");
 
 // TABLE HEADER
 doc.rect(14,20,10,10);
@@ -936,7 +942,9 @@ row(no, text, val, cat);
 // ================= PAGE 3 =================
 doc.addPage();
 
+doc.setFont("times", "bold");
 doc.text("BAHAGIAN C: PENGURUSAN DAN PELAKSANAAN PENJAMINAN MUTU", 14, 15);
+doc.setFont("times", "normal");
 
 doc.rect(14,20,10,10);
 doc.rect(24,20,90,10);
