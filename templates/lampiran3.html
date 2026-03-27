@@ -1050,6 +1050,8 @@ const mp = document.querySelector('[name="mp"]').value;
 const tahun = [...document.querySelectorAll('input[name="tahun[]"]:checked')]
 .map(cb => cb.value).join(", ");
 
+const sesi = document.querySelector('input[name="sesi"]:checked')?.value || "-";
+
 // ================= STYLE =================
 doc.setFont("helvetica");
 doc.setFontSize(10);
