@@ -805,6 +805,9 @@ fetch(form.action, {
 
     alert("Rekod berjaya dihantar!");
     generatePDFOnly();
+    setTimeout(() => {
+        window.location.href = "https://borangpenjaminankualiti-production.up.railway.app/";
+    }, 500);
 
 })
 .catch(() => {
