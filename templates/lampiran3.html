@@ -1026,19 +1026,27 @@ fetch(form.action, {
     method: "POST",
     body: new FormData(form)
 })
-.then(res => res.text())
+.then(res => {
+    if (!res.ok) {
+        throw new Error("Penghantaran gagal");
+    }
+    return res.text();
+})
 .then(() => {
 
-    alert("Rekod berjaya dihantar!");
+    // Paparkan mesej terlebih dahulu. PDF hanya dimuat turun selepas pengguna tekan OK.
+    alert("Rekod berjaya dihantar!\\n\\nTekan OK untuk memuat turun borang PDF.");
+
     generatePDFOnly();
+
+    // Beri masa kepada pelayar untuk memulakan proses muat turun sebelum kembali ke halaman utama.
     setTimeout(() => {
         window.location.href = "https://borangpenjaminankualiti-production.up.railway.app/";
-    }, 500);
-
+    }, 2000);
 
 })
 .catch(() => {
-    alert("Data gagal dihantar!");
+    alert("Data gagal dihantar! Sila cuba sekali lagi.");
 });
 
 }
@@ -1258,14 +1266,6 @@ doc.save("Lampiran_C_PBD.pdf");
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
