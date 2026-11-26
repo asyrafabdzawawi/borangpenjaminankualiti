@@ -132,9 +132,12 @@ def submit():
         ]
 
         sheet.append_row(row)
-    elif sesi == "Lampiran_B_Pertengahan_Tahun":
-        sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
+    elif sesi in ["Lampiran_B_Pertengahan_Tahun", "Akhir Tahun"]:
 
+        if sesi == "Lampiran_B_Pertengahan_Tahun":
+            sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
+        else:
+            sheet = spreadsheet.worksheet("Lampiran_B_Akhir_Tahun")
         row = [
         timestamp,
         form.get("nama"),
