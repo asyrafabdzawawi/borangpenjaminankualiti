@@ -931,11 +931,11 @@ fetch(form.action, {
 .then(res => res.text())
 .then(() => {
 
-    alert("Rekod berjaya dihantar!");
+    alert("Rekod berjaya dihantar!\n\nTekan OK untuk memuat turun borang PDF.");
     generatePDFOnly();
     setTimeout(() => {
         window.location.href = "https://borangpenjaminankualiti-production.up.railway.app/";
-    }, 500);
+    }, 2000);
 
 })
 .catch(() => {
@@ -1153,12 +1153,6 @@ doc.save("Lampiran_B_PBD.pdf");
 
 </body>
 </html>
-
-
-
-
-
-
 
 
 
