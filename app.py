@@ -62,9 +62,12 @@ def submit():
    # =========================
     # 
     # =========================
-    if sesi in ["Lampiran C_Pertengahan_Tahun","Sheet2"]:
+    if sesi in ["Lampiran C_Pertengahan_Tahun", "Akhir Tahun"]:
 
-        sheet = spreadsheet.worksheet(sesi)
+        if sesi == "Lampiran C_Pertengahan_Tahun":
+            sheet = spreadsheet.worksheet("Lampiran C_Pertengahan_Tahun")
+        else:
+            sheet = spreadsheet.worksheet("Sheet2")
 
         row = [
         timestamp,
