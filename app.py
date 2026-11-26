@@ -56,13 +56,14 @@ def submit():
     tahun = ", ".join(tahun_list)
 
     sesi = form.get("sesi")
+    jenis_lampiran = form.get("jenis_lampiran")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
    # =========================
     # 
     # =========================
-    if sesi in ["Lampiran C_Pertengahan_Tahun", "Akhir Tahun"]:
+    if jenis_lampiran == "C" and sesi in ["Lampiran C_Pertengahan_Tahun", "Akhir Tahun"]:
 
         if sesi == "Lampiran C_Pertengahan_Tahun":
             sheet = spreadsheet.worksheet("Lampiran C_Pertengahan_Tahun")
@@ -132,7 +133,7 @@ def submit():
         ]
 
         sheet.append_row(row)
-    elif sesi in ["Lampiran_B_Pertengahan_Tahun", "Akhir Tahun"]:
+    elif jenis_lampiran == "B" and sesi in ["Lampiran_B_Pertengahan_Tahun", "Akhir Tahun"]:
 
         if sesi == "Lampiran_B_Pertengahan_Tahun":
             sheet = spreadsheet.worksheet("Lampiran_B_Pertengahan_Tahun")
