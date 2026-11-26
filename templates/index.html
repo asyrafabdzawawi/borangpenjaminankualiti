@@ -14,7 +14,17 @@
 transition: all 0.25s ease;
 }
 
-
+<script>
+function paparMesejAnalisis() {
+    alert(
+        "MAKLUMAN\n\n" +
+        "Analisis data untuk Sesi Pengisian Akhir Tahun masih dalam pembangunan.\n\n" +
+        "Mohon maaf atas segala kesulitan.\n\n" +
+        "Buat masa ini, cikgu hanya boleh mengakses analisis data bagi Sesi Pengisian Pertengahan Tahun.\n\n" +
+        "Terima kasih atas perhatian dan kerjasama cikgu."
+    );
+}
+</script>
 
 
 body{
@@ -124,7 +134,7 @@ color:#95a5a6;
   
 
 <button class="menu-button dashboard-btn"
-onclick="window.location.href='/dashboard'">
+onclick="paparMesejAnalisis()">
 <b>Lihat Analisis Data</b>
 </button>
 
